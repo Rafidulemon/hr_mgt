@@ -1,8 +1,21 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Atoms from "./pages/atoms";
+
 function App() {
   return (
-    <div className="flex items-center justify-center h-screen w-full bg-blue-500 text-white text-2xl">
-      <h1>Hello World</h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="flex flex-col items-center justify-center h-screen bg-blue-500 text-white text-2xl">
+              <h1>Hello WOrld</h1>
+            </div>
+          }
+        />
+        <Route path="/atoms" element={<Atoms />} />
+      </Routes>
+    </Router>
   );
 }
 
