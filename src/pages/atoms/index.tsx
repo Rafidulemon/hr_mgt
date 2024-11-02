@@ -3,6 +3,7 @@ import { Card } from "../../components/atoms/frame/Card";
 import TextInput from "../../components/atoms/inputs/TextInput";
 import PasswordInput from "../../components/atoms/inputs/PasswordInput";
 import { type FieldError } from "react-hook-form";
+import TextArea from "../../components/atoms/inputs/TextArea";
 
 const mockError: FieldError = {
   type: "required",
@@ -20,7 +21,7 @@ function Atoms() {
       <div className="flex flex-row w-full justify-center items-center text-[30px] font-extrabold">
         <h1 className="text-center">Components</h1>
       </div>
-      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2">
+      <Card className="p-6 gap-2 grid grid-cols-2">
         <span className="col-span-2 text-[24px] font-bold">TextInput</span>
         <line className="col-span-2 w-full border-b border-black mb-6" />
         <TextInput label="TextInput" className="col-span-2 w-[500px]" />
@@ -37,7 +38,7 @@ function Atoms() {
         />
       </Card>
 
-      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2">
+      <Card className="p-6 gap-2 grid grid-cols-2">
         <span className="col-span-2 text-[24px] font-bold">PasswordInput</span>
         <line className="col-span-2 w-full border-b border-black mb-6" />
         <PasswordInput label="PasswordInput" className="col-span-2 w-[500px]" />
@@ -54,7 +55,21 @@ function Atoms() {
         />
       </Card>
 
-      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2">
+      <Card className="h-full p-6 gap-2 grid grid-cols-2">
+        <span className="col-span-2 text-[24px] font-bold">TextArea</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+        <TextArea label="TextArea" className="col-span-2 w-[500px]" />
+        <TextArea label="TextArea" isRequired className="col-span-2 w-[500px]" />
+        <TextArea
+          isRequired
+          label="TextArea Error"
+          className="w-[500px]"
+          height="200px"
+          error={mockError}
+        />
+      </Card>
+
+      <Card className="p-6 gap-2 grid grid-cols-2">
         <span className="col-span-2 text-[24px] font-bold">Buttons</span>
         <line className="col-span-2 w-full border-b border-black mb-6" />
         <div className="col-span-1 flex flex-col gap-1 text-black text-[18px]">
