@@ -6,6 +6,8 @@ import { type FieldError } from "react-hook-form";
 import TextArea from "../../components/atoms/inputs/TextArea";
 import { useState } from "react";
 import { Modal } from "../../components/atoms/frame/Modal";
+import FileInput from "../../components/atoms/inputs/FileInput";
+import ImageInput from "../../components/atoms/inputs/ImageInput";
 
 const mockError: FieldError = {
   type: "required",
@@ -138,6 +140,28 @@ function Atoms() {
             Open Modal
           </Button>
         </div>
+      </Card>
+
+      <Card className="p-6 gap-2 grid grid-cols-2">
+        <span className="col-span-2 text-[24px] font-bold">FileInput</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+        <FileInput
+          label="Upload File"
+          isRequired
+          className="col-span-2 w-[300px]"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            console.log("Selected file:", file);
+          }}
+        />
+
+        <ImageInput
+          label="Upload Profile Picture"
+          isRequired
+          id="profilePic"
+          initialImage="/logo.png"
+          onChange={(e) => console.log(e.target.files)}
+        />
       </Card>
 
       <Modal
