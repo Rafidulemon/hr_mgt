@@ -7,7 +7,7 @@ type Props = {
   placeholder?: string;
   error?: FieldError | undefined;
   id?: string;
-  register: UseFormRegisterReturn; // Register prop from react-hook-form
+  register: UseFormRegisterReturn;
 };
 
 function EmailInput(props: Props) {
