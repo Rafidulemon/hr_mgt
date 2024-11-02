@@ -1,11 +1,17 @@
 import Button from "../../components/atoms/buttons/Button";
 import { Card } from "../../components/atoms/frame/Card";
 import TextInput from "../../components/atoms/inputs/TextInput";
+import PasswordInput from "../../components/atoms/inputs/PasswordInput";
 import { type FieldError } from "react-hook-form";
 
 const mockError: FieldError = {
   type: "required",
   message: "This field is required",
+};
+
+const mockPasswordError: FieldError = {
+  type: "required",
+  message: "Password incorrect",
 };
 
 function Atoms() {
@@ -30,6 +36,24 @@ function Atoms() {
           error={mockError}
         />
       </Card>
+
+      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2">
+        <span className="col-span-2 text-[24px] font-bold">PasswordInput</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+        <PasswordInput label="PasswordInput" className="col-span-2 w-[500px]" />
+        <PasswordInput
+          isRequired
+          label="Required PasswordInput"
+          className="col-span-2 w-[500px]"
+        />
+        <PasswordInput
+          isRequired
+          label="PasswordInput Error"
+          className="w-[500px]"
+          error={mockPasswordError}
+        />
+      </Card>
+
       <Card className="h-[300px] p-6 gap-2 grid grid-cols-2">
         <span className="col-span-2 text-[24px] font-bold">Buttons</span>
         <line className="col-span-2 w-full border-b border-black mb-6" />
