@@ -4,6 +4,8 @@ import TextInput from "../../components/atoms/inputs/TextInput";
 import PasswordInput from "../../components/atoms/inputs/PasswordInput";
 import { type FieldError } from "react-hook-form";
 import TextArea from "../../components/atoms/inputs/TextArea";
+import { useState } from "react";
+import { Modal } from "../../components/atoms/frame/Modal";
 
 const mockError: FieldError = {
   type: "required",
@@ -16,6 +18,8 @@ const mockPasswordError: FieldError = {
 };
 
 function Atoms() {
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+
   return (
     <div className="flex flex-col gap-10 w-full min-h-screen p-10 bg-[#ECECEC]">
       <div className="flex flex-row w-full justify-center items-center text-[30px] font-extrabold">
@@ -121,6 +125,39 @@ function Atoms() {
           </Button>
         </div>
       </Card>
+
+      <Card className="p-6 gap-2 grid grid-cols-2">
+        <span className="col-span-2 text-[24px] font-bold">Modals</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+        <div className="col-span-1 flex flex-col gap-1 text-black text-[18px]">
+          <Button
+            theme="primary"
+            className="w-[250px] text-[16px]"
+            onClick={() => setIsOpenModal(true)}
+          >
+            Open Modal
+          </Button>
+        </div>
+      </Card>
+
+      <Modal
+        doneButtonText="Save"
+        cancelButtonText="Cancel"
+        isCancelButton
+        className="h-auto w-[496px]"
+        open={isOpenModal}
+        setOpen={setIsOpenModal}
+        title="Save Changes?"
+        buttonWidth="120px"
+        buttonHeight="40px"
+        onDoneClick={() => setIsOpenModal(false)}
+        closeOnClick={() => setIsOpenModal(false)}
+      >
+        <PasswordInput
+          label="Please enter password to save changes"
+          className="w-full"
+        />
+      </Modal>
     </div>
   );
 }
