@@ -24,15 +24,21 @@ function Atoms() {
       <Card className="p-6 gap-2 grid grid-cols-2">
         <span className="col-span-2 text-[24px] font-bold">TextInput</span>
         <line className="col-span-2 w-full border-b border-black mb-6" />
-        <TextInput label="TextInput" className="col-span-2 w-[500px]" />
+        <TextInput
+          label="TextInput"
+          placeholder="Enter text"
+          className="col-span-2 w-[500px]"
+        />
         <TextInput
           isRequired
           label="Required TextInput"
+          placeholder="Enter text"
           className="col-span-2 w-[500px]"
         />
         <TextInput
           isRequired
           label="TextInput Error"
+          placeholder="Enter text"
           className="w-[500px]"
           error={mockError}
         />
@@ -41,10 +47,15 @@ function Atoms() {
       <Card className="p-6 gap-2 grid grid-cols-2">
         <span className="col-span-2 text-[24px] font-bold">PasswordInput</span>
         <line className="col-span-2 w-full border-b border-black mb-6" />
-        <PasswordInput label="PasswordInput" className="col-span-2 w-[500px]" />
+        <PasswordInput
+          label="PasswordInput"
+          placeholder="Enter Password"
+          className="col-span-2 w-[500px]"
+        />
         <PasswordInput
           isRequired
           label="Required PasswordInput"
+          placeholder="Enter Password"
           className="col-span-2 w-[500px]"
         />
         <PasswordInput
@@ -58,13 +69,23 @@ function Atoms() {
       <Card className="h-full p-6 gap-2 grid grid-cols-2">
         <span className="col-span-2 text-[24px] font-bold">TextArea</span>
         <line className="col-span-2 w-full border-b border-black mb-6" />
-        <TextArea label="TextArea" className="col-span-2 w-[500px]" />
-        <TextArea label="TextArea" isRequired className="col-span-2 w-[500px]" />
+        <TextArea
+          label="TextArea"
+          placeholder="Enter text"
+          className="col-span-2 w-[500px]"
+        />
+        <TextArea
+          label="TextArea"
+          placeholder="Enter text"
+          isRequired
+          className="col-span-2 w-[500px]"
+        />
         <TextArea
           isRequired
           label="TextArea Error"
           className="w-[500px]"
           height="200px"
+          placeholder="Enter text"
           error={mockError}
         />
       </Card>
