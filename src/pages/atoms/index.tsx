@@ -4,6 +4,10 @@ import TextInput from "../../components/atoms/inputs/TextInput";
 import PasswordInput from "../../components/atoms/inputs/PasswordInput";
 import { type FieldError } from "react-hook-form";
 import TextArea from "../../components/atoms/inputs/TextArea";
+import EmailInput from "../../components/atoms/inputs/TextInput";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const mockError: FieldError = {
   type: "required",
@@ -15,7 +19,27 @@ const mockPasswordError: FieldError = {
   message: "Password incorrect",
 };
 
+const schema = z.object({
+  email: z
+    .string()
+    .email("Please enter a valid email address")
+    .nonempty("Email is required"),
+});
+
+type FormData = z.infer<typeof schema>;
+
 function Atoms() {
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = (data: FormData) => {
+    console.log("Form submitted:", data);
+  };
+
   return (
     <div className="flex flex-col gap-10 w-full min-h-screen p-10 bg-[#ECECEC]">
       <div className="flex flex-row w-full justify-center items-center text-[30px] font-extrabold">
@@ -88,6 +112,31 @@ function Atoms() {
           placeholder="Enter text"
           error={mockError}
         />
+      </Card>
+
+      <Card className="h-full p-6 gap-2 grid grid-cols-2">
+        <span className="col-span-2 text-[24px] font-bold">EmailInput</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-[500px]"
+        >
+          <EmailInput
+            label="Enter Email"
+            placeholder="Enter email"
+            className="col-span-2"
+          />
+          <EmailInput
+            label="Email Address"
+            placeholder="Enter your email"
+            isRequired
+            error={errors.email}
+          />
+          <Button theme="primary" type="submit" className="w-[100px] mt-4">
+            Submit
+          </Button>
+        </form>
       </Card>
 
       <Card className="p-6 gap-2 grid grid-cols-2">
