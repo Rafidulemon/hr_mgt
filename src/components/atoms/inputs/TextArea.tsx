@@ -32,11 +32,10 @@ function TextArea(props: Props) {
         <label className="text-[16px] text-text_bold font-bold">{label}</label>
         {isRequired && <span className="text-[16px] font-bold text-tertiary">*</span>}
       </div>
-      <input
+      <textarea
         id={id}
-        className="w-full bg-white rounded-[5px] drop-shadow-2xl text-text_primary px-4 focus:outline-none mb-2"
+        className="w-full bg-white rounded-[5px] drop-shadow-2xl text-text_primary p-4 focus:outline-none mb-2"
         style={{ height: height || "100px" }}
-        type="text"
         defaultValue={defaultValue}
         value={value}
         placeholder={placeholder}
