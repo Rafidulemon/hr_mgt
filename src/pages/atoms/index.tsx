@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Text from "../../components/atoms/Text/Text";
+import RadioGroup from "../../components/atoms/inputs/RadioGroup";
+import { useState } from "react";
 
 const mockError: FieldError = {
   type: "required",
@@ -40,6 +42,12 @@ function Atoms() {
 
   const onSubmit = (data: FormData) => {
     console.log("Form submitted:", data);
+  };
+
+  const [selectedValue, setSelectedValue] = useState("");
+
+  const handleRadioChange = (value: string) => {
+    setSelectedValue(value);
   };
 
   return (
@@ -193,6 +201,27 @@ function Atoms() {
         <div className="flex flex-col gap-1 text-black text-[18px] ">
           <h3> Large Text </h3>
           <Text text="Shariar Mahmadmud Duke" className="text-[24px]" />
+        </div>
+      </Card>
+
+      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2 mt-4">
+        <span className="col-span-2 text-[24px] font-bold">RadioGroup</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+        <div className="w-fit">
+          <RadioGroup
+            name="options"
+            title="Select any option:"
+            options={[
+              { label: "Option 1", value: "1" },
+              { label: "Option 2", value: "2" },
+              { label: "Option 3", value: "3" },
+            ]}
+            selectedValue={selectedValue}
+            onChange={handleRadioChange}
+          />
+          <p className="mt-4 text-text-text_bold">
+            Selected: {selectedValue || "None"}
+          </p>
         </div>
       </Card>
     </div>
