@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Text from "../../components/atoms/Text/Text";
+import Table from "../../components/atoms/tables/Table";
 
 const mockError: FieldError = {
   type: "required",
@@ -42,6 +43,15 @@ function Atoms() {
     console.log("Form submitted:", data);
   };
 
+  const headers = ["ID", "Application_Date", "Leave_Type", "From", "To", "Status"];
+  const rows = [
+    { ID: "10001", Application_Date: "10/12/2024", Leave_Type: "Sick", From: "10/12/2024", To: "10/12/2024", Status: "Pending" },
+    { ID: "10001", Application_Date: "10/12/2024", Leave_Type: "Casual", From: "10/12/2024", To: "10/12/2024", Status: "Pending" },
+    { ID: "10001", Application_Date: "10/12/2024", Leave_Type: "Casual", From: "10/12/2024", To: "10/12/2024", Status: "Pending" },
+    { ID: "10001", Application_Date: "10/12/2024", Leave_Type: "Casual", From: "10/12/2024", To: "10/12/2024", Status: "Pending" },
+    { ID: "10001", Application_Date: "10/12/2024", Leave_Type: "Casual", From: "10/12/2024", To: "10/12/2024", Status: "Pending" },
+    { ID: "10001", Application_Date: "10/12/2024", Leave_Type: "Casual", From: "10/12/2024", To: "10/12/2024", Status: "Pending" },
+  ];
   return (
     <div className="flex flex-col gap-10 w-full min-h-screen p-10 bg-[#ECECEC]">
       <div className="flex flex-row w-full justify-center items-center text-[30px] font-extrabold">
@@ -193,6 +203,18 @@ function Atoms() {
         <div className="flex flex-col gap-1 text-black text-[18px] ">
           <h3> Large Text </h3>
           <Text text="Shariar Mahmadmud Duke" className="text-[24px]" />
+        </div>
+      </Card>
+
+      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2 mt-4">
+        <span className="col-span-2 text-[24px] font-bold">Tables</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+        <div className="col-span-2">
+          <Table
+            headers={headers}
+            rows={rows}
+            className="shadow-lg"
+          />
         </div>
       </Card>
     </div>
