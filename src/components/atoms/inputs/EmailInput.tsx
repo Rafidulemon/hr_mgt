@@ -10,7 +10,6 @@ type Props = {
   id?: string;
   name?: string;
   register?: UseFormRegister<any>;
-
 };
 
 function EmailInput(props: Props) {

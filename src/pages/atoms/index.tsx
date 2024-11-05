@@ -4,7 +4,7 @@ import TextInput from "../../components/atoms/inputs/TextInput";
 import PasswordInput from "../../components/atoms/inputs/PasswordInput";
 import { type FieldError } from "react-hook-form";
 import TextArea from "../../components/atoms/inputs/TextArea";
-import EmailInput from "../../components/atoms/inputs/TextInput";
+import EmailInput from "../../components/atoms/inputs/EmailInput";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,8 +23,8 @@ const mockPasswordError: FieldError = {
 const schema = z.object({
   email: z
     .string()
-    .email("Please enter a valid email address")
-    .nonempty("Email is required"),
+    .nonempty("Email is required")
+    .email("Please enter a valid email address"),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -120,19 +120,18 @@ function Atoms() {
         <span className="col-span-2 text-[24px] font-bold">EmailInput</span>
         <line className="col-span-2 w-full border-b border-black mb-6" />
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="w-[500px]"
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className="w-[500px]">
           <EmailInput
             label="Enter Email"
             placeholder="Enter email"
             className="col-span-2"
           />
           <EmailInput
-            label="Email Address"
-            placeholder="Enter your email"
-            isRequired
+            label="Enter Email"
+            placeholder="Enter email"
+            className="col-span-2"
+            register={register}
+            name="email"
             error={errors.email}
           />
           <Button theme="primary" type="submit" className="w-[100px] mt-4">
