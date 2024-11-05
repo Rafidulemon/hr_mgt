@@ -8,6 +8,7 @@ import EmailInput from "../../components/atoms/inputs/TextInput";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Text from "../../components/atoms/Text/Text";
 
 const mockError: FieldError = {
   type: "required",
@@ -30,6 +31,7 @@ type FormData = z.infer<typeof schema>;
 
 function Atoms() {
   const {
+    register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
@@ -168,6 +170,30 @@ function Atoms() {
           <Button theme="cancel-secondary" className="w-[250px] text-[16px]">
             Cancel Secondary Button
           </Button>
+        </div>
+      </Card>
+
+      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2 mt-4">
+        <span className="col-span-2 text-[24px] font-bold">Text</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+        <div className="col-span-1 flex flex-col gap-1 text-black text-[18px]">
+          <h3>Simple Text:</h3>
+          <Text text="Shariar Mahmadmud Duke" />
+        </div>
+
+        <div className="col-span-1 flex flex-col gap-1 text-black text-[18px]">
+          <h3>Bold Text:</h3>
+          <Text text="Shariar Mahmadmud Duke" isBold />
+        </div>
+
+        <div className="flex flex-col gap-1 text-black text-[18px]">
+          <h3>Text with Color:</h3>
+          <Text text="Shariar Mahmadmud Duke" color="blue" />
+        </div>
+
+        <div className="flex flex-col gap-1 text-black text-[18px] ">
+          <h3> Large Text </h3>
+          <Text text="Shariar Mahmadmud Duke" className="text-[24px]" />
         </div>
       </Card>
     </div>

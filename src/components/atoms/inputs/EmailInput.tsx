@@ -1,4 +1,5 @@
-import { type FieldError, UseFormRegisterReturn } from "react-hook-form";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { type FieldError, UseFormRegister } from "react-hook-form";
 
 type Props = {
   className?: string;
@@ -7,12 +8,15 @@ type Props = {
   placeholder?: string;
   error?: FieldError | undefined;
   id?: string;
-  register: UseFormRegisterReturn;
+  name?: string;
+  register?: UseFormRegister<any>;
+
 };
 
 function EmailInput(props: Props) {
   const {
     id,
+    name = "name",
     className,
     isRequired = false,
     label,
@@ -36,7 +40,7 @@ function EmailInput(props: Props) {
         type="email"
         className="w-full h-[40px] bg-white rounded-[5px] drop-shadow-2xl text-text_primary px-4 focus:outline-none mb-2"
         placeholder={placeholder}
-        {...register}
+        {...register?.(name)}
       />
       {error && <div className="text-[14px] text-tertiary">{error.message}</div>}
     </div>
