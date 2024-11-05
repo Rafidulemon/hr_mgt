@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Text from "../../components/atoms/Text/Text";
+import { CardWithHeader } from "../../components/atoms/frame/CardWithHeader";
 
 const mockError: FieldError = {
   type: "required",
@@ -194,6 +195,36 @@ function Atoms() {
           <h3> Large Text </h3>
           <Text text="Shariar Mahmadmud Duke" className="text-[24px]" />
         </div>
+      </Card>
+
+      <Card className="h-[300px] p-6 gap-4 grid grid-cols-3 mt-4 bg-gray-300">
+        <span className="col-span-3 text-[24px] font-bold">CardWithHeader</span>
+        <line className="col-span-3 w-full border-b border-black mb-6" />
+          <CardWithHeader
+            title="Primary Card"
+            titleBarSize="h-[60px]"
+            className="col-span-1"
+          >
+            <div className="h-[250px]"></div>
+          </CardWithHeader>
+
+          <CardWithHeader
+            title="Secondary Card"
+            titleBarSize="h-[60px]"
+            className="col-span-1"
+            titleColor="bg-[#8A006C]"
+          >
+            <div className="h-[250px]"></div>
+          </CardWithHeader>
+
+          <CardWithHeader
+            title="Tertiary Card"
+            titleBarSize="h-[60px]"
+            titleColor="bg-[#0024A4]"
+            className="col-span-1"
+          >
+            <div className="h-[250px]"></div>
+          </CardWithHeader>
       </Card>
     </div>
   );
