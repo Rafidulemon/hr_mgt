@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Text from "../../components/atoms/Text/Text";
+import Calendar from "../../components/calerdar/Calendar";
 
 const mockError: FieldError = {
   type: "required",
@@ -194,6 +195,12 @@ function Atoms() {
           <h3> Large Text </h3>
           <Text text="Shariar Mahmadmud Duke" className="text-[24px]" />
         </div>
+      </Card>
+
+      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2 mt-4">
+        <span className="col-span-2 text-[24px] font-bold">Calendar</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+        <Calendar/>
       </Card>
     </div>
   );
