@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Text from "../../components/atoms/Text/Text";
+import LeftMenu from "../../components/Layouts/LeftMenu";
 
 const mockError: FieldError = {
   type: "required",
@@ -193,6 +194,18 @@ function Atoms() {
         <div className="flex flex-col gap-1 text-black text-[18px] ">
           <h3> Large Text </h3>
           <Text text="Shariar Mahmadmud Duke" className="text-[24px]" />
+        </div>
+      </Card>
+
+      <Card className="h-[300px] p-6 gap-6 grid grid-cols-6 mt-4">
+        <div className="col-span-1">
+          <Text text="Employee LeftMenu" isBold className="text-[20px] mb-6"/>
+          <LeftMenu />
+        </div>
+        <div/>
+        <div className="col-span-1">
+          <Text text="Leader LeftMenu" isBold className="text-[20px] mb-6"/>
+          <LeftMenu isLeader/>
         </div>
       </Card>
     </div>
