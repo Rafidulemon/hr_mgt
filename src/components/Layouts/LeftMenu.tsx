@@ -1,5 +1,4 @@
 import {
-  FaHome,
   FaUser,
   FaCalendarCheck,
   FaClipboardList,
@@ -9,6 +8,8 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
+import { MdOutlineDashboard } from "react-icons/md";
+import { TbReport, TbReportAnalytics  } from "react-icons/tb";
 
 type Props = {
   isLeader?: boolean;
@@ -16,12 +17,12 @@ type Props = {
 };
 
 const menuItems = [
-  { label: "Dashboard", icon: <FaHome />, href: "/dashboard" },
+  { label: "Dashboard", icon: <MdOutlineDashboard />, href: "/dashboard" },
   { label: "Profile", icon: <FaUser />, href: "/profile" },
   { label: "Attendance", icon: <FaCalendarCheck />, href: "/attendance" },
   { label: "Leave", icon: <FaClipboardList />, href: "/leave" },
-  { label: "Daily Report", icon: <FaClipboardList />, href: "/daily-report" },
-  { label: "Monthly Report", icon: <FaChartLine />, href: "/monthly-report" },
+  { label: "Daily Report", icon: <TbReport />, href: "/daily-report" },
+  { label: "Monthly Report", icon: <TbReportAnalytics />, href: "/monthly-report" },
   { label: "Notification", icon: <FaBell />, href: "/notification" },
   { label: "Payroll", icon: <FaFileInvoice />, href: "/payroll" },
   {
