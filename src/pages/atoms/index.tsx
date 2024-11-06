@@ -8,6 +8,11 @@ import { useState } from "react";
 import { Modal } from "../../components/atoms/frame/Modal";
 import FileInput from "../../components/atoms/inputs/FileInput";
 import ImageInput from "../../components/atoms/inputs/ImageInput";
+import EmailInput from "../../components/atoms/inputs/EmailInput";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Text from "../../components/atoms/Text/Text";
 
 const mockError: FieldError = {
   type: "required",
@@ -19,8 +24,28 @@ const mockPasswordError: FieldError = {
   message: "Password incorrect",
 };
 
+const schema = z.object({
+  email: z
+    .string()
+    .nonempty("Email is required")
+    .email("Please enter a valid email address"),
+});
+
+type FormData = z.infer<typeof schema>;
+
 function Atoms() {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = (data: FormData) => {
+    console.log("Form submitted:", data);
+  };
 
   return (
     <div className="flex flex-col gap-10 w-full min-h-screen p-10 bg-[#ECECEC]">
@@ -94,6 +119,30 @@ function Atoms() {
           placeholder="Enter text"
           error={mockError}
         />
+      </Card>
+
+      <Card className="h-full p-6 gap-2 grid grid-cols-2">
+        <span className="col-span-2 text-[24px] font-bold">EmailInput</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+
+        <form onSubmit={handleSubmit(onSubmit)} className="w-[500px]">
+          <EmailInput
+            label="Enter Email"
+            placeholder="Enter email"
+            className="col-span-2"
+          />
+          <EmailInput
+            label="Enter Email"
+            placeholder="Enter email"
+            className="col-span-2"
+            register={register}
+            name="email"
+            error={errors.email}
+          />
+          <Button theme="primary" type="submit" className="w-[100px] mt-4">
+            Submit
+          </Button>
+        </form>
       </Card>
 
       <Card className="p-6 gap-2 grid grid-cols-2">
@@ -182,6 +231,29 @@ function Atoms() {
           className="w-full"
         />
       </Modal>
+      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2 mt-4">
+        <span className="col-span-2 text-[24px] font-bold">Text</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+        <div className="col-span-1 flex flex-col gap-1 text-black text-[18px]">
+          <h3>Simple Text:</h3>
+          <Text text="Shariar Mahmadmud Duke" />
+        </div>
+
+        <div className="col-span-1 flex flex-col gap-1 text-black text-[18px]">
+          <h3>Bold Text:</h3>
+          <Text text="Shariar Mahmadmud Duke" isBold />
+        </div>
+
+        <div className="flex flex-col gap-1 text-black text-[18px]">
+          <h3>Text with Color:</h3>
+          <Text text="Shariar Mahmadmud Duke" color="blue" />
+        </div>
+
+        <div className="flex flex-col gap-1 text-black text-[18px] ">
+          <h3> Large Text </h3>
+          <Text text="Shariar Mahmadmud Duke" className="text-[24px]" />
+        </div>
+      </Card>
     </div>
   );
 }

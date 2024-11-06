@@ -1,33 +1,27 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { UseFormRegister, type FieldError } from "react-hook-form";
+import { type FieldError, UseFormRegister } from "react-hook-form";
 
 type Props = {
   className?: string;
   isRequired?: boolean;
   label: string;
-  defaultValue?: string;
   placeholder?: string;
-  value?: string;
   error?: FieldError | undefined;
   id?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   register?: UseFormRegister<any>;
 };
 
-function TextInput(props: Props) {
+function EmailInput(props: Props) {
   const {
     id,
     name = "name",
-    register,
     className,
     isRequired = false,
     label,
-    defaultValue,
     placeholder,
-    value,
     error,
-    onChange,
+    register,
   } = props;
 
   return (
@@ -42,12 +36,9 @@ function TextInput(props: Props) {
       </div>
       <input
         id={id}
-        type="text"
+        type="email"
         className="w-full h-[40px] bg-white rounded-[5px] drop-shadow-2xl text-text_primary px-4 focus:outline-none mb-2"
-        defaultValue={defaultValue}
-        value={value}
         placeholder={placeholder}
-        onChange={onChange}
         {...register?.(name)}
       />
       {error && <div className="text-[14px] text-tertiary">{error.message}</div>}
@@ -55,4 +46,4 @@ function TextInput(props: Props) {
   );
 }
 
-export default TextInput;
+export default EmailInput;
