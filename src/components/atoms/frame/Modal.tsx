@@ -57,7 +57,7 @@ export const Modal = (props: Props) => {
             </span>
 
             <IoIosCloseCircle
-              className="m-3 text-2xl text-gray-500 cursor-pointer hover:text-primary"
+              className="mx-6 my-3 text-2xl text-gray-500 cursor-pointer hover:text-primary"
               onClick={crossOnClick || closeOnClick}
             />
           </div>
