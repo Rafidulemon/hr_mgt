@@ -15,6 +15,7 @@ import Header from "../../components/navigations/Header";
 import { CardWithHeader } from "../../components/atoms/frame/CardWithHeader";
 import LeftMenu from "../../components/Layouts/LeftMenu";
 import Table from "../../components/atoms/tables/Table";
+import RadioGroup from "../../components/atoms/inputs/RadioGroup";
 
 const mockError: FieldError = {
   type: "required",
@@ -47,6 +48,12 @@ function Atoms() {
 
   const onSubmit = (data: FormData) => {
     console.log("Form submitted:", data);
+  };
+
+  const [selectedValue, setSelectedValue] = useState("");
+
+  const handleRadioChange = (value: string) => {
+    setSelectedValue(value);
   };
 
   const headers = ["ID", "Application_Date", "Leave_Type", "From", "To", "Status"];
@@ -304,6 +311,27 @@ function Atoms() {
             rows={rows}
             className="shadow-lg"
           />
+        </div>
+      </Card>
+
+      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2 mt-4">
+        <span className="col-span-2 text-[24px] font-bold">RadioGroup</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+        <div className="w-fit">
+          <RadioGroup
+            name="options"
+            title="Select any option:"
+            options={[
+              { label: "Option 1", value: "1" },
+              { label: "Option 2", value: "2" },
+              { label: "Option 3", value: "3" },
+            ]}
+            selectedValue={selectedValue}
+            onChange={handleRadioChange}
+          />
+          <p className="mt-4 text-text-text_bold">
+            Selected: {selectedValue || "None"}
+          </p>
         </div>
       </Card>
     </div>
