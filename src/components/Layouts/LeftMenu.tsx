@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 import { MdOutlineDashboard } from "react-icons/md";
-import { TbReport, TbReportAnalytics  } from "react-icons/tb";
+import { TbReport, TbReportAnalytics } from "react-icons/tb";
 
 type Props = {
   isLeader?: boolean;
@@ -22,7 +22,11 @@ const menuItems = [
   { label: "Attendance", icon: <FaCalendarCheck />, href: "/attendance" },
   { label: "Leave", icon: <FaClipboardList />, href: "/leave" },
   { label: "Daily Report", icon: <TbReport />, href: "/daily-report" },
-  { label: "Monthly Report", icon: <TbReportAnalytics />, href: "/monthly-report" },
+  {
+    label: "Monthly Report",
+    icon: <TbReportAnalytics />,
+    href: "/monthly-report",
+  },
   { label: "Notification", icon: <FaBell />, href: "/notification" },
   { label: "Payroll", icon: <FaFileInvoice />, href: "/payroll" },
   {
@@ -37,7 +41,7 @@ const LeftMenu = ({ isLeader = false }: Props) => {
     <div className="min-h-screen bg-[#F2F6F9] shadow-[10px_0_20px_rgba(0,0,0,0.2)] text-black flex flex-col items-center">
       <img
         src="demo_logo.png"
-        className="cursor-pointer w-[200px] h-[48px] mt-10"
+        className="cursor-pointer w-[150px] h-[40px] mt-10"
         alt="Logo"
       />
 
@@ -79,7 +83,7 @@ const LeftMenu = ({ isLeader = false }: Props) => {
       </nav>
 
       <div className="flex-1 my-6 p-4 w-full">
-        <div className="w-full bg-primary flex items-center text-white gap-4 rounded-lg shadow-lg p-2 justify-center cursor-pointer hover:scale-105">
+        <div className="w-full bg-primary flex items-center text-white gap-4 rounded-lg shadow-lg p-2 justify-center cursor-pointer hover:scale-105 transition-transform duration-300">
           <BiLogOut />
           <span className="text-[16px] font-semibold">Logout</span>
         </div>
