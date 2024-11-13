@@ -15,9 +15,9 @@ function RadioButton({ label, value, name, selectedValue, onChange }: RadioButto
         value={value}
         checked={selectedValue === value}
         onChange={() => onChange(value)}
-        // className={`appearance-none w-4 h-4 rounded-full border transition-colors cursor-pointer 
-        //     ${selectedValue === value ? "bg-[#0DBAD2] border-[#0DBAD2]" : "bg-white border-[#555454]"}
-        //   `}
+        className={`appearance-none w-4 h-4 rounded-full border transition-colors cursor-pointer 
+            ${selectedValue === value ? "bg-[#0DBAD2] border-[#0DBAD2]" : "bg-white border-[#555454]"}
+          `}
       />
       <span className="text-text_primary">{label}</span>
     </label>
