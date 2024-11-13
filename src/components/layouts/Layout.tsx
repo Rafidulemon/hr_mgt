@@ -2,6 +2,7 @@ import { type ReactNode } from "react";
 import LeftMenu from "../navigations/LeftMenu";
 import Text from "../atoms/Text/Text";
 import Button from "../atoms/buttons/Button";
+import { FaRocketchat } from "react-icons/fa";
 
 interface LayoutProps {
   children: ReactNode;
@@ -27,9 +28,9 @@ function Layout(props: LayoutProps) {
     buttonText = "Click here",
     onButtonClick,
   } = props;
-  console.log(roleType);
+
   return (
-    <div className="min-h-screen max-w-screen bg-[#ECECEC] flex flex-row gap-1 grid grid-cols-6">
+    <div className="min-h-screen max-w-screen bg-[#ECECEC] flex flex-row gap-1 grid grid-cols-6 relative">
       <div className="col-span-1">
         <LeftMenu />
       </div>
@@ -52,6 +53,15 @@ function Layout(props: LayoutProps) {
           </div>
         )}
         {children}
+      </div>
+
+      <div className="fixed bottom-10 right-10">
+        <button
+          className="bg-primary p-4 rounded-full text-white shadow-lg hover:bg-white focus:outline-none hover:text-primary"
+          onClick={() => alert('Chat clicked!')}
+        >
+          <FaRocketchat size={40} />
+        </button>
       </div>
     </div>
   );

@@ -13,7 +13,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Text from "../../components/atoms/Text/Text";
 import Header from "../../components/navigations/Header";
 import { CardWithHeader } from "../../components/atoms/frame/CardWithHeader";
-import LeftMenu from "../../components/navigations/LeftMenu";
 import Table from "../../components/atoms/tables/Table";
 import RadioGroup from "../../components/atoms/inputs/RadioGroup";
 
@@ -288,18 +287,6 @@ function Atoms() {
         >
           <div className="h-[250px]"></div>
         </CardWithHeader>
-      </Card>
-
-      <Card className="h-[300px] p-6 gap-6 grid grid-cols-6 mt-4">
-        <div className="col-span-1">
-          <Text text="Employee LeftMenu" isBold className="text-[20px] mb-6" />
-          <LeftMenu />
-        </div>
-        <div />
-        <div className="col-span-1">
-          <Text text="Leader LeftMenu" isBold className="text-[20px] mb-6" />
-          <LeftMenu isLeader />
-        </div>
       </Card>
 
       <Card className="h-[300px] p-6 gap-2 grid grid-cols-2 mt-4">
