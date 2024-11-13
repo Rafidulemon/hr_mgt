@@ -13,7 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Text from "../../components/atoms/Text/Text";
 import Header from "../../components/navigations/Header";
 import { CardWithHeader } from "../../components/atoms/frame/CardWithHeader";
-import LeftMenu from "../../components/Layouts/LeftMenu";
+import LeftMenu from "../../components/navigations/LeftMenu";
 import Table from "../../components/atoms/tables/Table";
 import RadioGroup from "../../components/atoms/inputs/RadioGroup";
 
