@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Text from "../../components/atoms/Text/Text";
+import Header from "../../components/navigations/Header";
 import { CardWithHeader } from "../../components/atoms/frame/CardWithHeader";
 
 const mockError: FieldError = {
@@ -51,6 +52,13 @@ function Atoms() {
       <div className="flex flex-row w-full justify-center items-center text-[30px] font-extrabold">
         <h1 className="text-center">Components</h1>
       </div>
+      <Card className="h-[300px] bg-primary p-6 gap-2 grid grid-cols-2 mt-4">
+        <span className="col-span-2 text-[24px] font-bold text-white">Auth Header</span>
+        <line className="col-span-2 w-full border-b border-white mb-6" />
+        <div className="col-span-2">
+          <Header />
+        </div>
+      </Card>
       <Card className="p-6 gap-2 grid grid-cols-2">
         <span className="col-span-2 text-[24px] font-bold">TextInput</span>
         <line className="col-span-2 w-full border-b border-black mb-6" />
