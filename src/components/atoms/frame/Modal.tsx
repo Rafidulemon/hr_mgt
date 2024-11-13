@@ -47,19 +47,21 @@ export const Modal = (props: Props) => {
         <div
           className={`relative bg-[#ECECEC] rounded-xl shadow gap-[14px] flex flex-col justify-between ${className}`}
         >
-          <IoIosCloseCircle
-            className="absolute top-3 right-3 text-2xl text-gray-500 cursor-pointer hover:text-primary"
-            onClick={crossOnClick || closeOnClick}
-          />
+          <div className="flex flex-row w-full justify-between">
+            <span
+              className={`px-6 flex w-full flex-row justify-between font-bold ${
+                titleTextSize ? titleTextSize : "text-[20px] pt-2 font-bold"
+              }`}
+            >
+              {title}
+            </span>
 
-          <span
-            className={`px-6 flex w-full flex-row justify-between font-bold ${
-              titleTextSize ? titleTextSize : "text-[20px] pt-2 font-bold"
-            }`}
-          >
-            {title}
-          </span>
-          <line className="w-full border-b border-black" />
+            <IoIosCloseCircle
+              className="mx-6 my-3 text-2xl text-gray-500 cursor-pointer hover:text-primary"
+              onClick={crossOnClick || closeOnClick}
+            />
+          </div>
+          <line className="w-full border-b border-black -mt-4" />
 
           <div className="px-6 py-2">{children}</div>
 
