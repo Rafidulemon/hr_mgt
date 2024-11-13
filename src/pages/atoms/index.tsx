@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Text from "../../components/atoms/Text/Text";
 import Header from "../../components/navigations/Header";
 import { CardWithHeader } from "../../components/atoms/frame/CardWithHeader";
+import LeftMenu from "../../components/Layouts/LeftMenu";
 
 const mockError: FieldError = {
   type: "required",
@@ -53,7 +54,9 @@ function Atoms() {
         <h1 className="text-center">Components</h1>
       </div>
       <Card className="h-[300px] bg-primary p-6 gap-2 grid grid-cols-2 mt-4">
-        <span className="col-span-2 text-[24px] font-bold text-white">Auth Header</span>
+        <span className="col-span-2 text-[24px] font-bold text-white">
+          Auth Header
+        </span>
         <line className="col-span-2 w-full border-b border-white mb-6" />
         <div className="col-span-2">
           <Header />
@@ -243,31 +246,43 @@ function Atoms() {
       <Card className="h-[300px] p-6 gap-4 grid grid-cols-3 mt-4 bg-gray-300">
         <span className="col-span-3 text-[24px] font-bold">CardWithHeader</span>
         <line className="col-span-3 w-full border-b border-black mb-6" />
-          <CardWithHeader
-            title="Primary Card"
-            titleBarSize="h-[60px]"
-            className="col-span-1"
-          >
-            <div className="h-[250px]"></div>
-          </CardWithHeader>
+        <CardWithHeader
+          title="Primary Card"
+          titleBarSize="h-[60px]"
+          className="col-span-1"
+        >
+          <div className="h-[250px]"></div>
+        </CardWithHeader>
 
-          <CardWithHeader
-            title="Secondary Card"
-            titleBarSize="h-[60px]"
-            className="col-span-1"
-            titleColor="bg-[#8A006C]"
-          >
-            <div className="h-[250px]"></div>
-          </CardWithHeader>
+        <CardWithHeader
+          title="Secondary Card"
+          titleBarSize="h-[60px]"
+          className="col-span-1"
+          titleColor="bg-[#8A006C]"
+        >
+          <div className="h-[250px]"></div>
+        </CardWithHeader>
 
-          <CardWithHeader
-            title="Tertiary Card"
-            titleBarSize="h-[60px]"
-            titleColor="bg-[#0024A4]"
-            className="col-span-1"
-          >
-            <div className="h-[250px]"></div>
-          </CardWithHeader>
+        <CardWithHeader
+          title="Tertiary Card"
+          titleBarSize="h-[60px]"
+          titleColor="bg-[#0024A4]"
+          className="col-span-1"
+        >
+          <div className="h-[250px]"></div>
+        </CardWithHeader>
+      </Card>
+
+      <Card className="h-[300px] p-6 gap-6 grid grid-cols-6 mt-4">
+        <div className="col-span-1">
+          <Text text="Employee LeftMenu" isBold className="text-[20px] mb-6" />
+          <LeftMenu />
+        </div>
+        <div />
+        <div className="col-span-1">
+          <Text text="Leader LeftMenu" isBold className="text-[20px] mb-6" />
+          <LeftMenu isLeader />
+        </div>
       </Card>
     </div>
   );
