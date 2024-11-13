@@ -57,7 +57,7 @@ function Button(props: Props) {
     >
       {theme === "primary" && (
         <div
-          className={`${className} p-2 rounded-xl hover:border hover:border-[#0DBAD2] hover:bg-white hover:text-[#0DBAD2] bg-[#0DBAD2] text-white`}
+          className={`${className} p-2 rounded-lg hover:border hover:border-[#0DBAD2] hover:bg-white hover:text-[#0DBAD2] bg-[#0DBAD2] text-white`}
         >
           <span className="flex flex-col justify-center">{children}</span>
         </div>
@@ -65,7 +65,7 @@ function Button(props: Props) {
 
       {theme === "secondary" && (
         <div
-        className={`${className} p-2 rounded-xl border border-[#0DBAD2] bg-white text-[#0DBAD2] hover:bg-[#0DBAD2] hover:text-white`}
+        className={`${className} p-2 rounded-lg border border-[#0DBAD2] bg-white text-[#0DBAD2] hover:bg-[#0DBAD2] hover:text-white`}
       >
         <span className="flex flex-col justify-center">{children}</span>
       </div>
@@ -73,7 +73,7 @@ function Button(props: Props) {
 
       {theme === "cancel" && (
         <div
-        className={`${className} p-2 rounded-xl hover:border hover:border-[#D20D0D] hover:bg-white hover:text-[#D20D0D] bg-[#D20D0D] text-white`}
+        className={`${className} p-2 rounded-lg hover:border hover:border-[#D20D0D] hover:bg-white hover:text-[#D20D0D] bg-[#D20D0D] text-white`}
       >
         <span className="flex flex-col justify-center">{children}</span>
       </div>
@@ -81,7 +81,7 @@ function Button(props: Props) {
 
       {theme === "cancel-secondary" && (
         <div
-        className={`${className} p-2 rounded-xl border border-[#D20D0D] bg-white text-[#D20D0D] hover:bg-[#D20D0D] hover:text-white`}
+        className={`${className} p-2 rounded-lg border border-[#D20D0D] bg-white text-[#D20D0D] hover:bg-[#D20D0D] hover:text-white`}
       >
         <span className="flex flex-col justify-center">{children}</span>
       </div>
