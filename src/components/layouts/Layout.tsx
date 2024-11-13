@@ -57,7 +57,7 @@ function Layout(props: LayoutProps) {
 
       <div className="fixed bottom-10 right-10">
         <button
-          className="bg-primary p-4 rounded-full text-white shadow-lg hover:bg-white focus:outline-none hover:text-primary"
+          className="bg-primary p-4 rounded-full shadow-xl text-white shadow-lg hover:bg-white focus:outline-none hover:text-primary"
           onClick={() => alert('Chat clicked!')}
         >
           <FaRocketchat size={40} />
