@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Global styles */
+
+:root {
+  --primary-color: #0dbad2;
+  --text_primary-color: #7e7d7d;
+  --text_bold-color: #555454;
+  --tertiary-color: #d20d0d;
+}
