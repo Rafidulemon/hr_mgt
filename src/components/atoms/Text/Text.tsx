@@ -21,9 +21,8 @@ const Text: React.FC<Props> = ({
 }) => {
   return (
     <p
-      className={`${className} ${align}`}
+      className={`${className} ${align} ${isBold && "font-bold"}`}
       style={{
-        fontWeight: isBold ? 700 : 400,
         color,
         lineHeight,
         fontFamily,
