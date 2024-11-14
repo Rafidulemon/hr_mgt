@@ -13,7 +13,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Text from "../../components/atoms/Text/Text";
 import Header from "../../components/navigations/Header";
 import { CardWithHeader } from "../../components/atoms/frame/CardWithHeader";
-import LeftMenu from "../../components/navigations/LeftMenu";
 import Table from "../../components/atoms/tables/Table";
 import RadioGroup from "../../components/atoms/inputs/RadioGroup";
 
@@ -66,7 +65,7 @@ function Atoms() {
     { ID: "10001", Application_Date: "10/12/2024", Leave_Type: "Casual", From: "10/12/2024", To: "10/12/2024", Status: "Pending" },
   ];
   return (
-    <div className="flex flex-col gap-10 w-full min-h-screen p-10 bg-[#ECECEC]">
+    <div className="flex flex-col gap-10 w-full min-h-screen">
       <div className="flex flex-row w-full justify-center items-center text-[30px] font-extrabold">
         <h1 className="text-center">Components</h1>
       </div>
@@ -288,18 +287,6 @@ function Atoms() {
         >
           <div className="h-[250px]"></div>
         </CardWithHeader>
-      </Card>
-
-      <Card className="h-[300px] p-6 gap-6 grid grid-cols-6 mt-4">
-        <div className="col-span-1">
-          <Text text="Employee LeftMenu" isBold className="text-[20px] mb-6" />
-          <LeftMenu />
-        </div>
-        <div />
-        <div className="col-span-1">
-          <Text text="Leader LeftMenu" isBold className="text-[20px] mb-6" />
-          <LeftMenu isLeader />
-        </div>
       </Card>
 
       <Card className="h-[300px] p-6 gap-2 grid grid-cols-2 mt-4">

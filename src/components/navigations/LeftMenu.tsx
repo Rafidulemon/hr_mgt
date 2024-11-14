@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import {
   FaUser,
   FaCalendarCheck,
@@ -37,16 +38,21 @@ const menuItems = [
 ];
 
 const LeftMenu = ({ isLeader = false }: Props) => {
-  return (
-    <div className="min-h-screen bg-[#F2F6F9] shadow-[10px_0_20px_rgba(0,0,0,0.2)] text-black flex flex-col items-center">
-      <img
-        src="demo_logo.png"
-        className="cursor-pointer w-[150px] h-[40px] mt-10"
-        alt="Logo"
-      />
+  const location = useLocation();
+  const currentPath = location.pathname;
 
-      <div className="my-6">
-        <div className="relative w-24 h-24 rounded-full overflow-hidden border border-black">
+  return (
+    <div className="w-full min-h-full bg-[#F2F6F9] shadow-[10px_0_20px_rgba(0,0,0,0.2)] text-black flex flex-col items-center">
+      <div className="w-[60%]">
+        <img
+          src="demo_logo.png"
+          className="cursor-pointer w-full mt-6"
+          alt="Logo"
+        />
+      </div>
+
+      <div className="my-4 w-full flex flex-row justify-center">
+        <div className="relative w-[40%] h-auto rounded-full overflow-hidden border border-black cursor-pointer">
           <img
             src="dp.png"
             alt="Profile preview"
@@ -55,13 +61,19 @@ const LeftMenu = ({ isLeader = false }: Props) => {
         </div>
       </div>
 
-      <nav className="flex-1 p-4">
+      <nav className="flex flex-col p-4">
         <ul className="space-y-4">
           {menuItems.map((item) => (
             <li key={item.label}>
               <a
                 href={item.href}
-                className="flex items-center gap-4 p-2 rounded-md hover:shadow-lg hover:bg-primary hover:text-white transition-colors"
+                className={`flex items-center gap-4 p-2 rounded-md transition-colors 
+                  ${
+                    currentPath === item.href ||
+                    (item.href === "/dashboard" && currentPath === "/")
+                      ? "bg-primary text-white shadow-lg"
+                      : "hover:shadow-lg hover:bg-primary hover:text-white"
+                  }`}
               >
                 {item.icon}
                 <span className="text-[16px] font-semibold">{item.label}</span>
@@ -72,7 +84,12 @@ const LeftMenu = ({ isLeader = false }: Props) => {
             <li>
               <a
                 href="/my-team"
-                className="flex items-center gap-4 p-2 rounded-md hover:shadow-lg hover:bg-primary hover:text-white transition-colors"
+                className={`flex items-center gap-4 p-2 rounded-md transition-colors 
+                  ${
+                    currentPath === "/my-team"
+                      ? "bg-primary text-white shadow-lg"
+                      : "hover:shadow-lg hover:bg-primary hover:text-white"
+                  }`}
               >
                 <FaUsers />
                 <span className="text-[16px] font-semibold">My Team</span>
