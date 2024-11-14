@@ -379,7 +379,12 @@ function Atoms() {
           <TextFeild text="Frontend" label="Department" />
         </div>
         <div className="col-span-1 w-full">
-          <TextFeild text="Resigned" label="Employee Status" textColor="red" />
+          <TextFeild
+            text="Resigned"
+            label="Employee Status"
+            textColor="text-red-400"
+            labelColor="text-blue-400"
+          />
         </div>
       </Card>
     </div>

@@ -15,8 +15,8 @@ const TextFeild = (props: Props) => {
   const {
     label,
     text,
-    labelColor = "#555454",
-    textColor = "#7E7D7D",
+    labelColor,
+    textColor,
     labelFontFamily = "Inter, sans-serif",
     textFontFamily = "Inter, sans-serif",
     labelFontWeight = 600,
@@ -28,8 +28,8 @@ const TextFeild = (props: Props) => {
   return (
     <div className={`flex flex-col gap-[20px] ${className}`}>
       <p
+        className={`${labelColor ? `${labelColor}` : "text-text_bold"} `}
         style={{
-          color: labelColor,
           fontWeight: labelFontWeight,
           fontSize: labelFontSize,
           fontFamily: labelFontFamily,
@@ -38,8 +38,8 @@ const TextFeild = (props: Props) => {
         {label}
       </p>
       <p
+        className={`${textColor ? `${textColor}` : "text-text_primary"} `}
         style={{
-          color: textColor,
           fontWeight: textFontWeight,
           fontSize: textFontSize,
           fontFamily: textFontFamily,
