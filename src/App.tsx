@@ -2,11 +2,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Atoms from "./pages/atoms";
 import Layout from "./components/layouts/Layout";
 import Index from "./pages";
+import SignupPage from "./pages/auth/Signup";
+import LoginPage from "./pages/auth/Login";
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/auth/signup" element={<SignupPage />} />
+        <Route path="/auth/login" element={<LoginPage />} />
         <Route
           path="/"
           element={
