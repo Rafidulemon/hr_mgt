@@ -34,7 +34,7 @@ function Layout(props: LayoutProps) {
       <div className="col-span-1">
         <LeftMenu />
       </div>
-      <div className="col-span-5 flex flex-col gap-0 p-10">
+      <div className="col-span-5 flex flex-col gap-0 p-6">
         {roleType === "employee" && hasNameTitle && (
           <div className="w-full flex flex-row justify-between">
             <div className="flex flex-col gap-2 items-start">
