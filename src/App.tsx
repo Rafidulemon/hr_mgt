@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Atoms from "./pages/atoms";
 import Layout from "./components/layouts/Layout";
 import Index from "./pages";
+import ProfilePage from "./pages/Profile";
 
 function App() {
   return (
@@ -16,6 +17,14 @@ function App() {
           }
         />
         <Route
+          path="/profile"
+          element={
+            <Layout>
+              <ProfilePage />
+            </Layout>
+          }
+        />
+        <Route
           path="/dashboard"
           element={
             <Layout>
@@ -26,14 +35,7 @@ function App() {
         <Route
           path="/atoms"
           element={
-            <Layout
-              hasNameTitle
-              name="Md. Rafidul Islam"
-              designation="Software Engineer"
-              joining_date="August 17, 2023"
-              hasRightButton
-              buttonText="Go to Home"
-            >
+            <Layout>
               <Atoms />
             </Layout>
           }
