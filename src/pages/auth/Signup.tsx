@@ -9,18 +9,29 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const schema = z.object({
-  id: z.string().nonempty("Employee ID is required"),
-  department: z.string().nonempty("Employee Department is required"),
-  first_name: z.string().nonempty("Employee First Name is required"),
-  last_name: z.string().nonempty("Employee Last Name is required"),
-  designation: z.string().nonempty("Employee Designation is required"),
-  email: z
-    .string()
-    .nonempty("Email is required")
-    .email("Please enter a valid email address"),
-  password: z.string().nonempty("Password is required"),
-});
+const schema = z
+  .object({
+    id: z.string().nonempty("Employee ID is required"),
+    department: z.string().nonempty("Employee Department is required"),
+    first_name: z.string().nonempty("Employee First Name is required"),
+    last_name: z.string().nonempty("Employee Last Name is required"),
+    designation: z.string().nonempty("Employee Designation is required"),
+    email: z
+      .string()
+      .nonempty("Email is required")
+      .email("Please enter a valid email address"),
+    password: z
+      .string()
+      .nonempty("Password is required")
+      .min(8, { message: "Password must be at least 8 characters" }),
+    confirm_password: z
+      .string()
+      .nonempty("Confirm Password is required"),
+  })
+  .refine((data) => data.password === data.confirm_password, {
+    message: "Passwords do not match",
+    path: ["confirm_password"],
+  });
 
 type FormData = z.infer<typeof schema>;
 
@@ -45,27 +56,27 @@ function SignupPage() {
   };
 
   return (
-    <div className="max-w-screen min-h-screen p-6 bg-[#ECECEC]">
-      <div className="fixed top-16 left-6 right-6 z-40">
+    <div className="max-w-screen h-screen p-6 bg-[#ECECEC]">
+      <div className="fixed top-12 left-6 right-6 z-40">
         <Header />
       </div>
-      <div className="mt-4 grid grid-cols-2 gap-10 px-6 pb-10">
-        <div className="bg-primary h-[85dvh] p-4 rounded-lg shadow-md flex flex-col justify-center items-center">
-          <div className="flex flex-col h-full w-[70%] gap-10 justify-center items-center">
-            <img src="/demo_logo.png" className="w-[60%]" />
+      <div className="grid grid-cols-2 gap-10 px-6 h-full">
+        <div className="bg-primary h-[90%] p-4 rounded-lg shadow-md flex flex-col justify-center items-center">
+          <div className="flex flex-col h-full w-[70%] gap-12 justify-center items-center">
+            <img src="/demo_logo.png" className="w-[50%]" />
             <Button theme="white" isWidthFull onClick={handleLoginButton}>
               <Text text="Login" className="text-[16px] font-semibold" />
             </Button>
           </div>
         </div>
-        <div className="z-0 mt-32 pr-14 flex flex-col gap-8">
+        <div className="z-0 mt-28 pr-14 flex flex-col gap-6">
           <Text
             text="Sign up"
             className="text-black text-[24px] font-semibold"
           />
           <form
             onSubmit={handleSubmit(handleOnSubmit)}
-            className="flex flex-col gap-4"
+            className="flex flex-col gap-4 max-h-[70vh] overflow-y-auto"
           >
             <TextInput
               label="Employee ID"
@@ -115,10 +126,21 @@ function SignupPage() {
               name="email"
               error={errors.email}
             />
-            <PasswordInput label="Password" placeholder="Password" />
+            <PasswordInput
+              label="Password"
+              placeholder="Password"
+              register={register}
+              name="password"
+              error={errors.password}
+              isRequired
+            />
             <PasswordInput
               label="Confirm Password"
               placeholder="Confirm Password"
+              register={register}
+              name="confirm_password"
+              error={errors.confirm_password}
+              isRequired
             />
             <Button type="submit" theme="primary" isWidthFull>
               <Text text="Signup" className="text-[16px] font-semibold" />
