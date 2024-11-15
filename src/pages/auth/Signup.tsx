@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import ImageInput from "../../components/atoms/inputs/ImageInput";
 
 const schema = z
   .object({
@@ -24,9 +25,7 @@ const schema = z
       .string()
       .nonempty("Password is required")
       .min(8, { message: "Password must be at least 8 characters" }),
-    confirm_password: z
-      .string()
-      .nonempty("Confirm Password is required"),
+    confirm_password: z.string().nonempty("Confirm Password is required"),
   })
   .refine((data) => data.password === data.confirm_password, {
     message: "Passwords do not match",
@@ -141,6 +140,13 @@ function SignupPage() {
               name="confirm_password"
               error={errors.confirm_password}
               isRequired
+            />
+            <ImageInput
+              label="Upload Profile Picture"
+              isRequired
+              id="profilePic"
+              initialImage="/default_profile.png"
+              onChange={(e) => console.log(e.target.files)}
             />
             <Button type="submit" theme="primary" isWidthFull>
               <Text text="Signup" className="text-[16px] font-semibold" />
