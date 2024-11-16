@@ -26,6 +26,7 @@ export default function SelectBox({
     }
   };
 
+  const allOptions = [{ label: "Select Any", value: "default" }, ...options];
   return (
     <div className="flex flex-col">
       <div className="flex flex-row gap-1 mb-2">
@@ -48,7 +49,7 @@ export default function SelectBox({
         focus:outline-none hover:cursor-pointer ${className}`}
       >
         {options.length > 0 ? (
-          options.map((option, index) => (
+          allOptions.map((option, index) => (
             <option
               key={index}
               value={option.value}
