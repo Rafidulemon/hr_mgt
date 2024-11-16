@@ -1,5 +1,4 @@
-import { ChangeEvent } from "react";
-
+import { type FieldError, UseFormRegister } from "react-hook-form";
 type Option = {
   label: string;
   value: string;
@@ -8,24 +7,22 @@ type Option = {
 type SelectBoxProps = {
   label?: string;
   options: Option[];
+  name: string;
   className?: string;
   isRequired?: boolean;
-  onChange?: (value: string) => void;
+  register?: UseFormRegister<any>;
+  error?: FieldError | undefined;
 };
 
 export default function SelectBox({
   label = "Select Option",
   options = [],
   className = "",
+  name = "name",
   isRequired = false,
-  onChange,
+  error,
+  register,
 }: SelectBoxProps) {
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    if (onChange) {
-      onChange(event.target.value);
-    }
-  };
-
   const allOptions = [{ label: "Select Any", value: "default" }, ...options];
   return (
     <div className="flex flex-col">
@@ -43,8 +40,7 @@ export default function SelectBox({
 
       <select
         id={label}
-        name={label}
-        onChange={handleChange}
+        {...register?.(name)}
         className={`p-[12px] text-[16px] text-text_bold font-semibold rounded-lg shadow-xl bg-white 
         focus:outline-none hover:cursor-pointer ${className}`}
       >
@@ -62,6 +58,9 @@ export default function SelectBox({
           <option disabled>No options available</option>
         )}
       </select>
+      {error && (
+        <div className="text-[14px] text-tertiary mt-2">{error.message}</div>
+      )}
     </div>
   );
 }

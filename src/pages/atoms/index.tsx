@@ -24,6 +24,11 @@ const mockError: FieldError = {
   message: "This field is required",
 };
 
+const selectMockError: FieldError = {
+  type: "required",
+  message: "This field is required",
+};
+
 const mockPasswordError: FieldError = {
   type: "required",
   message: "Password incorrect",
@@ -123,10 +128,6 @@ function Atoms() {
     { label: "Development", value: "development" },
     { label: "Testing", value: "testing" },
   ];
-
-  const handleSelectChange = (value: string) => {
-    console.log("Selected Value:", value);
-  };
 
   return (
     <div className="flex flex-col gap-10 w-full min-h-screen">
@@ -433,18 +434,19 @@ function Atoms() {
             label="Work Type"
             options={options}
             isRequired
-            onChange={handleSelectChange}
+            name="work"
+            error={selectMockError}
           />
         </div>
 
         <div className="col-span-1 flex flex-col gap-1">
           <SelectBox
+            name="department"
             label="Department"
             options={[
               { label: "HR", value: "hr" },
               { label: "Finance", value: "finance" },
             ]}
-            onChange={handleSelectChange}
           />
         </div>
       </Card>
