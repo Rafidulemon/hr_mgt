@@ -444,7 +444,6 @@ function Atoms() {
               { label: "HR", value: "hr" },
               { label: "Finance", value: "finance" },
             ]}
-            className="border border-gray-300"
             onChange={handleSelectChange}
           />
         </div>
