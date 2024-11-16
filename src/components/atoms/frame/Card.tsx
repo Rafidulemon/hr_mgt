@@ -1,16 +1,16 @@
 import React from "react";
 
-type Props = { className?: string, isSquareBox?: boolean } & React.DetailedHTMLProps<
+type Props = { className?: string, background?: string, isSquareBox?: boolean; } & React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,
   HTMLDivElement
 >;
 
 export const Card = (props: Props) => {
-  const { className, isSquareBox = false, ...others } = props;
+  const { className,background,isSquareBox = false, ...others } = props;
   return (
     <div
       {...others}
-      className={`h-full w-full bg-white ${isSquareBox ? "": "rounded-3xl"} shadow ${className}`}
+      className={`h-full w-full ${isSquareBox ? "": "rounded-3xl"} shadow ${className} ${background ? `bg-${background}` : "bg-white"}`}
     />
   );
 };

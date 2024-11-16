@@ -15,7 +15,7 @@ const ImageInput = (props: ImageInputProps) => {
     label,
     id,
     isRequired = false,
-    initialImage = "/default-profile.jpg",
+    initialImage = "/default_profile.png",
     onChange,
   } = props;
 
