@@ -1,9 +1,33 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import Button from "../../components/atoms/buttons/Button";
 import EmailInput from "../../components/atoms/inputs/EmailInput";
 import PasswordInput from "../../components/atoms/inputs/PasswordInput";
 import Text from "../../components/atoms/Text/Text";
 import Header from "../../components/navigations/Header";
+
+const schema = z.object({
+  email: z
+    .string()
+    .email({ message: "Invalid email address" })
+    .nonempty({ message: "Email is required" }),
+  password: z.string().nonempty({ message: "Password is required" }),
+});
+
+type FormData = z.infer<typeof schema>;
 function LoginPage() {
+  const {
+    handleSubmit,
+    formState: { errors },
+    register,
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
+
+  const handleLogin = (data: FormData) => {
+    console.log("Form submitted:", data);
+  };
   return (
     <div className="h-screen bg-[#ECECEC]">
       <div className="fixed mt-[87px] w-full z-50">
@@ -15,15 +39,25 @@ function LoginPage() {
           <div className="col-span-3 flex items-center justify-center">
             <div className="w-full">
               <Text text="Login" className="text-[24px] font-semibold" />
-              <form className="mt-[40px]">
+              <form onSubmit={handleSubmit(handleLogin)} className="mt-[40px]">
                 <div className="flex flex-col gap-[22px]">
-                  <EmailInput label="Email" isRequired />
-                  <PasswordInput isRequired label="Password" />
+                  <EmailInput
+                    name="email"
+                    error={errors?.email}
+                    label="Email"
+                    register={register}
+                  />
+                  <PasswordInput
+                    name="password"
+                    error={errors?.password}
+                    register={register}
+                    label="Password"
+                  />
                   <Text
                     text="Forgot Your Password ?"
                     className="font-semibold"
                   />
-                  <Button theme="primary" isWidthFull>
+                  <Button type="submit" theme="primary" isWidthFull>
                     <Text text="Login" className="text-[16px] font-semibold" />
                   </Button>
                 </div>
