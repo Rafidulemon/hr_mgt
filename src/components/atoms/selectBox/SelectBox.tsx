@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { type FieldError, UseFormRegister } from "react-hook-form";
 type Option = {
   label: string;
@@ -28,7 +29,7 @@ export default function SelectBox({
     <div className="flex flex-col">
       <div className="flex flex-row gap-1 mb-2">
         <label
-          className="text-[16px] text-text_bold font-semibold"
+          className="text-[16px] font-bold text-text_bold"
           htmlFor={label}
         >
           {label}
@@ -41,7 +42,7 @@ export default function SelectBox({
       <select
         id={label}
         {...register?.(name)}
-        className={`p-[12px] text-[16px] text-text_bold font-semibold rounded-lg shadow-xl bg-white 
+        className={`p-[12px] text-[16px] text-text_primary rounded-lg shadow-xl bg-white 
         focus:outline-none hover:cursor-pointer ${className}`}
       >
         {options.length > 0 ? (
