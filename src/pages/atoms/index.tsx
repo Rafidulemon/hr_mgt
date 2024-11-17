@@ -6,19 +6,25 @@ import Button from "../../components/atoms/buttons/Button";
 import { Card } from "../../components/atoms/frame/Card";
 import { CardWithHeader } from "../../components/atoms/frame/CardWithHeader";
 import { Modal } from "../../components/atoms/frame/Modal";
+import EmailInput from "../../components/atoms/inputs/EmailInput";
 import FileInput from "../../components/atoms/inputs/FileInput";
 import ImageInput from "../../components/atoms/inputs/ImageInput";
-import EmailInput from "../../components/atoms/inputs/EmailInput";
 import PasswordInput from "../../components/atoms/inputs/PasswordInput";
 import RadioGroup from "../../components/atoms/inputs/RadioGroup";
 import TextArea from "../../components/atoms/inputs/TextArea";
 import TextInput from "../../components/atoms/inputs/TextInput";
+import SelectBox from "../../components/atoms/selectBox/SelectBox";
 import Table from "../../components/atoms/tables/Table";
 import Text from "../../components/atoms/Text/Text";
 import TextFeild from "../../components/atoms/TextFeild/TextFeild";
 import Header from "../../components/navigations/Header";
 
 const mockError: FieldError = {
+  type: "required",
+  message: "This field is required",
+};
+
+const selectMockError: FieldError = {
   type: "required",
   message: "This field is required",
 };
@@ -115,6 +121,14 @@ function Atoms() {
       Status: "Pending",
     },
   ];
+  //  For Select Box
+  const options = [
+    { label: "Project", value: "project" },
+    { label: "Design", value: "design" },
+    { label: "Development", value: "development" },
+    { label: "Testing", value: "testing" },
+  ];
+
   return (
     <div className="flex flex-col gap-10 w-full min-h-screen">
       <div className="flex flex-row w-full justify-center items-center text-[30px] font-extrabold">
@@ -408,6 +422,31 @@ function Atoms() {
             label="Employee Status"
             textColor="text-red-400"
             labelColor="text-blue-400"
+          />
+        </div>
+      </Card>
+
+      <Card className="p-6 gap-4 grid grid-cols-2 pb-[100px]">
+        <span className="col-span-2 text-[24px] font-bold">Select Box</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+        <div className="col-span-1 flex flex-col gap-1">
+          <SelectBox
+            label="Work Type"
+            options={options}
+            isRequired
+            name="work"
+            error={selectMockError}
+          />
+        </div>
+
+        <div className="col-span-1 flex flex-col gap-1">
+          <SelectBox
+            name="department"
+            label="Department"
+            options={[
+              { label: "HR", value: "hr" },
+              { label: "Finance", value: "finance" },
+            ]}
           />
         </div>
       </Card>
