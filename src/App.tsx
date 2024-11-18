@@ -1,12 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Atoms from "./pages/atoms";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Layout from "./components/layouts/Layout";
 import Index from "./pages";
-import SignupPage from "./pages/auth/Signup";
+import Atoms from "./pages/atoms";
+import ForgetPasswordPage from "./pages/auth/ForgetPassword";
 import LoginPage from "./pages/auth/Login";
+import SignupPage from "./pages/auth/Signup";
+import PrivacyPage from "./pages/privacy";
 import SupportPage from "./pages/support";
 import TermsPage from "./pages/terms";
-import PrivacyPage from "./pages/privacy";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/auth/login" element={<LoginPage />} />
+        <Route path="/auth/forgetPassword" element={<ForgetPasswordPage />} />
         <Route
           path="/"
           element={
