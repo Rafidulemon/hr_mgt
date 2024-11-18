@@ -7,6 +7,7 @@ import LoginPage from "./pages/auth/Login";
 import SupportPage from "./pages/support";
 import TermsPage from "./pages/terms";
 import PrivacyPage from "./pages/privacy";
+import AttendancePage from "./pages/attendance";
 
 function App() {
   return (
@@ -30,6 +31,14 @@ function App() {
           element={
             <Layout>
               <Index />
+            </Layout>
+          }
+        />
+        <Route
+          path="/attendance"
+          element={
+            <Layout>
+              <AttendancePage />
             </Layout>
           }
         />
