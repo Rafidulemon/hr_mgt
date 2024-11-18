@@ -3,15 +3,31 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import Button from "../../components/atoms/buttons/Button";
-import EmailInput from "../../components/atoms/inputs/EmailInput";
+import PasswordInput from "../../components/atoms/inputs/PasswordInput";
 import Text from "../../components/atoms/Text/Text";
 import Header from "../../components/navigations/Header";
-const schema = z.object({
-  email: z.string().nonempty({ message: "Email is required" }),
-});
+
+const schema = z
+  .object({
+    password: z
+      .string()
+      .nonempty({ message: "Password is required" })
+      .min(8, { message: "Password must be at least 8 characters long" }),
+    confirmPassword: z
+      .string()
+      .nonempty({ message: "Confirm Password is required" }),
+  })
+  .superRefine(({ password, confirmPassword }, ctx) => {
+    if (password !== confirmPassword) {
+      ctx.addIssue({
+        path: ["confirmPassword"],
+        message: "Passwords do not match",
+      });
+    }
+  });
 
 type FormData = z.infer<typeof schema>;
-function ForgetPasswordPage() {
+function ResetPasswordPage() {
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -39,23 +55,29 @@ function ForgetPasswordPage() {
           <div className="col-span-3 flex items-center justify-center">
             <div className="w-full">
               <Text
-                text="Forget Password"
+                text="Reset Password"
                 className="text-[24px] font-semibold"
               />
               <form onSubmit={handleSubmit(handleLogin)} className="mt-[40px]">
                 <div className="flex flex-col gap-[22px]">
-                  <EmailInput
-                    name="email"
-                    error={errors?.email}
-                    label="Email"
+                  <PasswordInput
+                    name="password"
+                    error={errors?.password}
                     register={register}
-                    isRequired
-                    placeholder="company@example.com"
+                    label="New Password"
+                    placeholder="password"
+                  />
+                  <PasswordInput
+                    name="confirmPassword"
+                    error={errors?.confirmPassword}
+                    register={register}
+                    label="Confirm Password"
+                    placeholder="confirm password"
                   />
 
                   <Button type="submit" theme="primary" isWidthFull>
                     <Text
-                      text="Send Email"
+                      text="Reset Password"
                       className="text-[16px] font-semibold"
                     />
                   </Button>
@@ -85,4 +107,4 @@ function ForgetPasswordPage() {
   );
 }
 
-export default ForgetPasswordPage;
+export default ResetPasswordPage;

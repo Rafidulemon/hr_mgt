@@ -4,6 +4,7 @@ import Index from "./pages";
 import Atoms from "./pages/atoms";
 import ForgetPasswordPage from "./pages/auth/ForgetPassword";
 import LoginPage from "./pages/auth/Login";
+import ResetPasswordPage from "./pages/auth/ResetPassword";
 import SignupPage from "./pages/auth/Signup";
 import PrivacyPage from "./pages/privacy";
 import SupportPage from "./pages/support";
@@ -18,7 +19,8 @@ function App() {
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/auth/login" element={<LoginPage />} />
-        <Route path="/auth/forgetPassword" element={<ForgetPasswordPage />} />
+        <Route path="/auth/forget-password" element={<ForgetPasswordPage />} />
+        <Route path="/auth/reset-password" element={<ResetPasswordPage />} />
         <Route
           path="/"
           element={
