@@ -17,13 +17,9 @@ const schema = z
       .string()
       .nonempty({ message: "Confirm Password is required" }),
   })
-  .superRefine(({ password, confirmPassword }, ctx) => {
-    if (password !== confirmPassword) {
-      ctx.addIssue({
-        path: ["confirmPassword"],
-        message: "Passwords do not match",
-      });
-    }
+  .refine((data) => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Passwords do not match",
   });
 
 type FormData = z.infer<typeof schema>;
