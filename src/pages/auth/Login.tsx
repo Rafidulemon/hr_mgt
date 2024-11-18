@@ -24,7 +24,7 @@ function LoginPage() {
   });
 
   const handleForgotPasswordClick = () => {
-    navigate("/auth/forgetPassword");
+    navigate("/auth/forget-password");
   };
 
   const handleSignUpButton = () => {
@@ -33,6 +33,7 @@ function LoginPage() {
 
   const handleLogin = (data: FormData) => {
     console.log("Form submitted:", data);
+    navigate("/home/dashboard");
   };
   return (
     <div className="h-screen bg-[#ECECEC]">

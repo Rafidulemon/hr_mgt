@@ -39,6 +39,7 @@ function ResetPasswordPage() {
 
   const handleLogin = (data: FormData) => {
     console.log("Form submitted:", data);
+    navigate("/auth/login");
   };
   return (
     <div className="h-screen bg-[#ECECEC]">
