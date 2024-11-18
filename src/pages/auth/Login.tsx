@@ -86,7 +86,7 @@ function LoginPage() {
           <div className="w-full h-full  grid grid-rows-6">
             <div className="w-full row-span-4">
               <img
-                src="/login.png"
+                src="/forgetPass.png"
                 alt="login"
                 className="w-full h-full object-fill"
               />
