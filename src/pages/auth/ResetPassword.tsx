@@ -83,16 +83,16 @@ function ResetPasswordPage() {
             </div>
           </div>
         </div>
-        <div className="col-span-1 rounded-3xl bg-[#0DBAD2] flex justify-center items-center px-[90px] pt-[130px] pb-[90px] overflow-hidden">
-          <div className="w-full h-full  grid grid-rows-6">
-            <div className="w-full row-span-4">
+        <div className="col-span-1 rounded-3xl bg-[#0DBAD2] flex justify-center items-center px-[90px] pt-[130px] pb-[110px] overflow-hidden">
+          <div className="w-[70%] h-[80%]  flex flex-col  items-center">
+            <div className="w-full">
               <img
                 src="/forgetPass.png"
                 alt="login"
-                className="w-full h-full object-fill"
+                className="w-full object-fill"
               />
             </div>
-            <div className="row-span-2 flex items-center">
+            <div className="flex justify-center items-end h-full  w-full">
               <Button onClick={handleSignUpButton} theme="white" isWidthFull>
                 <Text text="Signup" className="text-[16px] font-semibold" />
               </Button>
