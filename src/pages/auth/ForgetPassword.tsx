@@ -64,8 +64,8 @@ function ForgetPasswordPage() {
             </div>
           </div>
         </div>
-        <div className="col-span-1 rounded-3xl bg-[#0DBAD2] flex justify-center items-center px-[90px] pt-[130px] pb-[110px] overflow-hidden">
-          <div className="w-[70%] h-[80%]  flex flex-col  items-center">
+        <div className="col-span-1 rounded-3xl bg-[#0DBAD2] flex justify-center items-center px-[90px] pt-[130px] pb-[90px] overflow-hidden ">
+          <div className="w-[70%] h-[96%]  flex flex-col  items-center">
             <div className="w-full">
               <img
                 src="/forgetPass.png"
@@ -73,7 +73,7 @@ function ForgetPasswordPage() {
                 className="w-full object-fill"
               />
             </div>
-            <div className="flex justify-center items-end h-full  w-full">
+            <div className="flex justify-center  h-full  w-full">
               <Button onClick={handleSignUpButton} theme="white" isWidthFull>
                 <Text text="Signup" className="text-[16px] font-semibold" />
               </Button>
