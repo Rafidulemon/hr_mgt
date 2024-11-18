@@ -89,7 +89,7 @@ function AttendancePage() {
         buttonText="Attendance History"
         onButtonClick={handleButtonClick}
       />
-      <div className={`w-[40%] h-[100%] flex flex-col gap-10 ${!isLeaved ? "justify-start" : "justify-center"} items-center`}>
+      <div className={`md:w-[60%] lg:w-[40%] h-[100%] flex flex-col gap-10 ${!isLeaved ? "justify-start" : "justify-center"} items-center`}>
         <Text
           text="Today’s Total Working Time"
           className="mt-12 font-semibold text-[24px]"
