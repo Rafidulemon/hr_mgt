@@ -21,7 +21,11 @@ function EditProfilePage() {
       />
       <Card isSquareBox title="Basic Info" isTransparentBackground>
         <div className="w-full flex flex-col justify-center items-center gap-6">
-          <ImageInput />
+        <ImageInput
+          id="profilePic"
+          initialImage="/logo.png"
+          onChange={(e) => console.log(e.target.files)}
+        />
           <Text text="Change Photo" className="-mt-4 font-semibold" />
           <div className="w-full grid grid-cols-2 gap-6">
             <div className="col-span-1 flex flex-col gap-6">

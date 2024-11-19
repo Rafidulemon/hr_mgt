@@ -7,10 +7,13 @@ import {
   FaFileInvoice,
   FaChartLine,
   FaUsers,
+  FaEye,
+  FaEdit,
 } from "react-icons/fa";
-import { BiLogOut } from "react-icons/bi";
+import { BiLogOut, BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { TbReport, TbReportAnalytics } from "react-icons/tb";
+import { useState } from "react";
 
 type Props = {
   isLeader?: boolean;
@@ -41,6 +44,14 @@ const LeftMenu = ({ isLeader = false }: Props) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(
+    currentPath.startsWith("/profile")
+  );
+
+  const toggleProfileDropdown = () => {
+    setIsProfileDropdownOpen((prev) => !prev);
+  };
+
   return (
     <div className="w-full min-h-full bg-[#F2F6F9] shadow-[10px_0_20px_rgba(0,0,0,0.2)] text-black flex flex-col items-center">
       <div className="w-[60%]">
@@ -65,19 +76,80 @@ const LeftMenu = ({ isLeader = false }: Props) => {
         <ul className="space-y-4">
           {menuItems.map((item) => (
             <li key={item.label}>
-              <a
-                href={item.href}
-                className={`flex items-center gap-4 p-2 rounded-md transition-colors 
-                  ${
-                    currentPath === item.href ||
-                    (item.href === "/dashboard" && currentPath === "/") || (item.href === "/profile" && currentPath === "/profile/edit")
-                      ? "bg-primary text-white shadow-lg"
-                      : "hover:shadow-lg hover:bg-primary hover:text-white"
-                  }`}
-              >
-                {item.icon}
-                <span className="text-[16px] font-semibold">{item.label}</span>
-              </a>
+              {item.label === "Profile" ? (
+                <div>
+                  <button
+                    onClick={toggleProfileDropdown}
+                    className={`flex items-center gap-4 p-2 rounded-md transition-colors w-full 
+                      ${
+                        currentPath.startsWith("/profile")
+                          ? "bg-primary text-white shadow-lg"
+                          : "hover:shadow-lg hover:bg-primary hover:text-white"
+                      }`}
+                  >
+                    {item.icon}
+                    <span className="text-[16px] font-semibold">
+                      {item.label}
+                    </span>
+                    {isProfileDropdownOpen ? (
+                      <BiChevronUp className="ml-auto" />
+                    ) : (
+                      <BiChevronDown className="ml-auto" />
+                    )}
+                  </button>
+                  
+                  {isProfileDropdownOpen && (
+                    <ul className="mt-2 space-y-2 pl-8">
+                      <li>
+                        <a
+                          href="/profile"
+                          className={`flex items-center gap-2 p-2 rounded-md transition-colors 
+                            ${
+                              currentPath === "/profile"
+                                ? "text-primary"
+                                : "hover:bg-primary hover:text-white"
+                            }`}
+                        >
+                          <FaEye />
+                          <span className="text-[14px] font-medium">
+                            View Profile
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/profile/edit"
+                          className={`flex items-center gap-2 p-2 rounded-md transition-colors 
+                            ${
+                              currentPath === "/profile/edit"
+                                ? "text-primary"
+                                : "hover:bg-primary hover:text-white"
+                            }`}
+                        >
+                          <FaEdit />
+                          <span className="text-[14px] font-medium">
+                            Edit Profile
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              ) : (
+                <a
+                  href={item.href}
+                  className={`flex items-center gap-4 p-2 rounded-md transition-colors 
+                    ${
+                      currentPath === item.href ||
+                      (item.href === "/dashboard" && currentPath === "/")
+                        ? "bg-primary text-white shadow-lg"
+                        : "hover:shadow-lg hover:bg-primary hover:text-white"
+                    }`}
+                >
+                  {item.icon}
+                  <span className="text-[16px] font-semibold">{item.label}</span>
+                </a>
+              )}
             </li>
           ))}
           {isLeader && (
