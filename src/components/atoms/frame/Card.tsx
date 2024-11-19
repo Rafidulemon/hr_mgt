@@ -25,7 +25,7 @@ export const Card = (props: Props) => {
     <div
       className={`h-full w-full py-4 ${isSquareBox ? "" : "rounded-3xl"} ${
         !isTransparentBackground && "shadow"
-      } ${className} ${isTransparentBackground && "bg-transparent"} ${
+      } ${className} ${isTransparentBackground && "bg-inherit"} ${
         background ? `bg-${background}` : "bg-white"
       }`}
     >
