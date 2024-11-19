@@ -23,7 +23,6 @@ function EditProfilePage() {
         <div className="w-full flex flex-col justify-center items-center gap-6">
         <ImageInput
           id="profilePic"
-          initialImage="/logo.png"
           onChange={(e) => console.log(e.target.files)}
         />
           <Text text="Change Photo" className="-mt-4 font-semibold" />
