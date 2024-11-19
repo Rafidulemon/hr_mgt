@@ -1,4 +1,5 @@
-import { type FieldError } from "react-hook-form";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { UseFormRegister, type FieldError } from "react-hook-form";
 import { TbEyeFilled } from "react-icons/tb";
 import { IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
@@ -12,11 +13,16 @@ type Props = {
   value?: string;
   error?: FieldError | undefined;
   id?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  name?: string;
+  register?: UseFormRegister<any>;
 };
 
 function PasswordInput(props: Props) {
   const {
     id,
+    name = "name",
+    register,
     className,
     isRequired = false,
     label,
@@ -24,6 +30,7 @@ function PasswordInput(props: Props) {
     placeholder,
     value,
     error,
+    onChange,
   } = props;
 
   const [viewPassword, setViewPassword] = useState<boolean>(false);
@@ -39,24 +46,26 @@ function PasswordInput(props: Props) {
       <div className={`relative h-[56px] w-full border-black`}>
       <input
         id={id}
-        className={`w-full h-[40px] bg-white rounded-[5px] drop-shadow-2xl text-text_primary px-4 focus:outline-none mb-2`}
+        className={`w-full h-[40px] bg-white rounded-[5px] drop-shadow-lg text-text_primary px-4 focus:outline-none mb-2`}
         type={viewPassword ? "text" : "password"}
         defaultValue={defaultValue}
         value={value}
         placeholder={placeholder ? placeholder : "********"}
+        onChange={onChange}
+        {...register?.(name)}
       />
       {viewPassword ? (
         <TbEyeFilled
           size={22}
           color="#555454"
-          className="absolute -top-6 bottom-0 right-[6px] m-auto md:-top-5 md:right-[8px]"
+          className="cursor-pointer absolute -top-6 bottom-0 right-[6px] m-auto md:-top-5 md:right-[8px]"
           onClick={() => setViewPassword((prev) => !prev)}
         />
       ) : (
         <IoMdEyeOff
           size={22}
           color="#555454"
-          className="absolute -top-6 bottom-0 right-[6px] m-auto md:-top-5 md:right-[8px]"
+          className="cursor-pointer absolute -top-6 bottom-0 right-[6px] m-auto md:-top-5 md:right-[8px]"
           onClick={() => setViewPassword((prev) => !prev)}
         />
       )}

@@ -43,7 +43,7 @@ function TextInput(props: Props) {
       <input
         id={id}
         type="text"
-        className="w-full h-[40px] bg-white rounded-[5px] drop-shadow-2xl text-text_primary px-4 focus:outline-none mb-2"
+        className="w-full h-[40px] bg-white rounded-[5px] drop-shadow-lg text-text_primary px-4 focus:outline-none mb-2"
         defaultValue={defaultValue}
         value={value}
         placeholder={placeholder}
