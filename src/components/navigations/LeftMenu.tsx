@@ -70,7 +70,7 @@ const LeftMenu = ({ isLeader = false }: Props) => {
                 className={`flex items-center gap-4 p-2 rounded-md transition-colors 
                   ${
                     currentPath === item.href ||
-                    (item.href === "/dashboard" && currentPath === "/")
+                    (item.href === "/dashboard" && currentPath === "/") || (item.href === "/profile" && currentPath === "/profile/edit")
                       ? "bg-primary text-white shadow-lg"
                       : "hover:shadow-lg hover:bg-primary hover:text-white"
                   }`}
