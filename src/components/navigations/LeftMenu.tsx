@@ -45,7 +45,7 @@ const LeftMenu = ({ isLeader = false }: Props) => {
     <div className="w-full min-h-full bg-[#F2F6F9] shadow-[10px_0_20px_rgba(0,0,0,0.2)] text-black flex flex-col items-center">
       <div className="w-[60%]">
         <img
-          src="demo_logo.png"
+          src="/demo_logo.png"
           className="cursor-pointer w-full mt-6"
           alt="Logo"
         />
@@ -54,7 +54,7 @@ const LeftMenu = ({ isLeader = false }: Props) => {
       <div className="my-4 w-full flex flex-row justify-center">
         <div className="relative w-[40%] h-auto rounded-full overflow-hidden border border-black cursor-pointer">
           <img
-            src="dp.png"
+            src="/dp.png"
             alt="Profile preview"
             className="w-full h-full object-cover"
           />
