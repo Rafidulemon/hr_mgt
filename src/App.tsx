@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Layout from "./components/layouts/Layout";
 import Index from "./pages";
+import ProfilePage from "./pages/Profile";
 import Atoms from "./pages/atoms";
 import ForgetPasswordPage from "./pages/auth/ForgetPassword";
 import LoginPage from "./pages/auth/Login";
@@ -9,6 +10,7 @@ import SignupPage from "./pages/auth/Signup";
 import PrivacyPage from "./pages/privacy";
 import SupportPage from "./pages/support";
 import TermsPage from "./pages/terms";
+import EditProfilePage from "./pages/Profile/Edit";
 
 function App() {
   return (
@@ -30,6 +32,22 @@ function App() {
           }
         />
         <Route
+          path="/profile"
+          element={
+            <Layout>
+              <ProfilePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/profile/edit"
+          element={
+            <Layout>
+              <EditProfilePage />
+            </Layout>
+          }
+        />
+        <Route
           path="/dashboard"
           element={
             <Layout>
@@ -40,14 +58,7 @@ function App() {
         <Route
           path="/atoms"
           element={
-            <Layout
-              hasNameTitle
-              name="Md. Rafidul Islam"
-              designation="Software Engineer"
-              joining_date="August 17, 2023"
-              hasRightButton
-              buttonText="Go to Home"
-            >
+            <Layout>
               <Atoms />
             </Layout>
           }
