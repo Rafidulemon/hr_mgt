@@ -128,7 +128,7 @@ function AttendancePage() {
                   Start
                 </Button>
               )}
-              {!isBreakOver && (
+              {!isBreakOver && !isLeaved && (
                 <Button
                   theme="cancel-secondary"
                   onClick={handleBreakOver}
