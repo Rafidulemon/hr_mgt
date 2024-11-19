@@ -47,13 +47,11 @@ export function Table(props: TableProps) {
                   }
                 )?.color;
 
-                console.log(textColors);
                 return (
                   <td
                     key={headerIndex}
-                    className={`${
-                      textColors ? `text-[${textColors}]` : " text-gray-600"
-                    } py-2 px-4 `}
+                    className="py-2 px-4"
+                    style={{ color: textColors || "gray" }}
                   >
                     {row[header] || "N/A"}
                   </td>
