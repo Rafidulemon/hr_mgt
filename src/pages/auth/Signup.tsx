@@ -75,7 +75,7 @@ function SignupPage() {
           />
           <form
             onSubmit={handleSubmit(handleOnSubmit)}
-            className="flex flex-col gap-4 max-h-[70vh] overflow-y-auto"
+            className="flex flex-col gap-4 max-h-[70vh] overflow-y-auto pr-4"
           >
             <TextInput
               label="Employee ID"
