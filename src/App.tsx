@@ -8,6 +8,7 @@ import LoginPage from "./pages/auth/Login";
 import SupportPage from "./pages/support";
 import TermsPage from "./pages/terms";
 import PrivacyPage from "./pages/privacy";
+import EditProfilePage from "./pages/Profile/Edit";
 
 function App() {
   return (
@@ -31,6 +32,14 @@ function App() {
           element={
             <Layout>
               <ProfilePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/profile/edit"
+          element={
+            <Layout>
+              <EditProfilePage />
             </Layout>
           }
         />

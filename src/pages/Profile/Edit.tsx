@@ -4,8 +4,11 @@ import { Card } from "../../components/atoms/frame/Card";
 import TextInput from "../../components/atoms/inputs/TextInput";
 import SelectBox from "../../components/atoms/selectBox/SelectBox";
 import Button from "../../components/atoms/buttons/Button";
+import { useNavigate } from "react-router-dom";
 
-export function EditProfile() {
+function EditProfilePage() {
+  const navigate = useNavigate();
+
   const genderOptions = [
     { label: "Male", value: "male" },
     { label: "Female", value: "female" },
@@ -96,10 +99,14 @@ export function EditProfile() {
         <Button theme="primary" className="w-[185px]">
             Save
         </Button>
-        <Button theme="secondary" className="w-[185px]">
+        <Button theme="secondary" className="w-[185px]" onClick={() => {
+          navigate("/profile")
+        }}>
             Cancel
         </Button>
       </div>
     </div>
   );
 }
+
+export default EditProfilePage;

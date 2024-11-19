@@ -2,17 +2,14 @@ import { EmployeeHeader } from "../../components/layouts/EmployeeHeader";
 import { Card } from "../../components/atoms/frame/Card";
 import Text from "../../components/atoms/Text/Text";
 import Button from "../../components/atoms/buttons/Button";
-import { useState } from "react";
-import { EditProfile } from "./Edit";
+import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
-  const [isEditProfile, setIsEditProfile] = useState<boolean>(false);
+  const navigate = useNavigate()
   const handleButtonClick = () => {
-    setIsEditProfile(!isEditProfile);
+    navigate("/profile/edit")
   };
   return (
-    <>
-    {!isEditProfile ?(
       <div className="w-full flex flex-col gap-6">
         <EmployeeHeader
           name="Md. Rafidul Islam"
@@ -125,10 +122,6 @@ function ProfilePage() {
           <Text text="Change Password" className="px-8" />
         </Button>
       </div>
-    ) : (
-      <EditProfile />
-    )}
-    </>
   );
 }
 
