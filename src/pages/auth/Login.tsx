@@ -33,7 +33,7 @@ function LoginPage() {
 
   const handleLogin = (data: FormData) => {
     console.log("Form submitted:", data);
-    navigate("/home/dashboard");
+    navigate("/");
   };
   return (
     <div className="h-screen bg-[#ECECEC]">
@@ -65,7 +65,7 @@ function LoginPage() {
 
                   <span
                     onClick={handleForgotPasswordClick}
-                    className="font-semibold cursor-pointer"
+                    className="font-semibold cursor-pointer text-text_bold w-fit"
                   >
                     Forgot Your Password ?
                   </span>
@@ -82,8 +82,8 @@ function LoginPage() {
             </div>
           </div>
         </div>
-        <div className="col-span-1 rounded-3xl bg-[#0DBAD2] flex justify-center items-center px-[90px] pt-[130px] pb-[90px] overflow-hidden ">
-          <div className="w-[70%] h-[96%]  flex flex-col  items-center">
+        <div className="col-span-1 rounded-3xl bg-[#0DBAD2] flex justify-center items-center px-[90px] overflow-hidden ">
+          <div className="w-[70%] flex flex-col items-center gap-8">
             <div className="w-full">
               <img
                 src="/forgetPass.png"
