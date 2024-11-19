@@ -137,6 +137,35 @@ export default function EmployeeLeavePage() {
     },
   ];
 
+  const dynamicColorValues = [
+    {
+      columnName: "Status",
+      textColors: [
+        {
+          text: "Pending",
+          color: "#835600",
+        },
+        {
+          text: "Approved",
+          color: "#046B53",
+        },
+        {
+          text: "Denied",
+          color: "#D20D0D",
+        },
+        {
+          text: "Pending",
+          color: "#835600",
+        },
+
+        {
+          text: "Waiting",
+          color: "#8200E9",
+        },
+      ],
+    },
+  ];
+
   const decrementYear = () => {
     setYear((prevYear) => prevYear - 1);
   };
@@ -232,7 +261,11 @@ export default function EmployeeLeavePage() {
         </div>
 
         <div>
-          <Table headers={headers} rows={rows} />
+          <Table
+            headers={headers}
+            rows={rows}
+            dynamicColorValues={dynamicColorValues}
+          />
         </div>
       </div>
     </div>
