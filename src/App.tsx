@@ -10,6 +10,7 @@ import SignupPage from "./pages/auth/Signup";
 import PrivacyPage from "./pages/privacy";
 import SupportPage from "./pages/support";
 import TermsPage from "./pages/terms";
+import AttendancePage from "./pages/attendance";
 import EditProfilePage from "./pages/Profile/Edit";
 
 function App() {
@@ -52,6 +53,14 @@ function App() {
           element={
             <Layout>
               <Index />
+            </Layout>
+          }
+        />
+        <Route
+          path="/attendance"
+          element={
+            <Layout>
+              <AttendancePage />
             </Layout>
           }
         />

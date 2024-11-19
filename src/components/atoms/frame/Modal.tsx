@@ -45,11 +45,11 @@ export const Modal = (props: Props) => {
     <div className={`modal modal-box ${open && "modal-open"}`}>
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 text-[#1D212D]">
         <div
-          className={`relative bg-[#ECECEC] rounded-xl shadow gap-[14px] flex flex-col justify-between ${className}`}
+          className={`relative bg-white rounded-xl shadow gap-[14px] flex flex-col justify-between ${className}`}
         >
           <div className="flex flex-row w-full justify-between">
             <span
-              className={`px-6 flex w-full flex-row justify-between font-bold ${
+              className={`py-2 px-6 flex w-full flex-row justify-between font-bold ${
                 titleTextSize ? titleTextSize : "text-[20px] pt-2 font-bold"
               }`}
             >
