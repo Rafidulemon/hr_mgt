@@ -155,7 +155,7 @@ function AttendancePage() {
       </div>
 
       <Modal
-        doneButtonText="Save"
+        doneButtonText="Leave"
         cancelButtonText="Cancel"
         isCancelButton
         className="h-auto w-[40%]"
