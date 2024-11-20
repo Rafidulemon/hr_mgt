@@ -1,5 +1,6 @@
 import RadioButton from "./RadioButton";
 import Text from "../Text/Text";
+import { FieldError } from "react-hook-form";
 
 type RadioGroupProps = {
   options: { label: string; value: string }[];
@@ -8,6 +9,7 @@ type RadioGroupProps = {
   onChange: (value: string) => void;
   title?: string;
   isRequired?: boolean;
+  error?: FieldError | undefined;
 };
 
 function RadioGroup({
@@ -17,6 +19,7 @@ function RadioGroup({
   selectedValue,
   onChange,
   isRequired = false,
+  error
 }: RadioGroupProps) {
   return (
     <div className="radio-group flex flex-col gap-2 mt-4">
@@ -37,6 +40,7 @@ function RadioGroup({
           onChange={onChange}
         />
       ))}
+      {error && <div className="text-[14px] text-tertiary">{error.message}</div>}
     </div>
   );
 }

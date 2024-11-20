@@ -22,9 +22,9 @@ const leaveApplicationSchema = z
       .min(10, { message: "Phone number must be at least 10 digits" })
       .regex(/^\+?\d+$/, { message: "Invalid phone number" }),
     options: z.string().nonempty({ message: "Please select a leave type" }),
-    reason: z.string().min(1, { message: "Reason is required" }),
-    from: z.string().min(1, { message: "From date is required" }),
-    to: z.string().min(1, { message: "To date is required" }),
+    reason: z.string().nonempty({ message: "Reason is required" }),
+    from: z.string().nonempty({ message: "From date is required" }),
+    to: z.string().nonempty({ message: "To date is required" }),
     password: z
       .string()
       .min(8, { message: "Password must be at least 8 characters" }),
@@ -171,6 +171,7 @@ export default function LeaveApplicationPage() {
                   setSelectedValue(value);
                   register("options", { value });
                 }}
+                error={errors.options}
               />
               <TextInput
                 className="col-span-2 mt-4"
