@@ -14,6 +14,7 @@ import EmployeeLeavePage from "./pages/leave";
 import PrivacyPage from "./pages/privacy";
 import SupportPage from "./pages/support";
 import TermsPage from "./pages/terms";
+import LeaveApplicationPage from "./pages/leave/application";
 
 function App() {
   return (
@@ -48,6 +49,14 @@ function App() {
           element={
             <Layout>
               <EmployeeLeavePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/leave/application"
+          element={
+            <Layout>
+              <LeaveApplicationPage />
             </Layout>
           }
         />

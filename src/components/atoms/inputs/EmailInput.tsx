@@ -6,6 +6,8 @@ type Props = {
   isRequired?: boolean;
   label: string;
   placeholder?: string;
+  defaultValue?: string;
+  value?: string;
   error?: FieldError | undefined;
   id?: string;
   name?: string;
@@ -19,6 +21,8 @@ function EmailInput(props: Props) {
     className,
     isRequired = false,
     label,
+    defaultValue,
+    value,
     placeholder,
     error,
     register,
@@ -38,6 +42,8 @@ function EmailInput(props: Props) {
         id={id}
         type="email"
         className="w-full h-[40px] bg-white rounded-[5px] drop-shadow-lg text-text_primary px-4 focus:outline-none mb-2"
+        defaultValue={defaultValue}
+        value={value}
         placeholder={placeholder}
         {...register?.(name)}
       />

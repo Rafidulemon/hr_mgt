@@ -26,7 +26,7 @@ const TextFeild = (props: Props) => {
     className,
   } = props;
   return (
-    <div className={`flex flex-col gap-[20px] ${className}`}>
+    <div className={`flex flex-col gap-2 ${className}`}>
       <p
         className={`${labelColor ? `${labelColor}` : "text-text_bold"} `}
         style={{
