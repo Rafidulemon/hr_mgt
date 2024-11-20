@@ -14,6 +14,8 @@ import { BiLogOut, BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { TbReport, TbReportAnalytics } from "react-icons/tb";
 import { useState } from "react";
+import { HiOutlineDocumentText } from "react-icons/hi"; // Importing an icon for "Leave History" (document icon)
+import { IoIosPaper } from "react-icons/io"; // Importing an icon for "Leave Application" (paper icon)
 
 type Props = {
   isLeader?: boolean;
@@ -24,7 +26,15 @@ const menuItems = [
   { label: "Dashboard", icon: <MdOutlineDashboard />, href: "/dashboard" },
   { label: "Profile", icon: <FaUser />, href: "/profile" },
   { label: "Attendance", icon: <FaCalendarCheck />, href: "/attendance" },
-  { label: "Leave", icon: <FaClipboardList />, href: "/leave" },
+  {
+    label: "Leave",
+    icon: <FaClipboardList />,
+    href: "/leave",
+    subItems: [
+      { label: "Leave History", icon: <HiOutlineDocumentText />, href: "/leave" }, // Updated href
+      { label: "Leave Application", icon: <IoIosPaper />, href: "/leave/application" }, // Updated href
+    ],
+  },
   { label: "Daily Report", icon: <TbReport />, href: "/daily-report" },
   {
     label: "Monthly Report",
@@ -47,9 +57,16 @@ const LeftMenu = ({ isLeader = false }: Props) => {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(
     currentPath.startsWith("/profile")
   );
+  const [isLeaveDropdownOpen, setIsLeaveDropdownOpen] = useState(
+    currentPath.startsWith("/leave")
+  );
 
   const toggleProfileDropdown = () => {
     setIsProfileDropdownOpen((prev) => !prev);
+  };
+
+  const toggleLeaveDropdown = () => {
+    setIsLeaveDropdownOpen((prev) => !prev);
   };
 
   return (
@@ -97,7 +114,7 @@ const LeftMenu = ({ isLeader = false }: Props) => {
                       <BiChevronDown className="ml-auto" />
                     )}
                   </button>
-                  
+
                   {isProfileDropdownOpen && (
                     <ul className="mt-2 space-y-2 pl-8">
                       <li>
@@ -129,6 +146,65 @@ const LeftMenu = ({ isLeader = false }: Props) => {
                           <FaEdit />
                           <span className="text-[14px] font-medium">
                             Edit Profile
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              ) : item.label === "Leave" ? (
+                <div>
+                  <button
+                    onClick={toggleLeaveDropdown}
+                    className={`flex items-center gap-4 p-2 rounded-md transition-colors w-full 
+                      ${
+                        currentPath.startsWith("/leave")
+                          ? "bg-primary text-white shadow-lg"
+                          : "hover:shadow-lg hover:bg-primary hover:text-white"
+                      }`}
+                  >
+                    {item.icon}
+                    <span className="text-[16px] font-semibold">
+                      {item.label}
+                    </span>
+                    {isLeaveDropdownOpen ? (
+                      <BiChevronUp className="ml-auto" />
+                    ) : (
+                      <BiChevronDown className="ml-auto" />
+                    )}
+                  </button>
+
+                  {isLeaveDropdownOpen && (
+                    <ul className="mt-2 space-y-2 pl-8">
+                      <li>
+                        <a
+                          href="/leave"
+                          className={`flex items-center gap-2 p-2 rounded-md transition-colors 
+                            ${
+                              currentPath === "/leave"
+                                ? "text-primary"
+                                : "hover:bg-primary hover:text-white"
+                            }`}
+                        >
+                          <HiOutlineDocumentText/>
+                          <span className="text-[14px] font-medium">
+                            History
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/leave/application"
+                          className={`flex items-center gap-2 p-2 rounded-md transition-colors 
+                            ${
+                              currentPath === "/leave/application"
+                                ? "text-primary"
+                                : "hover:bg-primary hover:text-white"
+                            }`}
+                        >
+                          <IoIosPaper />
+                          <span className="text-[14px] font-medium">
+                            Application
                           </span>
                         </a>
                       </li>
