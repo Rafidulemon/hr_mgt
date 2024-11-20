@@ -13,6 +13,8 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import ApplicationPreview from "./Preview";
 import html2pdf from "html2pdf.js";
+import { Controller } from "react-hook-form";
+import CustomDatePicker from "../../components/atoms/inputs/DatePicker";
 
 const leaveApplicationSchema = z
   .object({
@@ -23,8 +25,16 @@ const leaveApplicationSchema = z
       .regex(/^\+?\d+$/, { message: "Invalid phone number" }),
     options: z.string().nonempty({ message: "Please select a leave type" }),
     reason: z.string().nonempty({ message: "Reason is required" }),
-    from: z.string().nonempty({ message: "From date is required" }),
-    to: z.string().nonempty({ message: "To date is required" }),
+    from: z
+    .date()
+    .refine((date) => !isNaN(date.getTime()), {
+      message: "Invalid from date",
+    }),
+  to: z
+    .date()
+    .refine((date) => !isNaN(date.getTime()), {
+      message: "Invalid to date",
+    }),
     password: z
       .string()
       .min(8, { message: "Password must be at least 8 characters" }),
@@ -44,6 +54,7 @@ export default function LeaveApplicationPage() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(leaveApplicationSchema),
@@ -57,8 +68,8 @@ export default function LeaveApplicationPage() {
       phone: data.phone,
       leave_type: data.options,
       reason: data.reason,
-      from: data.from,
-      to: data.to,
+      from: data.from.toLocaleDateString("en-GB"),
+      to: data.to.toLocaleDateString("en-GB"),
     }));
     console.log("Updated Data Submitted:", userData);
     setIsFormSubmitted(true);
@@ -89,13 +100,10 @@ export default function LeaveApplicationPage() {
       const applicantName = userData.name.replace(/\s+/g, "_").toLowerCase();
       const date = userData.date.replace(/\//g, "-");
       const fileName = `leave-application_${applicantName}-${date}.pdf`;
-  
-      html2pdf()
-        .from(element)
-        .save(fileName);
+
+      html2pdf().from(element).save(fileName);
     }
   };
-  
 
   return (
     <div>
@@ -104,6 +112,7 @@ export default function LeaveApplicationPage() {
         designation="Software Engineer"
         joining_date="Aug 17, 2023"
       />
+
       <div className="my-10 w-full bg-white shadow p-8 flex flex-col gap-6">
         {!isFormSubmitted ? (
           <div className="w-full flex flex-col gap-4">
@@ -177,25 +186,39 @@ export default function LeaveApplicationPage() {
                 className="col-span-2 mt-4"
                 label="Reason"
                 isRequired
+                placeholder="Enter the reason"
                 name="reason"
                 register={register}
                 error={errors.reason}
               />
-              <TextInput
-                className="col-span-1"
-                label="From"
-                isRequired
+              <Controller
                 name="from"
-                register={register}
-                error={errors.from}
+                control={control}
+                render={({ field }) => (
+                  <CustomDatePicker
+                    {...field}
+                    label="From"
+                    isRequired
+                    error={errors.from}
+                    placeholder="Select start date"
+                    value={field.value ? new Date(field.value) : null}
+                  />
+                )}
               />
-              <TextInput
-                className="col-span-1"
-                label="To"
-                isRequired
+
+              <Controller
                 name="to"
-                register={register}
-                error={errors.to}
+                control={control}
+                render={({ field }) => (
+                  <CustomDatePicker
+                    {...field}
+                    label="To"
+                    isRequired
+                    error={errors.to}
+                    placeholder="Select end date"
+                    value={field.value ? new Date(field.value) : null}
+                  />
+                )}
               />
               <PasswordInput
                 className="col-span-1"
@@ -217,7 +240,11 @@ export default function LeaveApplicationPage() {
                 <Button type="submit" className="w-[185px]">
                   <Text text="Submit" className="text-[16px] font-semibold" />
                 </Button>
-                <Button theme="cancel" className="w-[185px]" onClick={() => navigate("/leave")}>
+                <Button
+                  theme="cancel"
+                  className="w-[185px]"
+                  onClick={() => navigate("/leave")}
+                >
                   <Text text="Cancel" className="text-[16px] font-semibold" />
                 </Button>
               </div>
@@ -230,7 +257,10 @@ export default function LeaveApplicationPage() {
             </div>
             <div className="my-6 col-span-2 flex flex-row gap-8 justify-center items-center">
               <Button className="w-[185px]" onClick={generatePDF}>
-                <Text text="Download PDF" className="text-[16px] font-semibold" />
+                <Text
+                  text="Download PDF"
+                  className="text-[16px] font-semibold"
+                />
               </Button>
               <Button
                 theme="secondary"
