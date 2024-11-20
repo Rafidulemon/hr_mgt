@@ -265,6 +265,7 @@ export default function EmployeeLeavePage() {
             headers={headers}
             rows={rows}
             dynamicColorValues={dynamicColorValues}
+            isTextCenter
           />
         </div>
       </div>

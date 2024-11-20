@@ -334,11 +334,12 @@ export default function AttendanceHistory() {
         <Table
           headers={attendenceTableHeader}
           rows={rows}
-          className="shadow-lg"
+          className="shadow-lg py-6"
+          isTextCenter
         />
       </div>
 
-      <div className="flex justify-end items-center mt-8  md:w-[90%] lg:w-[87%]">
+      <div className="flex justify-start items-center mt-8 ">
         <div className="flex  gap-[60px]">
           <Text
             text="Total Working Hour"

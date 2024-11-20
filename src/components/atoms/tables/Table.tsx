@@ -11,19 +11,28 @@ type TableProps = {
   rows: Array<Record<string, string | number>>;
   className?: string;
   dynamicColorValues?: DynamicColor[];
+  isTextCenter?: boolean;
 };
 
 export function Table(props: TableProps) {
-  const { headers, rows, className, dynamicColorValues } = props;
+  const {
+    headers,
+    rows,
+    className,
+    dynamicColorValues,
+    isTextCenter = false,
+  } = props;
   return (
-    <div className={`overflow-x-auto ${className}`}>
-      <table className="min-w-full bg-white">
+    <div className={`bg-white overflow-x-auto ${className}`}>
+      <table className="min-w-full">
         <thead>
           <tr className="border-b border-black">
             {headers.map((header, index) => (
               <th
                 key={index}
-                className="text-center py-2 px-4 font-semibold text-gray-700"
+                className={`${
+                  isTextCenter ? "text-center" : "text-left"
+                }  py-2 px-4 font-semibold text-gray-700`}
               >
                 {header}
               </th>
@@ -50,7 +59,9 @@ export function Table(props: TableProps) {
                 return (
                   <td
                     key={headerIndex}
-                    className="py-2 px-4 text-center"
+                    className={`${
+                      isTextCenter ? "text-center" : "text-left"
+                    } py-2 px-4 `}
                     style={{ color: textColors || "gray" }}
                   >
                     {row[header] || "N/A"}
