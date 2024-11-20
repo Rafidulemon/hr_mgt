@@ -1,11 +1,20 @@
+type DynamicColor = {
+  columnName: string;
+  textColors: {
+    text: string;
+    color: string;
+  }[];
+};
+
 type TableProps = {
   headers: string[];
   rows: Array<Record<string, string | number>>;
   className?: string;
+  dynamicColorValues?: DynamicColor[];
 };
 
 export function Table(props: TableProps) {
-  const { headers, rows, className } = props;
+  const { headers, rows, className, dynamicColorValues } = props;
   return (
     <div className={`overflow-x-auto ${className}`}>
       <table className="min-w-full bg-white">
@@ -24,11 +33,30 @@ export function Table(props: TableProps) {
         <tbody>
           {rows.map((row, rowIndex) => (
             <tr key={rowIndex} className="border-b border-gray-300">
-              {headers.map((header, headerIndex) => (
-                <td key={headerIndex} className="py-2 px-4 text-gray-600">
-                  {row[header] || "N/A"}
-                </td>
-              ))}
+              {headers.map((header, headerIndex) => {
+                const dynamicColorConfig = dynamicColorValues?.find(
+                  (colorConfig) => colorConfig.columnName === header
+                );
+
+                const textColors = dynamicColorConfig?.textColors?.find(
+                  (textColor) => {
+                    if (row[header] === textColor?.text) {
+                      return textColor?.color;
+                    }
+                    return null;
+                  }
+                )?.color;
+
+                return (
+                  <td
+                    key={headerIndex}
+                    className="py-2 px-4"
+                    style={{ color: textColors || "gray" }}
+                  >
+                    {row[header] || "N/A"}
+                  </td>
+                );
+              })}
             </tr>
           ))}
         </tbody>

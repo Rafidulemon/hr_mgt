@@ -2,16 +2,17 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Layout from "./components/layouts/Layout";
 import Index from "./pages";
 import ProfilePage from "./pages/Profile";
+import EditProfilePage from "./pages/Profile/Edit";
 import Atoms from "./pages/atoms";
+import AttendancePage from "./pages/attendance";
 import ForgetPasswordPage from "./pages/auth/ForgetPassword";
 import LoginPage from "./pages/auth/Login";
 import ResetPasswordPage from "./pages/auth/ResetPassword";
 import SignupPage from "./pages/auth/Signup";
+import EmployeeLeavePage from "./pages/leave";
 import PrivacyPage from "./pages/privacy";
 import SupportPage from "./pages/support";
 import TermsPage from "./pages/terms";
-import AttendancePage from "./pages/attendance";
-import EditProfilePage from "./pages/Profile/Edit";
 
 function App() {
   return (
@@ -29,6 +30,15 @@ function App() {
           element={
             <Layout>
               <Index />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/leave"
+          element={
+            <Layout>
+              <EmployeeLeavePage />
             </Layout>
           }
         />
