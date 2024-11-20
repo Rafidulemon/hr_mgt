@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import ApplicationPreview from "./Preview";
+import html2pdf from "html2pdf.js";
 
 const leaveApplicationSchema = z
   .object({
@@ -81,6 +82,20 @@ export default function LeaveApplicationPage() {
 
   const [selectedValue, setSelectedValue] = useState("");
   const navigate = useNavigate();
+
+  const generatePDF = () => {
+    const element = document.getElementById("application-preview");
+    if (element) {
+      const applicantName = userData.name.replace(/\s+/g, "_").toLowerCase();
+      const date = userData.date.replace(/\//g, "-");
+      const fileName = `leave-application_${applicantName}-${date}.pdf`;
+  
+      html2pdf()
+        .from(element)
+        .save(fileName);
+    }
+  };
+  
 
   return (
     <div>
@@ -209,10 +224,12 @@ export default function LeaveApplicationPage() {
           </div>
         ) : (
           <div className="w-full">
-            <ApplicationPreview userData={userData} />
+            <div id="application-preview">
+              <ApplicationPreview userData={userData} />
+            </div>
             <div className="my-6 col-span-2 flex flex-row gap-8 justify-center items-center">
-              <Button className="w-[185px]">
-                <Text text="View PDF" className="text-[16px] font-semibold" />
+              <Button className="w-[185px]" onClick={generatePDF}>
+                <Text text="Download PDF" className="text-[16px] font-semibold" />
               </Button>
               <Button
                 theme="secondary"
