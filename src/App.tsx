@@ -10,6 +10,7 @@ import ForgetPasswordPage from "./pages/auth/ForgetPassword";
 import LoginPage from "./pages/auth/Login";
 import ResetPasswordPage from "./pages/auth/ResetPassword";
 import SignupPage from "./pages/auth/Signup";
+import EmployeeLeavePage from "./pages/leave";
 import PrivacyPage from "./pages/privacy";
 import SupportPage from "./pages/support";
 import TermsPage from "./pages/terms";
@@ -38,6 +39,15 @@ function App() {
           element={
             <Layout>
               <Index />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/leave"
+          element={
+            <Layout>
+              <EmployeeLeavePage />
             </Layout>
           }
         />
