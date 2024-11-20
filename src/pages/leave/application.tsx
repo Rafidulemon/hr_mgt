@@ -58,7 +58,7 @@ export default function LeaveApplicationPage() {
         joining_date="Aug 17, 2023"
       />
       <div className="my-10 w-full bg-white shadow p-8 flex flex-col gap-6">
-        <div className="w-full grid grid-cols-2">
+        <div className="w-full grid grid-cols-2 gap-4">
           <div className="col-span-1 flex flex-col gap-6">
             <TextFeild label="Applicant Name" text="Md. Rafidul Islam" textFontSize="16px"/>
             <TextFeild label="Department" text="Frontend" textFontSize="16px"/>
