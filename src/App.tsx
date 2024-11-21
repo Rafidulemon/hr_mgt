@@ -14,6 +14,7 @@ import EmployeeLeavePage from "./pages/leave";
 import PrivacyPage from "./pages/privacy";
 import SupportPage from "./pages/support";
 import TermsPage from "./pages/terms";
+import MonthlyHistory from "./pages/report/monthly/history";
 
 function App() {
   return (
@@ -72,6 +73,14 @@ function App() {
           element={
             <Layout>
               <Index />
+            </Layout>
+          }
+        />
+        <Route
+          path="/report/monthly/history"
+          element={
+            <Layout>
+              <MonthlyHistory />
             </Layout>
           }
         />
