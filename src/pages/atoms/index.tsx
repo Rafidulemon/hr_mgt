@@ -11,6 +11,7 @@ import FileInput from "../../components/atoms/inputs/FileInput";
 import ImageInput from "../../components/atoms/inputs/ImageInput";
 import PasswordInput from "../../components/atoms/inputs/PasswordInput";
 import RadioGroup from "../../components/atoms/inputs/RadioGroup";
+import Calendar from "../../components/calerdar/Calendar";
 import TextArea from "../../components/atoms/inputs/TextArea";
 import TextInput from "../../components/atoms/inputs/TextInput";
 import SelectBox from "../../components/atoms/selectBox/SelectBox";
@@ -121,7 +122,6 @@ function Atoms() {
       Status: "Pending",
     },
   ];
-  //  For Select Box
   const options = [
     { label: "Project", value: "project" },
     { label: "Design", value: "design" },
@@ -378,6 +378,11 @@ function Atoms() {
         </div>
       </Card>
 
+      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2 mt-4">
+        <span className="col-span-2 text-[24px] font-bold">Calendar</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+        <Calendar/>
+      </Card>
       <Card title="TextFeild">
         <div className="w-full grid grid-cols-2 gap-6">
           <div className="col-span-1 w-full">
