@@ -25,11 +25,11 @@ const menuItems = [
   { label: "Profile", icon: <FaUser />, href: "/profile" },
   { label: "Attendance", icon: <FaCalendarCheck />, href: "/attendance" },
   { label: "Leave", icon: <FaClipboardList />, href: "/leave" },
-  { label: "Daily Report", icon: <TbReport />, href: "/daily-report" },
+  { label: "Daily Report", icon: <TbReport />, href: "/report/daily" },
   {
     label: "Monthly Report",
     icon: <TbReportAnalytics />,
-    href: "/monthly-report",
+    href: "/report/monthly",
   },
   { label: "Notification", icon: <FaBell />, href: "/notification" },
   { label: "Invoice", icon: <FaFileInvoice />, href: "/invoice/details" },

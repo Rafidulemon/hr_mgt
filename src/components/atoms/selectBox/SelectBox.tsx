@@ -42,7 +42,7 @@ export default function SelectBox({
       <select
         id={label}
         {...register?.(name)}
-        className={`p-[12px] text-[16px] text-text_primary rounded-lg shadow-xl bg-white 
+        className={`h-[40px] px-4 text-[16px] text-text_primary rounded-lg shadow-xl bg-white 
         focus:outline-none hover:cursor-pointer ${className}`}
       >
         {options.length > 0 ? (
