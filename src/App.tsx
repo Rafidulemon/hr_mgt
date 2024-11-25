@@ -14,6 +14,7 @@ import EmployeeLeavePage from "./pages/leave";
 import PrivacyPage from "./pages/privacy";
 import SupportPage from "./pages/support";
 import TermsPage from "./pages/terms";
+import DailyReportPage from "./pages/report/daily";
 import NotificationDetails from "./pages/notification/details";
 
 function App() {
@@ -65,6 +66,14 @@ function App() {
           element={
             <Layout>
               <EditProfilePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/report/daily"
+          element={
+            <Layout>
+              <DailyReportPage />
             </Layout>
           }
         />
