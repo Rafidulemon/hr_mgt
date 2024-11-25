@@ -1,4 +1,5 @@
-import { type FieldError } from "react-hook-form"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { UseFormRegister, type FieldError } from "react-hook-form"
 
 type Props = {
   className?: string;
@@ -10,11 +11,16 @@ type Props = {
   error?: FieldError | undefined;
   id?: string;
   height?: string;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  name?: string;
+  register?: UseFormRegister<any>;
 };
 
 function TextArea(props: Props) {
   const {
     id,
+    name = "name",
+    register,
     className,
     isRequired = false,
     label,
@@ -23,6 +29,7 @@ function TextArea(props: Props) {
     value,
     error,
     height,
+    onChange,
   } = props;
 
 
@@ -34,11 +41,13 @@ function TextArea(props: Props) {
       </div>
       <textarea
         id={id}
-        className="w-full bg-white rounded-[5px] drop-shadow-2xl text-text_primary p-4 focus:outline-none mb-2"
+        className="w-full bg-white rounded-[5px] drop-shadow-lg text-text_primary p-4 focus:outline-none mb-2"
         style={{ height: height || "100px" }}
         defaultValue={defaultValue}
         value={value}
         placeholder={placeholder}
+        onChange={onChange}
+        {...register?.(name)}
       />
       {error && <div className="text-[14px] text-tertiary">{error.message}</div>}
     </div>

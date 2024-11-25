@@ -1,24 +1,31 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm, type FieldError } from "react-hook-form";
+import { z } from "zod";
 import Button from "../../components/atoms/buttons/Button";
 import { Card } from "../../components/atoms/frame/Card";
-import TextInput from "../../components/atoms/inputs/TextInput";
-import PasswordInput from "../../components/atoms/inputs/PasswordInput";
-import { type FieldError } from "react-hook-form";
-import TextArea from "../../components/atoms/inputs/TextArea";
-import { useState } from "react";
+import { CardWithHeader } from "../../components/atoms/frame/CardWithHeader";
 import { Modal } from "../../components/atoms/frame/Modal";
 import EmailInput from "../../components/atoms/inputs/EmailInput";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Text from "../../components/atoms/Text/Text";
-import Header from "../../components/navigations/Header";
-import { CardWithHeader } from "../../components/atoms/frame/CardWithHeader";
-import LeftMenu from "../../components/Layouts/LeftMenu";
-import Table from "../../components/atoms/tables/Table";
+import FileInput from "../../components/atoms/inputs/FileInput";
+import ImageInput from "../../components/atoms/inputs/ImageInput";
+import PasswordInput from "../../components/atoms/inputs/PasswordInput";
 import RadioGroup from "../../components/atoms/inputs/RadioGroup";
 import Calendar from "../../components/calerdar/Calendar";
+import TextArea from "../../components/atoms/inputs/TextArea";
+import TextInput from "../../components/atoms/inputs/TextInput";
+import SelectBox from "../../components/atoms/selectBox/SelectBox";
+import Table from "../../components/atoms/tables/Table";
+import Text from "../../components/atoms/Text/Text";
+import TextFeild from "../../components/atoms/TextFeild/TextFeild";
+import Header from "../../components/navigations/Header";
 
 const mockError: FieldError = {
+  type: "required",
+  message: "This field is required",
+};
+
+const selectMockError: FieldError = {
   type: "required",
   message: "This field is required",
 };
@@ -57,32 +64,80 @@ function Atoms() {
     setSelectedValue(value);
   };
 
-  const headers = ["ID", "Application_Date", "Leave_Type", "From", "To", "Status"];
-  const rows = [
-    { ID: "10001", Application_Date: "10/12/2024", Leave_Type: "Sick", From: "10/12/2024", To: "10/12/2024", Status: "Pending" },
-    { ID: "10001", Application_Date: "10/12/2024", Leave_Type: "Casual", From: "10/12/2024", To: "10/12/2024", Status: "Pending" },
-    { ID: "10001", Application_Date: "10/12/2024", Leave_Type: "Casual", From: "10/12/2024", To: "10/12/2024", Status: "Pending" },
-    { ID: "10001", Application_Date: "10/12/2024", Leave_Type: "Casual", From: "10/12/2024", To: "10/12/2024", Status: "Pending" },
-    { ID: "10001", Application_Date: "10/12/2024", Leave_Type: "Casual", From: "10/12/2024", To: "10/12/2024", Status: "Pending" },
-    { ID: "10001", Application_Date: "10/12/2024", Leave_Type: "Casual", From: "10/12/2024", To: "10/12/2024", Status: "Pending" },
+  const headers = [
+    "ID",
+    "Application_Date",
+    "Leave_Type",
+    "From",
+    "To",
+    "Status",
   ];
+  const rows = [
+    {
+      ID: "10001",
+      Application_Date: "10/12/2024",
+      Leave_Type: "Sick",
+      From: "10/12/2024",
+      To: "10/12/2024",
+      Status: "Pending",
+    },
+    {
+      ID: "10001",
+      Application_Date: "10/12/2024",
+      Leave_Type: "Casual",
+      From: "10/12/2024",
+      To: "10/12/2024",
+      Status: "Pending",
+    },
+    {
+      ID: "10001",
+      Application_Date: "10/12/2024",
+      Leave_Type: "Casual",
+      From: "10/12/2024",
+      To: "10/12/2024",
+      Status: "Pending",
+    },
+    {
+      ID: "10001",
+      Application_Date: "10/12/2024",
+      Leave_Type: "Casual",
+      From: "10/12/2024",
+      To: "10/12/2024",
+      Status: "Pending",
+    },
+    {
+      ID: "10001",
+      Application_Date: "10/12/2024",
+      Leave_Type: "Casual",
+      From: "10/12/2024",
+      To: "10/12/2024",
+      Status: "Pending",
+    },
+    {
+      ID: "10001",
+      Application_Date: "10/12/2024",
+      Leave_Type: "Casual",
+      From: "10/12/2024",
+      To: "10/12/2024",
+      Status: "Pending",
+    },
+  ];
+  const options = [
+    { label: "Project", value: "project" },
+    { label: "Design", value: "design" },
+    { label: "Development", value: "development" },
+    { label: "Testing", value: "testing" },
+  ];
+
   return (
-    <div className="flex flex-col gap-10 w-full min-h-screen p-10 bg-[#ECECEC]">
+    <div className="flex flex-col gap-10 w-full min-h-screen">
       <div className="flex flex-row w-full justify-center items-center text-[30px] font-extrabold">
         <h1 className="text-center">Components</h1>
       </div>
-      <Card className="h-[300px] bg-primary p-6 gap-2 grid grid-cols-2 mt-4">
-        <span className="col-span-2 text-[24px] font-bold text-white">
-          Auth Header
-        </span>
-        <line className="col-span-2 w-full border-b border-white mb-6" />
-        <div className="col-span-2">
-          <Header />
-        </div>
+      <Card title="Auth Header">
+        <Header />
       </Card>
-      <Card className="p-6 gap-2 grid grid-cols-2">
-        <span className="col-span-2 text-[24px] font-bold">TextInput</span>
-        <line className="col-span-2 w-full border-b border-black mb-6" />
+      <Card title="TextInput">
         <TextInput
           label="TextInput"
           placeholder="Enter text"
@@ -103,41 +158,37 @@ function Atoms() {
         />
       </Card>
 
-      <Card className="p-6 gap-2 grid grid-cols-2">
-        <span className="col-span-2 text-[24px] font-bold">PasswordInput</span>
-        <line className="col-span-2 w-full border-b border-black mb-6" />
+      <Card title="PasswordInput">
         <PasswordInput
           label="PasswordInput"
           placeholder="Enter Password"
-          className="col-span-2 w-[500px]"
+          className="w-[500px]"
         />
         <PasswordInput
           isRequired
           label="Required PasswordInput"
           placeholder="Enter Password"
-          className="col-span-2 w-[500px]"
+          className="w-[500px]"
         />
         <PasswordInput
           isRequired
           label="PasswordInput Error"
-          className="w-[500px]"
+          className="w-[500px] mb-4"
           error={mockPasswordError}
         />
       </Card>
 
-      <Card className="h-full p-6 gap-2 grid grid-cols-2">
-        <span className="col-span-2 text-[24px] font-bold">TextArea</span>
-        <line className="col-span-2 w-full border-b border-black mb-6" />
+      <Card title="TextArea">
         <TextArea
           label="TextArea"
           placeholder="Enter text"
-          className="col-span-2 w-[500px]"
+          className="w-[500px]"
         />
         <TextArea
           label="TextArea"
           placeholder="Enter text"
           isRequired
-          className="col-span-2 w-[500px]"
+          className="w-[500px]"
         />
         <TextArea
           isRequired
@@ -149,20 +200,13 @@ function Atoms() {
         />
       </Card>
 
-      <Card className="h-full p-6 gap-2 grid grid-cols-2">
-        <span className="col-span-2 text-[24px] font-bold">EmailInput</span>
-        <line className="col-span-2 w-full border-b border-black mb-6" />
-
+      <Card title="EmailInput">
         <form onSubmit={handleSubmit(onSubmit)} className="w-[500px]">
+          <EmailInput label="Enter Email" placeholder="Enter email" />
           <EmailInput
             label="Enter Email"
             placeholder="Enter email"
-            className="col-span-2"
-          />
-          <EmailInput
-            label="Enter Email"
-            placeholder="Enter email"
-            className="col-span-2"
+            isRequired
             register={register}
             name="email"
             error={errors.email}
@@ -173,42 +217,40 @@ function Atoms() {
         </form>
       </Card>
 
-      <Card className="p-6 gap-2 grid grid-cols-2">
-        <span className="col-span-2 text-[24px] font-bold">Buttons</span>
-        <line className="col-span-2 w-full border-b border-black mb-6" />
-        <div className="col-span-1 flex flex-col gap-1 text-black text-[18px]">
-          <h3>Primary Button:</h3>
-          <Button theme="primary" className="w-[250px] text-[16px]">
-            Primary Button
-          </Button>
-        </div>
+      <Card title="Buttons">
+        <div className="w-full grid grid-cols-2 gap-6">
+          <div className="flex flex-col gap-1 text-black text-[18px]">
+            <h3>Primary Button:</h3>
+            <Button theme="primary" className="w-[250px] text-[16px]">
+              Primary Button
+            </Button>
+          </div>
 
-        <div className="col-span-1 flex flex-col gap-1 text-black text-[18px]">
-          <h3>Secondary Button:</h3>
-          <Button theme="secondary" className="w-[250px] text-[16px]">
-            Secondary Button
-          </Button>
-        </div>
+          <div className="flex flex-col gap-1 text-black text-[18px]">
+            <h3>Secondary Button:</h3>
+            <Button theme="secondary" className="w-[250px] text-[16px]">
+              Secondary Button
+            </Button>
+          </div>
 
-        <div className="flex flex-col gap-1 text-black text-[18px]">
-          <h3>Cancel Button:</h3>
-          <Button theme="cancel" className="w-[250px] text-[16px]">
-            Cancel Button
-          </Button>
-        </div>
+          <div className="flex flex-col gap-1 text-black text-[18px]">
+            <h3>Cancel Button:</h3>
+            <Button theme="cancel" className="w-[250px] text-[16px]">
+              Cancel Button
+            </Button>
+          </div>
 
-        <div className="flex flex-col gap-1 text-black text-[18px]">
-          <h3>Cancel Secondary Button:</h3>
-          <Button theme="cancel-secondary" className="w-[250px] text-[16px]">
-            Cancel Secondary Button
-          </Button>
+          <div className="flex flex-col gap-1 text-black text-[18px]">
+            <h3>Cancel Secondary Button:</h3>
+            <Button theme="cancel-secondary" className="w-[250px] text-[16px]">
+              Cancel Secondary Button
+            </Button>
+          </div>
         </div>
       </Card>
 
-      <Card className="p-6 gap-2 grid grid-cols-2">
-        <span className="col-span-2 text-[24px] font-bold">Modals</span>
-        <line className="col-span-2 w-full border-b border-black mb-6" />
-        <div className="col-span-1 flex flex-col gap-1 text-black text-[18px]">
+      <Card title="Modals">
+        <div className="flex flex-col gap-1 text-black text-[18px]">
           <Button
             theme="primary"
             className="w-[250px] text-[16px]"
@@ -217,6 +259,26 @@ function Atoms() {
             Open Modal
           </Button>
         </div>
+      </Card>
+
+      <Card title="FileInput">
+        <FileInput
+          label="Upload File"
+          isRequired
+          className="w-[300px] mb-6"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            console.log("Selected file:", file);
+          }}
+        />
+
+        <ImageInput
+          label="Upload Profile Picture"
+          isRequired
+          id="profilePic"
+          initialImage="/logo.png"
+          onChange={(e) => console.log(e.target.files)}
+        />
       </Card>
 
       <Modal
@@ -237,87 +299,67 @@ function Atoms() {
           className="w-full"
         />
       </Modal>
-      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2 mt-4">
-        <span className="col-span-2 text-[24px] font-bold">Text</span>
-        <line className="col-span-2 w-full border-b border-black mb-6" />
-        <div className="col-span-1 flex flex-col gap-1 text-black text-[18px]">
-          <h3>Simple Text:</h3>
-          <Text text="Shariar Mahmadmud Duke" />
-        </div>
+      <Card title="Text">
+        <div className="w-full grid grid-cols-2 gap-6">
+          <div className="col-span-1 flex flex-col gap-1 text-black text-[18px]">
+            <h3>Simple Text:</h3>
+            <Text text="Shariar Mahmadmud Duke" />
+          </div>
 
-        <div className="col-span-1 flex flex-col gap-1 text-black text-[18px]">
-          <h3>Bold Text:</h3>
-          <Text text="Shariar Mahmadmud Duke" isBold />
-        </div>
+          <div className="col-span-1 flex flex-col gap-1 text-black text-[18px]">
+            <h3>Bold Text:</h3>
+            <Text text="Shariar Mahmadmud Duke" isBold />
+          </div>
 
-        <div className="flex flex-col gap-1 text-black text-[18px]">
-          <h3>Text with Color:</h3>
-          <Text text="Shariar Mahmadmud Duke" color="blue" />
-        </div>
+          <div className="flex flex-col gap-1 text-black text-[18px]">
+            <h3>Text with Color:</h3>
+            <Text text="Shariar Mahmadmud Duke" color="blue" />
+          </div>
 
-        <div className="flex flex-col gap-1 text-black text-[18px] ">
-          <h3> Large Text </h3>
-          <Text text="Shariar Mahmadmud Duke" className="text-[24px]" />
-        </div>
-      </Card>
-
-      <Card className="h-[300px] p-6 gap-4 grid grid-cols-3 mt-4 bg-gray-300">
-        <span className="col-span-3 text-[24px] font-bold">CardWithHeader</span>
-        <line className="col-span-3 w-full border-b border-black mb-6" />
-        <CardWithHeader
-          title="Primary Card"
-          titleBarSize="h-[60px]"
-          className="col-span-1"
-        >
-          <div className="h-[250px]"></div>
-        </CardWithHeader>
-
-        <CardWithHeader
-          title="Secondary Card"
-          titleBarSize="h-[60px]"
-          className="col-span-1"
-          titleColor="bg-[#8A006C]"
-        >
-          <div className="h-[250px]"></div>
-        </CardWithHeader>
-
-        <CardWithHeader
-          title="Tertiary Card"
-          titleBarSize="h-[60px]"
-          titleColor="bg-[#0024A4]"
-          className="col-span-1"
-        >
-          <div className="h-[250px]"></div>
-        </CardWithHeader>
-      </Card>
-
-      <Card className="h-[300px] p-6 gap-6 grid grid-cols-6 mt-4">
-        <div className="col-span-1">
-          <Text text="Employee LeftMenu" isBold className="text-[20px] mb-6" />
-          <LeftMenu />
-        </div>
-        <div />
-        <div className="col-span-1">
-          <Text text="Leader LeftMenu" isBold className="text-[20px] mb-6" />
-          <LeftMenu isLeader />
+          <div className="flex flex-col gap-1 text-black text-[18px] ">
+            <h3> Large Text </h3>
+            <Text text="Shariar Mahmadmud Duke" className="text-[24px]" />
+          </div>
         </div>
       </Card>
 
-      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2 mt-4">
-        <span className="col-span-2 text-[24px] font-bold">Tables</span>
-        <line className="col-span-2 w-full border-b border-black mb-6" />
-        <div className="col-span-2">
-          <Table
-            headers={headers}
-            rows={rows}
-            className="shadow-lg"
-          />
+      <Card title="CardWithHeader">
+        <div className="w-full grid grid-cols-3 gap-6">
+          <CardWithHeader
+            title="Primary Card"
+            titleBarSize="h-[60px]"
+            className="col-span-1"
+          >
+            <div className="h-[250px]"></div>
+          </CardWithHeader>
+
+          <CardWithHeader
+            title="Secondary Card"
+            titleBarSize="h-[60px]"
+            className="col-span-1"
+            titleColor="bg-[#8A006C]"
+          >
+            <div className="h-[250px]"></div>
+          </CardWithHeader>
+
+          <CardWithHeader
+            title="Tertiary Card"
+            titleBarSize="h-[60px]"
+            titleColor="bg-[#0024A4]"
+            className="col-span-1"
+          >
+            <div className="h-[250px]"></div>
+          </CardWithHeader>
         </div>
       </Card>
 
-      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2 mt-4">
-        <span className="col-span-2 text-[24px] font-bold">RadioGroup</span>
-        <line className="col-span-2 w-full border-b border-black mb-6" />
+      <Card title="Tables">
+        <div>
+          <Table headers={headers} rows={rows} className="shadow-lg" />
+        </div>
+      </Card>
+
+      <Card title="RadioGroup">
         <div className="w-fit">
           <RadioGroup
             name="options"
@@ -340,6 +382,52 @@ function Atoms() {
         <span className="col-span-2 text-[24px] font-bold">Calendar</span>
         <line className="col-span-2 w-full border-b border-black mb-6" />
         <Calendar/>
+      </Card>
+      <Card title="TextFeild">
+        <div className="w-full grid grid-cols-2 gap-6">
+          <div className="col-span-1 w-full">
+            <TextFeild text="Md Rafidul Islam" label="Employee Name" />
+          </div>
+          <div className="col-span-1 w-full">
+            <TextFeild text="123456789" label="Employee Id" />
+          </div>
+          <div className="col-span-1 w-full">
+            <TextFeild text="Frontend" label="Department" />
+          </div>
+          <div className="col-span-1 w-full">
+            <TextFeild
+              text="Resigned"
+              label="Employee Status"
+              textColor="text-red-400"
+              labelColor="text-blue-400"
+            />
+          </div>
+        </div>
+      </Card>
+
+      <Card title="Select Box">
+        <div className="w-full grid grid-cols-2">
+          <div className="col-span-1 flex flex-col gap-1">
+            <SelectBox
+              label="Work Type"
+              options={options}
+              isRequired
+              name="work"
+              error={selectMockError}
+            />
+          </div>
+
+          <div className="col-span-1 flex flex-col gap-1">
+            <SelectBox
+              name="department"
+              label="Department"
+              options={[
+                { label: "HR", value: "hr" },
+                { label: "Finance", value: "finance" },
+              ]}
+            />
+          </div>
+        </div>
       </Card>
     </div>
   );
