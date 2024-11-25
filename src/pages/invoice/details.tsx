@@ -11,7 +11,7 @@ function InvoiceDetails() {
         joining_date="Aug 17, 2023"
       />
 
-      <div className="w-full bg-white shadow py-8 flex flex-col gap-6 border border-black">
+      <div className="w-full bg-white shadow-lg py-8 flex flex-col gap-6 border border-black">
         <div className="flex flex-col gap-2 px-8">
           <Text text="Invoice" className="text-[24px]" isBold />
           <Text
@@ -92,7 +92,50 @@ function InvoiceDetails() {
           <div className="w-full my-6">
           <InvoiceTable/>
           </div>
-          
+          <Text text="Transfer Account (Please pay the transfer fee at your company.)" className="px-8 text-text_bold font-medium"/>
+          <div className="w-full grid grid-cols-2 gap-6 px-8">
+            <div className="col-span-1 flex flex-col gap-6">
+              <div className="w-full grid grid-cols-2">
+                <div className="col-span-1 flex flex-col gap-2">
+                  <Text text="Beneficiary Bank:" />
+                  <Text text="Bank Routing Number:" />
+                  <Text text="Branch Name:" />
+                </div>
+                <div className="col-span-1 flex flex-col gap-2">
+                  <Text
+                    text="Eastern Bank Ltd."
+                    className="text-text_bold font-semibold text-blue-500"
+                  />
+                  <Text
+                    text="132465469465"
+                    className="font-semibold text-blue-500"
+                  />
+                  <Text
+                    text="Gulshan Avenue Branch"
+                    className="font-semibold text-blue-500"
+                  />
+                </div>
+              </div>
+              
+            </div>
+            <div className="w-full grid grid-cols-2">
+              <div className="col-span-1 flex flex-col gap-2">
+                <Text text="Account No:" />
+                <Text text="Account Name:" />
+              </div>
+              <div className="col-span-1 flex flex-col gap-2">
+                <Text
+                  text="132465469465"
+                  className="font-semibold text-blue-500"
+                />
+                <Text
+                  text="Md. Rafidul Islam"
+                  className="font-semibold text-blue-500"
+                />
+                
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
