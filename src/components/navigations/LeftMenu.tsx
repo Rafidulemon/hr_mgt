@@ -14,8 +14,8 @@ import { BiLogOut, BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { TbReport, TbReportAnalytics } from "react-icons/tb";
 import { useState } from "react";
-import { HiOutlineDocumentText } from "react-icons/hi"; // Importing an icon for "Leave History" (document icon)
-import { IoIosPaper } from "react-icons/io"; // Importing an icon for "Leave Application" (paper icon)
+import { HiOutlineDocumentText } from "react-icons/hi";
+import { IoIosPaper } from "react-icons/io";
 
 type Props = {
   isLeader?: boolean;
@@ -31,15 +31,15 @@ const menuItems = [
     icon: <FaClipboardList />,
     href: "/leave",
     subItems: [
-      { label: "Leave History", icon: <HiOutlineDocumentText />, href: "/leave" }, // Updated href
-      { label: "Leave Application", icon: <IoIosPaper />, href: "/leave/application" }, // Updated href
+      { label: "Leave History", icon: <HiOutlineDocumentText />, href: "/leave" },
+      { label: "Leave Application", icon: <IoIosPaper />, href: "/leave/application" },
     ],
   },
-  { label: "Daily Report", icon: <TbReport />, href: "/daily-report" },
+  { label: "Daily Report", icon: <TbReport />, href: "/report/daily" },
   {
     label: "Monthly Report",
     icon: <TbReportAnalytics />,
-    href: "/monthly-report",
+    href: "/report/monthly",
   },
   { label: "Notification", icon: <FaBell />, href: "/notification" },
   { label: "Payroll", icon: <FaFileInvoice />, href: "/payroll" },

@@ -15,6 +15,8 @@ import PrivacyPage from "./pages/privacy";
 import SupportPage from "./pages/support";
 import TermsPage from "./pages/terms";
 import LeaveApplicationPage from "./pages/leave/application";
+import DailyReportPage from "./pages/report/daily";
+import NotificationDetails from "./pages/notification/details";
 
 function App() {
   return (
@@ -77,6 +79,14 @@ function App() {
           }
         />
         <Route
+          path="/report/daily"
+          element={
+            <Layout>
+              <DailyReportPage />
+            </Layout>
+          }
+        />
+        <Route
           path="/dashboard"
           element={
             <Layout>
@@ -89,6 +99,14 @@ function App() {
           element={
             <Layout>
               <AttendancePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/notification/details"
+          element={
+            <Layout>
+              <NotificationDetails />
             </Layout>
           }
         />
