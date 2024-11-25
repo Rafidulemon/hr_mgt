@@ -76,7 +76,7 @@ function DailyReportPage() {
             <div className="col-span-2 flex justify-end">
               <button
                 onClick={() => handleDeleteReport(report.id)}
-                className="text-[30px] hover:text-primary"
+                className="text-[30px] hover:text-red-500"
                 aria-label={`Delete Report ${index + 1}`}
               >
                 <MdDeleteForever />
