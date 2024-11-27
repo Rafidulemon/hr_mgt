@@ -29,7 +29,7 @@ export default function Pagination<T>({
   return (
     <div className="mt-4">
       <div className="flex justify-end items-center">
-        <div className="pb-4 px-4 bg-white shadow-xl">
+        <div className="py-2 px-4 bg-white shadow-xl">
           <ReactPaginate
             breakLabel="..."
             nextLabel=">"
@@ -37,11 +37,11 @@ export default function Pagination<T>({
             pageRangeDisplayed={5}
             pageCount={pageCount}
             previousLabel="<"
-            containerClassName="flex justify-center items-center gap-2 mt-4"
-            pageClassName="px-2 py-1 border border-gray-400 rounded"
+            containerClassName="flex justify-center items-center gap-6"
+            pageClassName="px-2"
             activeClassName="bg-primary text-white"
-            previousClassName="px-2 py-1 border border-gray-400 rounded"
-            nextClassName="px-2 py-1 border border-gray-400 rounded"
+            previousClassName="px-2"
+            nextClassName="px-2"
             disabledClassName="opacity-50 cursor-not-allowed bg-gray-400 text-black font-extrabold"
           />
         </div>
