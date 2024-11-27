@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { MdOutlineDashboard } from "react-icons/md";
 import { TbReport, TbReportAnalytics } from "react-icons/tb";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Modal } from "../atoms/frame/Modal";
 
 type Props = {
@@ -44,6 +44,7 @@ const menuItems = [
 const LeftMenu = ({ isLeader = false }: Props) => {
   const location = useLocation();
   const currentPath = location.pathname;
+  const navigate = useNavigate();
 
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(
     currentPath.startsWith("/profile")
@@ -196,7 +197,7 @@ const LeftMenu = ({ isLeader = false }: Props) => {
         title="Log Out ?"
         buttonWidth="120px"
         buttonHeight="40px"
-        onDoneClick={() => setIsOpenModal(false)}
+        onDoneClick={() => navigate("/auth/login")}
         closeOnClick={() => setIsOpenModal(false)}
       >
         <div>Are you sure you would like to log out?</div>
