@@ -1,6 +1,6 @@
 import React, { type ReactNode } from "react";
-import Button from "../buttons/Button";
 import { IoIosCloseCircle } from "react-icons/io";
+import Button from "../buttons/Button";
 
 type Props = {
   titleTextSize?: string;
@@ -42,8 +42,8 @@ export const Modal = (props: Props) => {
   if (!open) return null;
 
   return (
-    <div className={`modal modal-box ${open && "modal-open"}`}>
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 text-[#1D212D]">
+    <div className={`z-[100] modal modal-box ${open && "modal-open"}`}>
+      <div className="fixed inset-0  flex items-center justify-center bg-black bg-opacity-50 text-[#1D212D]">
         <div
           className={`relative bg-white rounded-xl shadow gap-[14px] flex flex-col justify-between ${className}`}
         >

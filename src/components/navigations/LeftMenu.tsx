@@ -1,19 +1,20 @@
-import { useLocation } from "react-router-dom";
+import { useState } from "react";
+import { BiChevronDown, BiChevronUp, BiLogOut } from "react-icons/bi";
 import {
-  FaUser,
-  FaCalendarCheck,
-  FaClipboardList,
   FaBell,
-  FaFileInvoice,
+  FaCalendarCheck,
   FaChartLine,
-  FaUsers,
-  FaEye,
+  FaClipboardList,
   FaEdit,
+  FaEye,
+  FaFileInvoice,
+  FaUser,
+  FaUsers,
 } from "react-icons/fa";
-import { BiLogOut, BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { TbReport, TbReportAnalytics } from "react-icons/tb";
-import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Modal } from "../atoms/frame/Modal";
 
 type Props = {
   isLeader?: boolean;
@@ -43,10 +44,13 @@ const menuItems = [
 const LeftMenu = ({ isLeader = false }: Props) => {
   const location = useLocation();
   const currentPath = location.pathname;
+  const navigate = useNavigate();
 
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(
     currentPath.startsWith("/profile")
   );
+
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const toggleProfileDropdown = () => {
     setIsProfileDropdownOpen((prev) => !prev);
@@ -97,7 +101,7 @@ const LeftMenu = ({ isLeader = false }: Props) => {
                       <BiChevronDown className="ml-auto" />
                     )}
                   </button>
-                  
+
                   {isProfileDropdownOpen && (
                     <ul className="mt-2 space-y-2 pl-8">
                       <li>
@@ -147,7 +151,9 @@ const LeftMenu = ({ isLeader = false }: Props) => {
                     }`}
                 >
                   {item.icon}
-                  <span className="text-[16px] font-semibold">{item.label}</span>
+                  <span className="text-[16px] font-semibold">
+                    {item.label}
+                  </span>
                 </a>
               )}
             </li>
@@ -172,11 +178,30 @@ const LeftMenu = ({ isLeader = false }: Props) => {
       </nav>
 
       <div className="flex-1 my-6 p-4 w-full">
-        <div className="w-full bg-primary flex items-center text-white gap-4 rounded-lg shadow-lg p-2 justify-center cursor-pointer hover:scale-105 transition-transform duration-300">
+        <div
+          onClick={() => setIsOpenModal(true)}
+          className="w-full bg-primary flex items-center text-white gap-4 rounded-lg shadow-lg p-2 justify-center cursor-pointer hover:scale-105 transition-transform duration-300"
+        >
           <BiLogOut />
           <span className="text-[16px] font-semibold">Logout</span>
         </div>
       </div>
+
+      <Modal
+        doneButtonText="Log Out"
+        cancelButtonText="Cancel"
+        isCancelButton
+        className="h-auto w-[496px]"
+        open={isOpenModal}
+        setOpen={setIsOpenModal}
+        title="Log Out ?"
+        buttonWidth="120px"
+        buttonHeight="40px"
+        onDoneClick={() => navigate("/auth/login")}
+        closeOnClick={() => setIsOpenModal(false)}
+      >
+        <div>Are you sure you would like to log out?</div>
+      </Modal>
     </div>
   );
 };
