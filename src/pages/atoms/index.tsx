@@ -24,6 +24,7 @@ import Pagination from "../../components/pagination/Pagination";
 
 type Comment = {
   id: number;
+  postId: number;
   name: string;
   email: string;
   body: string;
@@ -154,8 +155,6 @@ function Atoms() {
 
     fetchComments();
   }, []);
-
-  console.log("The current page data is", currentPageData);
 
   return (
     <div className="flex flex-col gap-10 w-full min-h-screen">
