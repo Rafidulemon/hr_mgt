@@ -22,6 +22,7 @@ interface Row {
   "Start Time2": string;
   "End Time2": string;
   "Working Hours": string;
+  [key: string]: string | number;
 }
 
 const rows: Row[] = [
