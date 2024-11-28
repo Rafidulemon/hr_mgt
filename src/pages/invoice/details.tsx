@@ -11,7 +11,7 @@ function InvoiceDetails() {
         joining_date="Aug 17, 2023"
       />
 
-      <div className="w-full bg-white shadow-lg py-8 flex flex-col gap-6 border border-black">
+      <div className="w-full bg-white shadow-lg py-8 flex flex-col gap-6">
         <div className="flex flex-col gap-2 px-8">
           <Text text="Invoice" className="text-[24px]" isBold />
           <Text
@@ -90,9 +90,12 @@ function InvoiceDetails() {
             </div>
           </div>
           <div className="w-full my-6">
-          <InvoiceTable/>
+            <InvoiceTable />
           </div>
-          <Text text="Transfer Account (Please pay the transfer fee at your company.)" className="px-8 text-text_bold font-medium"/>
+          <Text
+            text="Transfer Account (Please pay the transfer fee at your company.)"
+            className="px-8 text-text_bold font-medium"
+          />
           <div className="w-full grid grid-cols-2 gap-6 px-8">
             <div className="col-span-1 flex flex-col gap-6">
               <div className="w-full grid grid-cols-2">
@@ -116,7 +119,6 @@ function InvoiceDetails() {
                   />
                 </div>
               </div>
-              
             </div>
             <div className="w-full grid grid-cols-2">
               <div className="col-span-1 flex flex-col gap-2">
@@ -132,7 +134,6 @@ function InvoiceDetails() {
                   text="Md. Rafidul Islam"
                   className="font-semibold text-blue-500"
                 />
-                
               </div>
             </div>
           </div>
