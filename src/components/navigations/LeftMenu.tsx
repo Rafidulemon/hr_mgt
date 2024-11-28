@@ -43,7 +43,7 @@ const menuItems = [
     href: "/report/monthly",
   },
   { label: "Notification", icon: <FaBell />, href: "/notification" },
-  { label: "Payroll", icon: <FaFileInvoice />, href: "/payroll" },
+  { label: "Invoice", icon: <FaFileInvoice />, href: "/invoice/details" },
   {
     label: "Monthly Project Report",
     icon: <FaChartLine />,
