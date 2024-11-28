@@ -60,7 +60,7 @@ function SignupPage() {
         <Header />
       </div>
       <div className="grid grid-cols-2 gap-10 px-6 h-full">
-        <div className="bg-primary h-[90%] p-4 rounded-lg shadow-md flex flex-col justify-center items-center">
+        <div className="bg-primary h-full p-4 rounded-lg shadow-md flex flex-col justify-center items-center">
           <div className="flex flex-col h-full w-[70%] gap-12 justify-center items-center">
             <img src="/demo_logo.png" className="w-[50%]" />
             <Button theme="white" isWidthFull onClick={handleLoginButton}>

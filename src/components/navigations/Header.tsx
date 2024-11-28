@@ -1,8 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const location = useLocation(); 
-
+  const navigate = useNavigate();
   const isLoginPage = location.pathname === "/auth/login";
   const isActive = (path: string) => location.pathname === path;
 
@@ -12,6 +13,7 @@ function Header() {
         src="/demo_logo.png"
         className="cursor-pointer w-[120px] h-full"
         alt="Logo"
+        onClick={()=>navigate("/")}
       />
       <nav>
         <ul className="flex flex-row gap-10">
