@@ -2,7 +2,7 @@ import React from "react";
 
 type Props = {
   className?: string;
-  text: string;
+  text: string | React.ReactNode;
   isBold?: boolean;
   color?: string;
   align?: "left" | "center" | "right";

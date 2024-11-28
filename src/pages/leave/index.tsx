@@ -3,8 +3,14 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import Table from "../../components/atoms/tables/Table";
 import Text from "../../components/atoms/Text/Text";
 import { EmployeeHeader } from "../../components/layouts/EmployeeHeader";
+import { useNavigate } from "react-router-dom";
+
 export default function EmployeeLeavePage() {
   const [year, setYear] = useState(2021);
+  const navigate = useNavigate()
+  const handleButtonClick = () => {
+    navigate("/leave/application")
+  }
 
   const headers = [
     "Application Id",
@@ -181,6 +187,7 @@ export default function EmployeeLeavePage() {
         joining_date="Aug 17, 2023"
         hasRightButton
         buttonText="Leave Application"
+        onButtonClick={handleButtonClick}
       />
 
       <div className="flex flex-col gap-[100px] bg-white mt-10 py-12 px-4">

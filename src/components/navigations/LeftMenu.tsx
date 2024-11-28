@@ -13,6 +13,8 @@ import {
 } from "react-icons/fa";
 import { MdOutlineDashboard } from "react-icons/md";
 import { TbReport, TbReportAnalytics } from "react-icons/tb";
+import { HiOutlineDocumentText } from "react-icons/hi";
+import { IoIosPaper } from "react-icons/io";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Modal } from "../atoms/frame/Modal";
 
@@ -25,7 +27,15 @@ const menuItems = [
   { label: "Dashboard", icon: <MdOutlineDashboard />, href: "/dashboard" },
   { label: "Profile", icon: <FaUser />, href: "/profile" },
   { label: "Attendance", icon: <FaCalendarCheck />, href: "/attendance" },
-  { label: "Leave", icon: <FaClipboardList />, href: "/leave" },
+  {
+    label: "Leave",
+    icon: <FaClipboardList />,
+    href: "/leave",
+    subItems: [
+      { label: "Leave History", icon: <HiOutlineDocumentText />, href: "/leave" },
+      { label: "Leave Application", icon: <IoIosPaper />, href: "/leave/application" },
+    ],
+  },
   { label: "Daily Report", icon: <TbReport />, href: "/report/daily" },
   {
     label: "Monthly Report",
@@ -49,11 +59,18 @@ const LeftMenu = ({ isLeader = false }: Props) => {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(
     currentPath.startsWith("/profile")
   );
+  const [isLeaveDropdownOpen, setIsLeaveDropdownOpen] = useState(
+    currentPath.startsWith("/leave")
+  );
 
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const toggleProfileDropdown = () => {
     setIsProfileDropdownOpen((prev) => !prev);
+  };
+
+  const toggleLeaveDropdown = () => {
+    setIsLeaveDropdownOpen((prev) => !prev);
   };
 
   return (
@@ -133,6 +150,65 @@ const LeftMenu = ({ isLeader = false }: Props) => {
                           <FaEdit />
                           <span className="text-[14px] font-medium">
                             Edit Profile
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              ) : item.label === "Leave" ? (
+                <div>
+                  <button
+                    onClick={toggleLeaveDropdown}
+                    className={`flex items-center gap-4 p-2 rounded-md transition-colors w-full 
+                      ${
+                        currentPath.startsWith("/leave")
+                          ? "bg-primary text-white shadow-lg"
+                          : "hover:shadow-lg hover:bg-primary hover:text-white"
+                      }`}
+                  >
+                    {item.icon}
+                    <span className="text-[16px] font-semibold">
+                      {item.label}
+                    </span>
+                    {isLeaveDropdownOpen ? (
+                      <BiChevronUp className="ml-auto" />
+                    ) : (
+                      <BiChevronDown className="ml-auto" />
+                    )}
+                  </button>
+
+                  {isLeaveDropdownOpen && (
+                    <ul className="mt-2 space-y-2 pl-8">
+                      <li>
+                        <a
+                          href="/leave"
+                          className={`flex items-center gap-2 p-2 rounded-md transition-colors 
+                            ${
+                              currentPath === "/leave"
+                                ? "text-primary"
+                                : "hover:bg-primary hover:text-white"
+                            }`}
+                        >
+                          <HiOutlineDocumentText/>
+                          <span className="text-[14px] font-medium">
+                            History
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/leave/application"
+                          className={`flex items-center gap-2 p-2 rounded-md transition-colors 
+                            ${
+                              currentPath === "/leave/application"
+                                ? "text-primary"
+                                : "hover:bg-primary hover:text-white"
+                            }`}
+                        >
+                          <IoIosPaper />
+                          <span className="text-[14px] font-medium">
+                            Application
                           </span>
                         </a>
                       </li>
