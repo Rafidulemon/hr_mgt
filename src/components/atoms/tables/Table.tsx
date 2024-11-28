@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 type DynamicColor = {
   columnName: string;
   textColors: {
@@ -8,10 +10,11 @@ type DynamicColor = {
 
 type TableProps = {
   headers: string[];
-  rows: Array<Record<string, string | number>>;
+  rows: Array<Record<string, string | number | ReactElement>>;
   className?: string;
   dynamicColorValues?: DynamicColor[];
   isTextCenter?: boolean;
+  onRowClick?: (row: Record<string, string | number | ReactElement>) => void;
 };
 
 export function Table(props: TableProps) {
@@ -21,6 +24,7 @@ export function Table(props: TableProps) {
     className,
     dynamicColorValues,
     isTextCenter = false,
+    onRowClick
   } = props;
   return (
     <div className={`bg-white overflow-x-auto ${className}`}>
@@ -41,7 +45,10 @@ export function Table(props: TableProps) {
         </thead>
         <tbody>
           {rows.map((row, rowIndex) => (
-            <tr key={rowIndex} className="border-b border-gray-300">
+            <tr key={rowIndex} className={`border-b border-gray-300 ${
+              onRowClick ? "cursor-pointer hover:bg-gray-100 " : ""
+            }`}
+            onClick={() => onRowClick && onRowClick(row)}>
               {headers.map((header, headerIndex) => {
                 const dynamicColorConfig = dynamicColorValues?.find(
                   (colorConfig) => colorConfig.columnName === header
