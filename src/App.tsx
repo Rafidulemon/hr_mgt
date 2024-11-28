@@ -19,6 +19,7 @@ import LeaveApplicationPage from "./pages/leave/application";
 import MonthlyHistory from "./pages/report/monthly/history";
 import DailyReportPage from "./pages/report/daily";
 import NotificationDetails from "./pages/notification/details";
+import NotificationPage from "./pages/notification";
 
 function App() {
   return (
@@ -109,6 +110,14 @@ function App() {
           element={
             <Layout>
               <AttendancePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/notification"
+          element={
+            <Layout>
+              <NotificationPage />
             </Layout>
           }
         />
