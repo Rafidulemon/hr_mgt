@@ -8,6 +8,7 @@ type Props = {
   align?: "left" | "center" | "right";
   lineHeight?: string;
   fontFamily?: string;
+  onClick?: () => void;
 };
 
 const Text: React.FC<Props> = ({
@@ -18,9 +19,11 @@ const Text: React.FC<Props> = ({
   align = "left",
   lineHeight,
   fontFamily,
+  onClick,
 }) => {
   return (
     <p
+      onClick={onClick}
       className={`${className} ${align} ${isBold && "font-bold"}`}
       style={{
         color,
