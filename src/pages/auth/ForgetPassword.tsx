@@ -30,10 +30,10 @@ function ForgetPasswordPage() {
   };
   return (
     <div className="h-screen bg-[#ECECEC]">
-      <div className="fixed mt-[87px] w-full z-50">
+      <div className="fixed top-12 left-6 right-6 z-40">
         <Header />
       </div>
-      <div className="px-[64px] py-[52px]  grid grid-cols-2 gap-[60px] h-full">
+      <div className="px-[64px] py-4 grid grid-cols-2 gap-[60px] h-full">
         <div className="col-span-1 grid grid-cols-4">
           <div className="col-span-1"></div>
           <div className="col-span-3 flex items-center justify-center">
