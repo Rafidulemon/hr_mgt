@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useForm, type FieldError } from "react-hook-form";
 import { z } from "zod";
 import Button from "../../components/atoms/buttons/Button";
@@ -17,7 +18,17 @@ import SelectBox from "../../components/atoms/selectBox/SelectBox";
 import Table from "../../components/atoms/tables/Table";
 import Text from "../../components/atoms/Text/Text";
 import TextFeild from "../../components/atoms/TextFeild/TextFeild";
+import Calendar from "../../components/calerdar/Calendar";
 import Header from "../../components/navigations/Header";
+import Pagination from "../../components/pagination/Pagination";
+
+type Comment = {
+  id: number;
+  postId: number;
+  name: string;
+  email: string;
+  body: string;
+};
 
 const mockError: FieldError = {
   type: "required",
@@ -45,6 +56,8 @@ type FormData = z.infer<typeof schema>;
 
 function Atoms() {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const [comments, setComments] = useState<Comment[]>([]);
+  const [currentPageData, setCurrentPageData] = useState<Comment[]>([]);
   const {
     register,
     handleSubmit,
@@ -121,13 +134,27 @@ function Atoms() {
       Status: "Pending",
     },
   ];
-  //  For Select Box
   const options = [
     { label: "Project", value: "project" },
     { label: "Design", value: "design" },
     { label: "Development", value: "development" },
     { label: "Testing", value: "testing" },
   ];
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await axios.get(
+          "https://jsonplaceholder.typicode.com/comments"
+        );
+        setComments(response.data);
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+      }
+    };
+
+    fetchComments();
+  }, []);
 
   return (
     <div className="flex flex-col gap-10 w-full min-h-screen">
@@ -378,6 +405,11 @@ function Atoms() {
         </div>
       </Card>
 
+      <Card className="h-[300px] p-6 gap-2 grid grid-cols-2 mt-4">
+        <span className="col-span-2 text-[24px] font-bold">Calendar</span>
+        <line className="col-span-2 w-full border-b border-black mb-6" />
+        <Calendar />
+      </Card>
       <Card title="TextFeild">
         <div className="w-full grid grid-cols-2 gap-6">
           <div className="col-span-1 w-full">
@@ -422,6 +454,21 @@ function Atoms() {
               ]}
             />
           </div>
+        </div>
+      </Card>
+      <Card title="Pagination">
+        <div>
+          {currentPageData?.map((data, index) => (
+            <div key={index} className="flex gap-[6px]">
+              <span className="font-bold">{`${index + 1}.`}</span>
+              <span>{data.name}</span>
+            </div>
+          ))}
+          <Pagination
+            data={comments}
+            postsPerPage={10}
+            setCurrentPageData={setCurrentPageData}
+          />
         </div>
       </Card>
     </div>

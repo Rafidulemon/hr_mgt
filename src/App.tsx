@@ -15,6 +15,7 @@ import PrivacyPage from "./pages/privacy";
 import SupportPage from "./pages/support";
 import TermsPage from "./pages/terms";
 import LeaveApplicationPage from "./pages/leave/application";
+import MonthlyHistory from "./pages/report/monthly/history";
 import DailyReportPage from "./pages/report/daily";
 import NotificationDetails from "./pages/notification/details";
 
@@ -91,6 +92,14 @@ function App() {
           element={
             <Layout>
               <Index />
+            </Layout>
+          }
+        />
+        <Route
+          path="/report/monthly/history"
+          element={
+            <Layout>
+              <MonthlyHistory />
             </Layout>
           }
         />
