@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-import Text from "../../../components/atoms/Text/Text";
-import { months } from "../../../utils/dateAndMonth";
-import TextFeild from "../../../components/atoms/TextFeild/TextFeild";
-import Button from "../../../components/atoms/buttons/Button";
+import Text from "../../../../components/atoms/Text/Text";
+import { months } from "../../../../utils/dateAndMonth";
+import TextFeild from "../../../../components/atoms/TextFeild/TextFeild";
+import Button from "../../../../components/atoms/buttons/Button";
 import { useNavigate } from "react-router-dom";
 
 function MonthlyHistory() {
@@ -37,7 +37,10 @@ function MonthlyHistory() {
   return (
     <div className="w-full flex flex-col gap-10">
       <div className="flex justify-between items-center">
-        <Text text="Monthly Report History" className="font-semibold text-[30px]" />
+        <Text
+          text="Monthly Report History"
+          className="font-semibold text-[30px]"
+        />
         <div className="h-[46px] w-[250px] bg-primary rounded-md flex justify-between items-center px-[4px]">
           <MdKeyboardArrowLeft
             size={20}
@@ -72,18 +75,25 @@ function MonthlyHistory() {
             <TextFeild label="Task Done" text="5" />
             <TextFeild label="Story Point" text="20" />
             <TextFeild label="Working Hours" text="80" />
-            <Button theme="secondary" className="w-[185px]" onClick={() => navigate("/report/monthly")}>
+            <Button
+              theme="secondary"
+              className="w-[185px]"
+              onClick={() => navigate("/report/monthly")}
+            >
               <Text text="Add New Report" className="font-semibold" />
             </Button>
           </div>
           <div className="col-span-1 flex flex-col gap-2">
-            <Text text="Task Name/ Ticket Number" className="text-text_bold font-semibold"/>
+            <Text
+              text="Task Name/ Ticket Number"
+              className="text-text_bold font-semibold"
+            />
             <div className="flex flex-col gap-1 text-text_primary font-semibold">
-                <Text text="Task-1"/>
-                <Text text="Task-2"/>
-                <Text text="Task-3"/>
-                <Text text="Task-4"/>
-                <Text text="Task-5"/>
+              <Text text="Task-1" />
+              <Text text="Task-2" />
+              <Text text="Task-3" />
+              <Text text="Task-4" />
+              <Text text="Task-5" />
             </div>
           </div>
         </div>

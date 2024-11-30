@@ -20,7 +20,8 @@ import MonthlyHistory from "./pages/report/monthly/history";
 import DailyReportPage from "./pages/report/daily";
 import NotificationDetails from "./pages/notification/details";
 import NotificationPage from "./pages/notification";
-import DailyReportHistoryPage from "./pages/report/history";
+import DailyReportHistoryPage from "./pages/report/daily/history";
+import MonthlyReportApplication from "./pages/report/monthly";
 
 function App() {
   return (
@@ -107,10 +108,18 @@ function App() {
           }
         />
         <Route
-          path="/report/monthly/history"
+          path="/monthly/report-history"
           element={
             <Layout>
               <MonthlyHistory />
+            </Layout>
+          }
+        />
+        <Route
+          path="/monthly/report"
+          element={
+            <Layout>
+              <MonthlyReportApplication />
             </Layout>
           }
         />
