@@ -32,11 +32,37 @@ const menuItems = [
     icon: <FaClipboardList />,
     href: "/leave",
     subItems: [
-      { label: "Leave History", icon: <HiOutlineDocumentText />, href: "/leave" },
-      { label: "Leave Application", icon: <IoIosPaper />, href: "/leave/application" },
+      {
+        label: "Leave History",
+        icon: <HiOutlineDocumentText />,
+        href: "/leave",
+      },
+      {
+        label: "Leave Application",
+        icon: <IoIosPaper />,
+        href: "/leave/application",
+      },
     ],
   },
-  { label: "Daily Report", icon: <TbReport />, href: "/report/daily" },
+
+  {
+    label: "Daily Report",
+    icon: <TbReport />,
+    href: "/daily/report",
+    subItems: [
+      {
+        label: "Leave History",
+        icon: <HiOutlineDocumentText />,
+        href: "/daily/report",
+      },
+      {
+        label: "Leave Application",
+        icon: <IoIosPaper />,
+        href: "/daily/report-history",
+      },
+    ],
+  },
+
   {
     label: "Monthly Report",
     icon: <TbReportAnalytics />,
@@ -63,6 +89,9 @@ const LeftMenu = ({ isLeader = false }: Props) => {
     currentPath.startsWith("/leave")
   );
 
+  const [isDailyReportDropdownOpen, setIsDailyReportDropdownOpen] = useState(
+    currentPath.startsWith("/daily/report")
+  );
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const toggleProfileDropdown = () => {
@@ -71,6 +100,10 @@ const LeftMenu = ({ isLeader = false }: Props) => {
 
   const toggleLeaveDropdown = () => {
     setIsLeaveDropdownOpen((prev) => !prev);
+  };
+
+  const toggleDailyReportDropDownOpen = () => {
+    setIsDailyReportDropdownOpen((prev) => !prev);
   };
 
   return (
@@ -190,7 +223,7 @@ const LeftMenu = ({ isLeader = false }: Props) => {
                                 : "hover:bg-primary hover:text-white"
                             }`}
                         >
-                          <HiOutlineDocumentText/>
+                          <HiOutlineDocumentText />
                           <span className="text-[14px] font-medium">
                             History
                           </span>
@@ -205,6 +238,65 @@ const LeftMenu = ({ isLeader = false }: Props) => {
                                 ? "text-primary"
                                 : "hover:bg-primary hover:text-white"
                             }`}
+                        >
+                          <IoIosPaper />
+                          <span className="text-[14px] font-medium">
+                            Application
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              ) : item.label === "Daily Report" ? (
+                <div>
+                  <button
+                    onClick={toggleDailyReportDropDownOpen}
+                    className={`flex items-center gap-4 p-2 rounded-md transition-colors w-full 
+                    ${
+                      currentPath.startsWith("/daily/report")
+                        ? "bg-primary text-white shadow-lg"
+                        : "hover:shadow-lg hover:bg-primary hover:text-white"
+                    }`}
+                  >
+                    {item.icon}
+                    <span className="text-[16px] font-semibold">
+                      {item.label}
+                    </span>
+                    {isDailyReportDropdownOpen ? (
+                      <BiChevronUp className="ml-auto" />
+                    ) : (
+                      <BiChevronDown className="ml-auto" />
+                    )}
+                  </button>
+
+                  {isDailyReportDropdownOpen && (
+                    <ul className="mt-2 space-y-2 pl-8">
+                      <li>
+                        <a
+                          href="/daily/report-history"
+                          className={`flex items-center gap-2 p-2 rounded-md transition-colors 
+                          ${
+                            currentPath === "/daily/report-history"
+                              ? "text-primary"
+                              : "hover:bg-primary hover:text-white"
+                          }`}
+                        >
+                          <HiOutlineDocumentText />
+                          <span className="text-[14px] font-medium">
+                            History
+                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/daily/report"
+                          className={`flex items-center gap-2 p-2 rounded-md transition-colors 
+                          ${
+                            currentPath === "/daily/report"
+                              ? "text-primary"
+                              : "hover:bg-primary hover:text-white"
+                          }`}
                         >
                           <IoIosPaper />
                           <span className="text-[14px] font-medium">
