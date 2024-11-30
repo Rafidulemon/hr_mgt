@@ -341,7 +341,7 @@ const LeftMenu = ({ isLeader = false }: Props) => {
                     <span className="text-[16px] font-semibold">
                       {item.label}
                     </span>
-                    {isDailyReportDropdownOpen ? (
+                    {isMonthlyReportDropdownOpen ? (
                       <BiChevronUp className="ml-auto" />
                     ) : (
                       <BiChevronDown className="ml-auto" />
