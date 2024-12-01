@@ -22,6 +22,7 @@ import NotificationDetails from "./pages/notification/details";
 import NotificationPage from "./pages/notification";
 import DailyReportHistoryPage from "./pages/report/daily/history";
 import MonthlyReportApplication from "./pages/report/monthly";
+import InvoicePage from "./pages/invoice";
 
 function App() {
   return (
@@ -144,6 +145,15 @@ function App() {
           element={
             <Layout>
               <InvoiceDetails />
+            </Layout>
+          }
+        />
+
+        <Route
+          path="/invoice"
+          element={
+            <Layout>
+              <InvoicePage />
             </Layout>
           }
         />

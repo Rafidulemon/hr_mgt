@@ -1,8 +1,11 @@
 import { EmployeeHeader } from "../../components/layouts/EmployeeHeader";
 import Text from "../../components/atoms/Text/Text";
 import { InvoiceTable } from "./InvoiceTable";
+import Button from "../../components/atoms/buttons/Button";
+import { useNavigate } from "react-router-dom";
 
 function InvoiceDetails() {
+  const navigate = useNavigate();
   return (
     <div className="w-full flex flex-col gap-10">
       <EmployeeHeader
@@ -12,12 +15,21 @@ function InvoiceDetails() {
       />
 
       <div className="w-full bg-white shadow-lg py-8 flex flex-col gap-6">
-        <div className="flex flex-col gap-2 px-8">
-          <Text text="Invoice" className="text-[24px]" isBold />
-          <Text
-            text="November 27, 2024"
-            className="font-semibold text-text_bold"
-          />
+        <div className="flex justify-between items-center gap-2 px-8">
+          <div>
+            <Text text="Invoice" className="text-[24px]" isBold />
+            <Text
+              text="November 27, 2024"
+              className="font-semibold text-text_bold"
+            />
+          </div>
+          <Button
+            onClick={() => navigate("/invoice")}
+            className="w-[230px] pb-[10px]"
+            theme="primary"
+          >
+            Back To Invoice List
+          </Button>
         </div>
         <hr className="w-full border border-[1px] border-[#7E7D7D]" />
         <div className="flex flex-col gap-2 text-[14px]">

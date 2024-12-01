@@ -81,7 +81,7 @@ const menuItems = [
     ],
   },
   { label: "Notification", icon: <FaBell />, href: "/notification" },
-  { label: "Invoice", icon: <FaFileInvoice />, href: "/invoice/details" },
+  { label: "Invoice", icon: <FaFileInvoice />, href: "/invoice" },
   {
     label: "Monthly Project Report",
     icon: <FaChartLine />,
@@ -267,6 +267,36 @@ const LeftMenu = ({ isLeader = false }: Props) => {
                     </ul>
                   )}
                 </div>
+              ) : item.label === "Notification" ? (
+                <a
+                  href={item.href}
+                  className={`flex items-center gap-4 p-2 rounded-md transition-colors 
+                  ${
+                    currentPath.startsWith("/notification")
+                      ? "bg-primary text-white shadow-lg"
+                      : "hover:shadow-lg hover:bg-primary hover:text-white"
+                  }`}
+                >
+                  {item.icon}
+                  <span className="text-[16px] font-semibold">
+                    {item.label}
+                  </span>
+                </a>
+              ) : item.label === "Invoice" ? (
+                <a
+                  href={item.href}
+                  className={`flex items-center gap-4 p-2 rounded-md transition-colors 
+                  ${
+                    currentPath.startsWith("/invoice")
+                      ? "bg-primary text-white shadow-lg"
+                      : "hover:shadow-lg hover:bg-primary hover:text-white"
+                  }`}
+                >
+                  {item.icon}
+                  <span className="text-[16px] font-semibold">
+                    {item.label}
+                  </span>
+                </a>
               ) : item.label === "Daily Report" ? (
                 <div>
                   <button
