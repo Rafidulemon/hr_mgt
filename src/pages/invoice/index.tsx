@@ -132,6 +132,22 @@ const rows: Row[] = [
   },
 ];
 
+const dynamicColorValues = [
+  {
+    columnName: "Status",
+    textColors: [
+      {
+        text: "Pending",
+        color: "#D20D0D",
+      },
+      {
+        text: "Sent",
+        color: "#046B53",
+      },
+    ],
+  },
+];
+
 function InvoicePage() {
   const [currentPageData, setCurrentPageData] = useState<Row[]>();
   const navigate = useNavigate();
@@ -149,6 +165,7 @@ function InvoicePage() {
             headers={invoiceTableHeader}
             rows={currentPageData}
             onRowClick={() => navigate("/invoice/details")}
+            dynamicColorValues={dynamicColorValues}
           />
         )}
         <div>
