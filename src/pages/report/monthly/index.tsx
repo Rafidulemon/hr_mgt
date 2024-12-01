@@ -13,7 +13,14 @@ export default function MonthlyReportApplication() {
     day: "numeric",
     year: "numeric",
   }).format(day);
-  const [reports, setReports] = useState([
+
+  type Report = {
+    id: number;
+    taskName: string;
+    storyPoint: string;
+    workingHours: string;
+  };
+  const [reports, setReports] = useState<Report[]>([
     {
       id: 1,
       taskName: "",
@@ -24,7 +31,7 @@ export default function MonthlyReportApplication() {
 
   const handleAddReport = () => {
     const newReport = {
-      id: reports.length + 1,
+      id: reports.length > 0 ? Math.max(...reports.map((r) => r.id)) + 1 : 1,
       taskName: "",
       storyPoint: "",
       workingHours: "",
@@ -41,7 +48,6 @@ export default function MonthlyReportApplication() {
     );
   };
 
-  console.log("Now the reports are", reports);
   return (
     <div className="w-full flex flex-col gap-10">
       <EmployeeHeader
@@ -64,25 +70,25 @@ export default function MonthlyReportApplication() {
               <button
                 onClick={() => handleDeleteReport(report?.id)}
                 className="text-[30px] hover:text-red-500 mb-4"
-                aria-label={`Delete Report ${index + 1}`}
+                aria-label={`Delete Report ${report.id}`}
               >
                 <MdDeleteForever />
               </button>
             </div>
             <div className="grid grid-cols-2 gap-10">
               <TextInput
-                label={`Task Name / Ticket Number ${report.id}`}
+                label={`Task Name / Ticket Number ${index + 1}`}
                 placeholder="Enter Task Name"
                 isRequired
               />
               <TextInput
                 placeholder="Enter Story point"
-                label={`Story Point ${report.id}`}
+                label={`Story Point ${index + 1}`}
                 isRequired
               />
               <TextInput
                 placeholder="Enter Working Hours"
-                label={`Working Hours ${report.id}`}
+                label={`Working Hours ${index + 1}`}
                 isRequired
               />
             </div>
