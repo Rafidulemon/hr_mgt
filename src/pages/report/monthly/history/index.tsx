@@ -78,7 +78,7 @@ function MonthlyHistory() {
             <Button
               theme="secondary"
               className="w-[185px]"
-              onClick={() => navigate("/report/monthly")}
+              onClick={() => navigate("/monthly/report")}
             >
               <Text text="Add New Report" className="font-semibold" />
             </Button>

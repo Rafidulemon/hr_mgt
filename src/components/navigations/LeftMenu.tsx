@@ -3,7 +3,6 @@ import { BiChevronDown, BiChevronUp, BiLogOut } from "react-icons/bi";
 import {
   FaBell,
   FaCalendarCheck,
-  FaChartLine,
   FaClipboardList,
   FaEdit,
   FaEye,
@@ -51,12 +50,12 @@ const menuItems = [
     href: "/daily/report",
     subItems: [
       {
-        label: "Leave History",
+        label: "Daily Report",
         icon: <HiOutlineDocumentText />,
         href: "/daily/report",
       },
       {
-        label: "Leave Application",
+        label: "Daily Report History",
         icon: <IoIosPaper />,
         href: "/daily/report-history",
       },
@@ -69,12 +68,12 @@ const menuItems = [
     href: "/monthly/report",
     subItems: [
       {
-        label: "Leave History",
+        label: "Monthly Report",
         icon: <HiOutlineDocumentText />,
         href: "/monthly/report",
       },
       {
-        label: "Leave Application",
+        label: "Monthly Report History",
         icon: <IoIosPaper />,
         href: "/monthly/report-history",
       },
@@ -82,11 +81,6 @@ const menuItems = [
   },
   { label: "Notification", icon: <FaBell />, href: "/notification" },
   { label: "Invoice", icon: <FaFileInvoice />, href: "/invoice" },
-  {
-    label: "Monthly Project Report",
-    icon: <FaChartLine />,
-    href: "/monthly-project-report",
-  },
 ];
 
 const LeftMenu = ({ isLeader = false }: Props) => {
@@ -349,7 +343,7 @@ const LeftMenu = ({ isLeader = false }: Props) => {
                         >
                           <IoIosPaper />
                           <span className="text-[14px] font-medium">
-                            Application
+                            Report
                           </span>
                         </a>
                       </li>
@@ -408,7 +402,7 @@ const LeftMenu = ({ isLeader = false }: Props) => {
                         >
                           <IoIosPaper />
                           <span className="text-[14px] font-medium">
-                            Application
+                            Report
                           </span>
                         </a>
                       </li>
