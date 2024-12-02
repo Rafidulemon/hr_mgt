@@ -5,9 +5,16 @@ import TextInput from "../../components/atoms/inputs/TextInput";
 import SelectBox from "../../components/atoms/selectBox/SelectBox";
 import Button from "../../components/atoms/buttons/Button";
 import { useNavigate } from "react-router-dom";
+import { Modal } from "../../components/atoms/frame/Modal";
+import PasswordInput from "../../components/atoms/inputs/PasswordInput";
+import { useState } from "react";
 
 function EditProfilePage() {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleButtonClick = () => {
+    setIsModalOpen(true)
+  };
 
   const genderOptions = [
     { label: "Male", value: "male" },
@@ -99,7 +106,7 @@ function EditProfilePage() {
       </Card>
 
       <div className="w-full flex flex-row gap-6 justify-center">
-        <Button theme="primary" className="w-[185px]">
+        <Button theme="primary" className="w-[185px]" onClick={handleButtonClick}>
             Save
         </Button>
         <Button theme="secondary" className="w-[185px]" onClick={() => {
@@ -108,6 +115,24 @@ function EditProfilePage() {
             Cancel
         </Button>
       </div>
+
+      <Modal
+        title="Save changes?"
+        className="w-[40%]"
+        open={isModalOpen}
+        setOpen={setIsModalOpen}
+        isDoneButton
+        doneButtonText="Confirm"
+        isCancelButton
+        cancelButtonText="Cancel"
+        buttonWidth="120px"
+        buttonHeight="40px"
+        onDoneClick={()=>navigate("/profile")}
+        closeOnClick={()=>setIsModalOpen(false)}
+        crossOnClick={()=>setIsModalOpen(false)}
+      >
+        <PasswordInput label="Please enter password to save changes" />
+      </Modal>
     </div>
   );
 }

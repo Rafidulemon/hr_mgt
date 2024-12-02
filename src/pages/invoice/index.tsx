@@ -4,6 +4,8 @@ import Table from "../../components/atoms/tables/Table";
 import Pagination from "../../components/pagination/Pagination";
 import { IoEye } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { Modal } from "../../components/atoms/frame/Modal";
+import PasswordInput from "../../components/atoms/inputs/PasswordInput";
 
 const invoiceTableHeader = ["Month", "Year", "Status", "Action"];
 
@@ -150,6 +152,11 @@ const dynamicColorValues = [
 
 function InvoicePage() {
   const [currentPageData, setCurrentPageData] = useState<Row[]>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleButtonClick = () => {
+    setIsModalOpen(true);
+  };
   const navigate = useNavigate();
   return (
     <div className="w-full flex flex-col gap-10">
@@ -164,7 +171,7 @@ function InvoicePage() {
           <Table
             headers={invoiceTableHeader}
             rows={currentPageData}
-            onRowClick={() => navigate("/invoice/details")}
+            onRowClick={handleButtonClick}
             dynamicColorValues={dynamicColorValues}
           />
         )}
@@ -176,6 +183,24 @@ function InvoicePage() {
           />
         </div>
       </div>
+
+      <Modal
+        title="Enter Password"
+        className="w-[40%]"
+        open={isModalOpen}
+        setOpen={setIsModalOpen}
+        isDoneButton
+        doneButtonText="Confirm"
+        isCancelButton
+        cancelButtonText="Cancel"
+        buttonWidth="120px"
+        buttonHeight="40px"
+        onDoneClick={()=>navigate("/invoice/details")}
+        closeOnClick={()=>setIsModalOpen(false)}
+        crossOnClick={()=>setIsModalOpen(false)}
+      >
+        <PasswordInput label="Please enter password to view Invoice" />
+      </Modal>
     </div>
   );
 }
