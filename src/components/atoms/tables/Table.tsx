@@ -24,7 +24,7 @@ export function Table(props: TableProps) {
     className,
     dynamicColorValues,
     isTextCenter = false,
-    onRowClick
+    onRowClick,
   } = props;
   return (
     <div className={`bg-white overflow-x-auto ${className}`}>
@@ -45,10 +45,13 @@ export function Table(props: TableProps) {
         </thead>
         <tbody>
           {rows.map((row, rowIndex) => (
-            <tr key={rowIndex} className={`border-b border-gray-300 ${
-              onRowClick ? "cursor-pointer hover:bg-gray-100 " : ""
-            }`}
-            onClick={() => onRowClick && onRowClick(row)}>
+            <tr
+              key={rowIndex}
+              className={`border-b border-gray-300 ${
+                onRowClick ? "cursor-pointer hover:bg-gray-100 " : ""
+              }`}
+              onClick={() => onRowClick && onRowClick(row)}
+            >
               {headers.map((header, headerIndex) => {
                 const dynamicColorConfig = dynamicColorValues?.find(
                   (colorConfig) => colorConfig.columnName === header
@@ -68,7 +71,7 @@ export function Table(props: TableProps) {
                     key={headerIndex}
                     className={`${
                       isTextCenter ? "text-center" : "text-left"
-                    } py-2 px-4 `}
+                    } py-2 px-4  `}
                     style={{ color: textColors || "gray" }}
                   >
                     {row[header] || "N/A"}

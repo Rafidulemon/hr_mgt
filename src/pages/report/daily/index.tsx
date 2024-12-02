@@ -49,7 +49,9 @@ function DailyReportPage() {
   };
 
   const handleDeleteReport = (id: number) => {
-    setReports((prevReports) => prevReports.filter((report) => report.id !== id));
+    setReports((prevReports) =>
+      prevReports.filter((report) => report.id !== id)
+    );
   };
 
   return (
@@ -60,7 +62,7 @@ function DailyReportPage() {
         joining_date="Aug 17, 2023"
         hasRightButton
         buttonText="History"
-        onButtonClick={() => navigate("/report/daily/history")}
+        onButtonClick={() => navigate("/daily/report-history")}
       />
       <div className="w-full bg-white shadow p-8 flex flex-col gap-6">
         <div className="flex flex-col gap-2 mb-6">
@@ -118,7 +120,11 @@ function DailyReportPage() {
           <Button type="submit" className="w-[185px]">
             <Text text="Submit" className="font-semibold" />
           </Button>
-          <Button theme="cancel" className="w-[185px]" onClick={()=> navigate("/report/daily/history")}>
+          <Button
+            theme="cancel"
+            className="w-[185px]"
+            onClick={() => navigate("/report/daily/history")}
+          >
             <Text text="Cancel" className="font-semibold" />
           </Button>
         </div>
