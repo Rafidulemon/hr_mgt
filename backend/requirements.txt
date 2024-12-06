@@ -1,5 +1,5 @@
-fastapi==0.100.0       # The FastAPI framework for building APIs
-uvicorn[standard]==0.23.2  # ASGI server to run the FastAPI app
-pydantic==2.3.0        # Data validation and settings management
-httpx==0.25.1          # For making HTTP requests
-typing==3.7.4 
+fastapi==0.100.0          # The FastAPI framework for building APIs
+uvicorn[standard]==0.23.2 # ASGI server to run the FastAPI app
+pydantic==2.3.0           # Data validation and settings management
+httpx==0.25.1             # For making HTTP requests
+psycopg2-binary==2.9.8    # PostgreSQL database adapter
