@@ -11,6 +11,7 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 # Test endpoint
-@app.get("/sqlalchemy")
-def test_posts(db: Session = Depends(get_db)):
-    return {"status": "success"}
+@app.get("/users")
+def test_users(db: Session = Depends(get_db)):
+    users = db.query(models.User).all()
+    return {"data": users}
