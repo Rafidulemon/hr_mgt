@@ -1,54 +1,23 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from typing import Optional
-import psycopg2
-from psycopg2.extras import RealDictCursor
-import time
-import os
-from dotenv import load_dotenv
+from fastapi import FastAPI, Depends
+from . import models
+from .database import engine, SessionLocal
+from sqlalchemy.orm import Session
 
-# Load environment variables from .env file
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
+# Create tables
+models.Base.metadata.create_all(bind=engine)
 
+# Create FastAPI app
 app = FastAPI()
 
-class Post(BaseModel):
-    title: str
-    content: str
-    published: bool = True
-    rating: Optional[int] = None
-
-# Database connection
-while True:
+# Dependency to get the database session
+def get_db():
+    db = SessionLocal()
     try:
-        conn = psycopg2.connect(
-            host= os.getenv("DB_HOST"),
-            database=os.getenv("DB_NAME"),
-            user=os.getenv("DB_USER"),
-            password=os.getenv("DB_PASSWORD"),
-            cursor_factory=RealDictCursor
-        )
-        cursor = conn.cursor()
-        print("Database connection was successful")
-        break  # Exit the loop once the connection is successful
-    except Exception as error:
-        print(f"Connection to database failed: {error}")
-        time.sleep(2)  # Retry after 2 seconds
-
-
-
-@app.get("/")
-def root():
-    return {"message": "Hello World"}
-
-@app.get("/users")
-def get_users():
-    try:
-        cursor.execute("SELECT * FROM users")
-        users = cursor.fetchall()
-        return {"data": users}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error fetching users: {e}")
+        yield db
     finally:
-        cursor.close()
-        conn.close()
+        db.close()
+
+# Test endpoint
+@app.get("/sqlalchemy")
+def test_posts(db: Session = Depends(get_db)):
+    return {"status": "success"}
