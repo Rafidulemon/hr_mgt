@@ -4,4 +4,5 @@ pydantic==2.3.0           # Data validation and settings management
 httpx==0.25.1             # For making HTTP requests
 psycopg2-binary==2.9.8    # PostgreSQL database adapter
 python-dotenv==1.0.0      # For Python .env support
-
+sqlalchemy==2.0.0         # SQLAlchemy ORM support
+sqlalchemy-utils==0.38.0  # Optional utility functions
