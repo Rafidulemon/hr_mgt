@@ -1,8 +1,11 @@
 from fastapi import FastAPI, Depends, HTTPException, Response, status
-from . import models
+from backend.app.models import User
+from . import models 
+from . import schema
 from .database import engine, get_db
 from sqlalchemy.orm import Session
-from pydantic import BaseModel
+# from mypackage import User, engine, SessionLocal, Base    # syntax of importint from the __init__.py file 
+
 
 # Create tables
 models.Base.metadata.create_all(bind=engine)
@@ -11,11 +14,7 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 # Pydantic model for user input validation
-class User(BaseModel):
-    name: str
-    address: str
-    role: str
-    is_active: int
+
 
 # GET request to retrieve all users
 @app.get("/users")
@@ -33,7 +32,7 @@ def get_user_by_id(user_id: int, db: Session = Depends(get_db)):
 
 # POST request to create a new user
 @app.post("/users", status_code=status.HTTP_201_CREATED)
-def create_user(user: User, db: Session = Depends(get_db)):
+def create_user(user: schema.CreateUser, db: Session = Depends(get_db)):
     new_user = models.User(
         name=user.name, 
         address=user.address, 
@@ -58,7 +57,7 @@ def delete_user(user_id: int, db: Session = Depends(get_db)):
 
 # PUT request to update a user by ID
 @app.put("/users/{user_id}", status_code=status.HTTP_200_OK)
-def update_user(user_id: int, user: User, db: Session = Depends(get_db)):
+def update_user(user_id: int, user: schema.User, db: Session = Depends(get_db)):
     db_user = db.query(models.User).filter(models.User.id == user_id).first()
     if db_user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
