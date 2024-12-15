@@ -1,5 +1,4 @@
 from fastapi import FastAPI, Depends, HTTPException, Response, status
-from backend.app.models import User
 from . import models 
 from . import schema
 from .database import engine, get_db
