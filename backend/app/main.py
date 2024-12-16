@@ -19,7 +19,7 @@ app = FastAPI()
 @app.get("/users")
 def get_users(db: Session = Depends(get_db)):
     users = db.query(models.User).all()
-    return {"data": users}
+    return  users
 
 # GET request to retrieve a single user by ID
 @app.get("/users/{user_id}")
@@ -27,11 +27,11 @@ def get_user_by_id(user_id: int, db: Session = Depends(get_db)):
     user = db.query(models.User).filter(models.User.id == user_id).first()
     if user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-    return {"data": user}
+    return  user
 
 # POST request to create a new user
 @app.post("/users", status_code=status.HTTP_201_CREATED)
-def create_user(user: schema.CreateUser, db: Session = Depends(get_db)):
+def create_user(user: schema.UserCreate, db: Session = Depends(get_db)):
     new_user = models.User(
         name=user.name, 
         address=user.address, 
@@ -41,7 +41,7 @@ def create_user(user: schema.CreateUser, db: Session = Depends(get_db)):
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
-    return {"data": new_user}
+    return  new_user
 
 # DELETE request to delete a user by ID
 @app.delete("/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
@@ -56,7 +56,7 @@ def delete_user(user_id: int, db: Session = Depends(get_db)):
 
 # PUT request to update a user by ID
 @app.put("/users/{user_id}", status_code=status.HTTP_200_OK)
-def update_user(user_id: int, user: schema.User, db: Session = Depends(get_db)):
+def update_user(user_id: int, user: schema.UserBase, db: Session = Depends(get_db)):
     db_user = db.query(models.User).filter(models.User.id == user_id).first()
     
     if not db_user:
@@ -70,4 +70,4 @@ def update_user(user_id: int, user: schema.User, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_user)
     
-    return {"data": db_user}
+    return  db_user

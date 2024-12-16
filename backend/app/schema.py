@@ -1,10 +1,10 @@
 from pydantic import BaseModel
 
-class User(BaseModel):
+class UserBase(BaseModel):
     name: str
     address: str
     role: str
     is_active: int
 
-class CreateUser(User):
+class UserCreate(UserBase):
     pass
