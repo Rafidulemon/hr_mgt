@@ -58,14 +58,16 @@ def delete_user(user_id: int, db: Session = Depends(get_db)):
 @app.put("/users/{user_id}", status_code=status.HTTP_200_OK)
 def update_user(user_id: int, user: schema.User, db: Session = Depends(get_db)):
     db_user = db.query(models.User).filter(models.User.id == user_id).first()
-    if db_user is None:
+    
+    if not db_user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     
-    db_user.name = user.name
-    db_user.address = user.address
-    db_user.role = user.role
-    db_user.is_active = user.is_active
-    
+    # Update only provided fields
+    update_data = user.dict(exclude_unset=True)
+    for key, value in update_data.items():
+        setattr(db_user, key, value)
+
     db.commit()
     db.refresh(db_user)
+    
     return {"data": db_user}
