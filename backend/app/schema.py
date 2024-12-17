@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
 from enum import Enum
+from typing import List, Optional
 
 
 # Enums for Gender and User Role
@@ -16,7 +17,7 @@ class UserRoleEnum(str, Enum):
     Leader = "Leader"
 
 
-# Shared fields for User
+# Shared fields for User (Base class)
 class UserBase(BaseModel):
     email: EmailStr
     first_name: str
@@ -26,24 +27,26 @@ class UserBase(BaseModel):
     user_role: UserRoleEnum
 
     class Config:
-        orm_mode = True  # Enables compatibility with SQLAlchemy models
+        orm_mode = True
 
 
 # Fields required to create a new User
 class UserCreate(UserBase):
-    password: str  # Include password when creating a new user
+    password_hash: str  # Include password when creating a new user
     date_of_birth: datetime
-    image: str | None  # Image is optional
+    image: Optional[str] = None  # Image is optional
 
 
 # Response model for a single User
 class User(UserBase):
     user_id: int
     date_of_birth: datetime
-    image: str | None
+    image: Optional[str] = None 
     created_at: datetime
 
 
 # Response model for a list of Users
 class UserList(BaseModel):
-    users: list[User]
+    users: List[User]  # List of User objects
+
+
