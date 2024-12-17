@@ -20,7 +20,7 @@ def get_users(db: Session = Depends(get_db)):
 # GET request to retrieve a single user by ID
 @app.get("/users/{user_id}", response_model=schema.User)
 def get_user_by_id(user_id: int, db: Session = Depends(get_db)):
-    user = db.query(models.User).filter(models.User.id == user_id).first()
+    user = db.query(models.User).filter(models.User.user_id == user_id).first()
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     return user
@@ -30,10 +30,15 @@ def get_user_by_id(user_id: int, db: Session = Depends(get_db)):
 @app.post("/users", status_code=status.HTTP_201_CREATED, response_model=schema.User)
 def create_user(user: schema.UserCreate, db: Session = Depends(get_db)):
     new_user = models.User(
-        name=user.name,
-        address=user.address,
-        role=user.role,
-        is_active=user.is_active
+        email=user.email,
+        first_name=user.first_name,
+        last_name=user.last_name,
+        password_hash=user.password,  # Assume hashing is done before storing
+        date_of_birth=user.date_of_birth,
+        image=user.image,
+        nationality=user.nationality,
+        gender=user.gender,
+        user_role=user.user_role,
     )
     db.add(new_user)
     db.commit()
@@ -44,7 +49,7 @@ def create_user(user: schema.UserCreate, db: Session = Depends(get_db)):
 # DELETE request to delete a user by ID
 @app.delete("/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_user(user_id: int, db: Session = Depends(get_db)):
-    user = db.query(models.User).filter(models.User.id == user_id).first()
+    user = db.query(models.User).filter(models.User.user_id == user_id).first()
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     db.delete(user)
@@ -55,7 +60,7 @@ def delete_user(user_id: int, db: Session = Depends(get_db)):
 # PUT request to update a user by ID
 @app.put("/users/{user_id}", status_code=status.HTTP_200_OK, response_model=schema.User)
 def update_user(user_id: int, user: schema.UserBase, db: Session = Depends(get_db)):
-    db_user = db.query(models.User).filter(models.User.id == user_id).first()
+    db_user = db.query(models.User).filter(models.User.user_id == user_id).first()
     if not db_user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
 
