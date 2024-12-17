@@ -2,6 +2,11 @@ from fastapi import FastAPI, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from . import models, schema
 from .database import engine, get_db
+from passlib.context import CryptContext
+
+# deciding what passwod hasing method to apply
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
 
 # Create tables
 models.Base.metadata.create_all(bind=engine)
@@ -35,14 +40,21 @@ def get_user_by_id(user_id: int, db: Session = Depends(get_db)):
 # POST request to create a new user
 @app.post("/users", status_code=status.HTTP_201_CREATED)
 def create_user(user: schema.UserCreate, db: Session = Depends(get_db)):
-    # Create new user based on the schema input
+    # Convert schema object to dictionary
     user_data = user.dict()
-    new_user = models.User(**user_data)
+
+    # Hash the password
+    hashed_password = pwd_context.hash(user_data['password_hash'])
+    user_data['password_hash'] = hashed_password
+
+    # Create a new User instance with only valid fields
+    new_user = models.User(**user_data)  # Ensure model fields match dictionary keys
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
 
     return new_user
+
 
 
 # DELETE request to delete a user by ID
