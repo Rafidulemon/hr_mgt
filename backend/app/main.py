@@ -36,17 +36,8 @@ def get_user_by_id(user_id: int, db: Session = Depends(get_db)):
 @app.post("/users", status_code=status.HTTP_201_CREATED)
 def create_user(user: schema.UserCreate, db: Session = Depends(get_db)):
     # Create new user based on the schema input
-    new_user = models.User(
-        email=user.email,  
-        first_name=user.first_name,  
-        last_name=user.last_name, 
-        password_hash=user.password_hash,  
-        date_of_birth=user.date_of_birth,  
-        nationality=user.nationality,
-        gender=user.gender,
-        user_role=user.user_role
-    )
-
+    user_data = user.dict()
+    new_user = models.User(**user_data)
     db.add(new_user)
     db.commit()
     db.refresh(new_user)

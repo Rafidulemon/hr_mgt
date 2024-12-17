@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
 from enum import Enum
+import sqlalchemy
 from typing import List, Optional
 
 
@@ -32,13 +33,14 @@ class UserBase(BaseModel):
 
 # Fields required to create a new User
 class UserCreate(UserBase):
-    password: str  # Include password when creating a new user
+    password_hash: str  # Include password when creating a new user
     date_of_birth: datetime
     image: Optional[str] = None  # Image is optional
 
 
 # Response model for a single User
 class User(BaseModel):
+    user_id:int
     email: EmailStr
     first_name: str
     last_name: str
