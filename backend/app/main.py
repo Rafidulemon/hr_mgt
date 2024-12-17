@@ -1,11 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from . import models, schema
+from . import models, schema , utils
 from .database import engine, get_db
-from passlib.context import CryptContext
-
-# deciding what passwod hasing method to apply
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 # Create tables
@@ -44,7 +40,7 @@ def create_user(user: schema.UserCreate, db: Session = Depends(get_db)):
     user_data = user.dict()
 
     # Hash the password
-    hashed_password = pwd_context.hash(user_data['password_hash'])
+    hashed_password = utils.hash(user_data['password_hash'])
     user_data['password_hash'] = hashed_password
 
     # Create a new User instance with only valid fields
