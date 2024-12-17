@@ -32,17 +32,20 @@ class UserBase(BaseModel):
 
 # Fields required to create a new User
 class UserCreate(UserBase):
-    password_hash: str  # Include password when creating a new user
+    password: str  # Include password when creating a new user
     date_of_birth: datetime
     image: Optional[str] = None  # Image is optional
 
 
 # Response model for a single User
-class User(UserBase):
-    user_id: int
-    date_of_birth: datetime
+class User(BaseModel):
+    email: EmailStr
+    first_name: str
+    last_name: str
+    nationality: str
     image: Optional[str] = None 
-    created_at: datetime
+    class Config:
+        orm_mode = True
 
 
 # Response model for a list of Users
