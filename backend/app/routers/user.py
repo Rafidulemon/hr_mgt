@@ -1,6 +1,6 @@
 from fastapi import  Depends, HTTPException, status , APIRouter
 from sqlalchemy.orm import Session
-from .. import models, schema , utils
+from .. import models, schema , utils , oauth2
 from .. database import  get_db
 
 
@@ -32,14 +32,15 @@ def get_user_by_id(user_id: int, db: Session = Depends(get_db)):
 
 # POST request to create a new user
 @router.post("/", status_code=status.HTTP_201_CREATED)
-def create_user(user: schema.UserCreate, db: Session = Depends(get_db)):
+def create_user(user: schema.UserCreate, db: Session = Depends(get_db) , user_id = Depends(oauth2.get_current_user)):
     # Convert schema object to dictionary
     user_data = user.dict()
 
     # Hash the password
     hashed_password = utils.hash(user_data['password_hash'])
     user_data['password_hash'] = hashed_password
-
+    print("The user id is")
+    print(user_id)
     # Create a new User instance with only valid fields
     new_user = models.User(**user_data)  # Ensure model fields match dictionary keys
     db.add(new_user)
