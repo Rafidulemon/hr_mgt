@@ -55,3 +55,8 @@ class UserList(BaseModel):
     users: List[User]  # List of User objects
 
 
+class UserModel(BaseModel):
+    email:str 
+    password :str
+
+
