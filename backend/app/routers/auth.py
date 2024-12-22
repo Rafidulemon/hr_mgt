@@ -1,7 +1,7 @@
 
 from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.orm import Session
-from .. import database, schema, models, utils
+from .. import database, schema, models, utils , oauth2
 router = APIRouter(prefix="/authentication", tags=["Authentication"])
 
 @router.post('/login')
@@ -19,10 +19,13 @@ def login(user_credentials: schema.UserModel, db: Session = Depends(database.get
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials"
         )
    
+
+   
    # create token 
+   access_token = oauth2.create_access_token(data ={"user_id" : user.user_id})
    # return token 
 
-   return {"token" : "demo token"}
+   return {"token" : access_token , "token_type":"bearer"}
    
 
 
