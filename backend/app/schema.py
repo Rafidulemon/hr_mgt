@@ -1,7 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
 from enum import Enum
-import sqlalchemy
 from typing import List, Optional
 
 
@@ -59,4 +58,11 @@ class UserModel(BaseModel):
     email:str 
     password :str
 
+
+class Token(BaseModel):
+    access_token:str 
+    token_type:str
+
+class TokenData(BaseModel):
+    id:Optional[str] = None
 
